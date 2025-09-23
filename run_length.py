@@ -14,20 +14,20 @@ Usage examples:
   python run_length.py \
     --scaffold baseline \
     --lengths 1 \
-    --in-enriched data/boolq_enriched.jsonl \
-    --out-root runs/baseline_phi3 \
+    --in_enriched data/boolq_enriched.jsonl \
+    --out_root runs/baseline_phi3 \
     --model microsoft/Phi-3-mini-4k-instruct \
     --device mps --dtype float32 \
-    --max-new-tokens-tasks 64 --max-new-tokens-final 96 \
-    --temperature 0 --stop-seq "### User"
+    --max_new_tokens_tasks 64 --max_new_tokens_final 96 \
+    --temperature 0 --stop_seq "### User"
 
   # Meta, any subset of {6,11,16,21}
   python run_length.py \
     --scaffold meta \
     --lengths 6,11,16,21 \
-    --in-enriched data/boolq_enriched.jsonl \
-    --out-root runs/meta_phi3 \
-    --num 50 --skip-existing \
+    --in_enriched data/boolq_enriched.jsonl \
+    --out_root runs/meta_phi3 \
+    --num 50 --skip_existing \
     --model microsoft/Phi-3-mini-4k-instruct \
     --device mps --dtype float32
 
@@ -35,21 +35,28 @@ Usage examples:
   python run_length.py \
     --scaffold semantic \
     --lengths 6,11,16,21 \
-    --in-enriched data/boolq_enriched.jsonl \
-    --out-root runs/semantic_phi3
+    --in_enriched data/boolq_enriched.jsonl \
+    --out_root runs/semantic_phi3
 
   # Underspecified
   python run_length.py \
     --scaffold underspecified \
     --lengths 6,11,16,21 \
-    --in-enriched data/boolq_enriched.jsonl \
-    --out-root runs/underspecified_phi3
+    --in_enriched data/boolq_enriched.jsonl \
+    --out_root runs/underspecified_phi3
 
 """
 
 import argparse, json, re, time
 from pathlib import Path
-from typing import Dict, List, Optional
+from typing import Dict, List, Optional, Tuple
+
+from tqdm import tqdm
+import logging
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(levelname)s - %(message)s'
+)
 
 # -----------------------
 # Small IO helpers
@@ -63,10 +70,15 @@ def read_jsonl(path: Path) -> List[dict]:
                 rows.append(json.loads(s))
     return rows
 
+def read_json(p: Path):
+    with p.open("r", encoding="utf-8") as f:
+        return json.load(f)
+
 def write_json(path: Path, obj: dict) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("w", encoding="utf-8") as f:
         json.dump(obj, f, ensure_ascii=False, indent=2)
+
 
 def sanitize_id(s: Optional[str], fallback: str) -> str:
     s = (s or "").strip().lower()
@@ -233,21 +245,21 @@ def main():
     ap = argparse.ArgumentParser(description="Length vs Veracity runner (rolling context).")
     ap.add_argument("--scaffold", choices=["baseline","meta","semantic","underspecified"], required=True)
     ap.add_argument("--lengths", required=True, help="Comma list of lengths, e.g., '1' (baseline) or '6,11,16,21'")
-    ap.add_argument("--in-enriched", required=True, help="Path to boolq_enriched.jsonl (authoritative source incl. gold 'answer').")
-    ap.add_argument("--out-root", required=True)
+    ap.add_argument("--in_enriched", required=True, help="Path to boolq_enriched.jsonl (authoritative source incl. gold 'answer').")
+    ap.add_argument("--out_root", required=True)
     ap.add_argument("--num", type=int, default=None, help="Cap number of items after filtering")
-    ap.add_argument("--id-include", default=None, help="Comma list/ranges of BoolQ ids, e.g. 'dev_0001-dev_0100'")
-    ap.add_argument("--skip-existing", action="store_true")
+    ap.add_argument("--id_include", default=None, help="Comma list/ranges of BoolQ ids, e.g. 'dev_0001-dev_0100'")
+    ap.add_argument("--skip_existing", action="store_true")
     # model/decoding
     ap.add_argument("--model", default="phi3mini", help="Key or HF model id")
     ap.add_argument("--device", choices=["cpu","cuda","mps","auto"], default="mps")
     ap.add_argument("--dtype", choices=["auto","float32","float16","bfloat16"], default="float16")
     ap.add_argument("--temperature", type=float, default=0.0)
-    ap.add_argument("--max-new-tokens-tasks", type=int, default=64)
-    ap.add_argument("--max-new-tokens-final", type=int, default=96)
-    ap.add_argument("--stop-seq", default="### User")
+    ap.add_argument("--max_new_tokens_tasks", type=int, default=64)
+    ap.add_argument("--max_new_tokens_final", type=int, default=96)
+    ap.add_argument("--stop_seq", default="### User")
     # assets root (allow override)
-    ap.add_argument("--assets-root", default="data/length", help="Base folder for length assets.")
+    ap.add_argument("--assets_root", default="data/length", help="Base folder for length assets.")
     args = ap.parse_args()
 
     # Parse lengths
@@ -270,24 +282,23 @@ def main():
         raise SystemExit(f"Not found: {enr_path}")
     enriched = read_jsonl(enr_path)
     if not enriched:
-        raise SystemExit("No rows found in --in-enriched.")
+        raise SystemExit("No rows found in --in_enriched.")
 
     # Filter by id if requested
     items = enriched
     if args.id_include:
         wanted = expand_id_spec(args.id_include)
         items = [e for e in items if (e.get("id") in wanted)]
-        print(f"[FILTER] id-include -> {len(items)} items")
+        print(f"[FILTER] id_include -> {len(items)} items")
 
     # Cap by --num
     if args.num is not None and args.num > 0:
         items = items[: args.num]
-
-    print(f"[DEBUG] Loaded {len(enriched)} enriched items")
-    print(f"[DEBUG] After filtering: {len(items)} items")
+        
+    logging.info("Loaded {} enriched items, leaving {} items after filtering".format(len(enriched), len(items)))
 
     # Load model
-    print(f"[INFO] Loading model {args.model} on {args.device} ({args.dtype})")
+    logging.info("Loading model {} on {} ({}) .... ".format(args.model, args.device, args.dtype))
     runner = ModelRunner(args.model, device=args.device, dtype=args.dtype)
     # Warmup
     _ = runner.generate("### User\nok\n### Assistant\n", max_new_tokens=1, temperature=0.0, stop=None)
@@ -301,10 +312,16 @@ def main():
     out_root = Path(args.out_root); out_root.mkdir(parents=True, exist_ok=True)
     assets_root = Path(args.assets_root)
 
-    manifest = {
+    # manifest out path
+    mpth = out_root / "_manifest.json"
+    if mpth.exists():
+        logging.info("Loading manifest from {}...".format(mpth.as_posix()))
+        manifest = read_json(mpth)
+    else:
+        manifest = {
         "mode": "length",
-        "scaffold": args.scaffold,
-        "lengths": lengths,
+        # "scaffold": args.scaffold,
+        # "lengths": lengths,
         "model": args.model,
         "device": args.device,
         "dtype": args.dtype,
@@ -313,36 +330,38 @@ def main():
                      "max_new_tokens_final": args.max_new_tokens_final,
                      "stop_seq": args.stop_seq},
         "assets_root": str(assets_root.resolve()),
-        "items": [],
+        "items": {},
     }
 
-    print(f"[DEBUG] Starting processing of {len(items)} items for lengths {lengths}")
-    for i, erow in enumerate(items):
-        boolq_id_raw = erow.get("id")
-        boolq_id = sanitize_id(boolq_id_raw, "unknown")
-        q_raw = erow.get("question", "")
-        q_corr = erow.get("corrected") or q_raw
+    logging.info("**** lengths = {},  scaffold = {} ****".format(lengths, args.scaffold))
 
-        enriched_meta = {
-            "id": boolq_id_raw,
-            "question": q_raw,
-            "corrected": q_corr,
-            "topic_primary": erow.get("topic_primary"),
-            "topic_related": erow.get("topic_related") or [],
-        }
-        ph_map = build_placeholder_map(enriched_meta)
+    for L in lengths:
+        fout = out_root.joinpath("L{}_{}.json".format(L, args.scaffold))
+        logging.info("Out path: {}".format(fout.as_posix()))
 
-        for L in lengths:
-            # Output path
-            fname = f"{boolq_id}_len_L{L}_{args.scaffold}.json"
-            out_path = out_root / fname
-            if args.skip_existing and out_path.exists():
-                print(f"[SKIP] {fname} (exists)")
-                manifest["items"].append({"boolq_id": boolq_id, "length": L, "path": str(out_path.relative_to(out_root)), "skipped": True})
+        turns = load_length_file(assets_root, args.scaffold, L)
+        tmp_out_items = []
+        for ix, erow in tqdm(enumerate(items), total=len(items), desc="L{}".format(L)):
+
+            boolq_id_raw = erow.get("id")
+            boolq_id = sanitize_id(boolq_id_raw, "unknown")
+            q_raw = erow.get("question", "")
+            q_corr = erow.get("corrected") or q_raw
+
+            # check if processed
+            if fout.name in manifest["items"].get(boolq_id, []):
+                # pbar.update(1)
                 continue
 
-            # Load assets
-            turns = load_length_file(assets_root, args.scaffold, L)
+            enriched_meta = {
+                "id": boolq_id_raw,
+                "question": q_raw,
+                "corrected": q_corr,
+                "topic_primary": erow.get("topic_primary"),
+                "topic_related": erow.get("topic_related") or [],
+            }
+            ph_map = build_placeholder_map(enriched_meta)
+
             # Build rolling conversation
             transcript = []
             rolling = ""
@@ -366,40 +385,75 @@ def main():
                 reply = runner.generate(full_prompt, max_new_tokens=cap,
                                         temperature=args.temperature, stop=stop_list)
 
-                transcript.append({"turn": t, "role": "user", "prompt": prompt_text})
-                transcript.append({"turn": t, "role": "model", "reply": reply})
+                transcript.append({
+                    "turn": t, 
+                    "user": prompt_text, 
+                    "model": reply
+                })
 
                 rolling += f"### User\n{prompt_text}\n### Assistant\n{reply}\n"
+
+                _token_count = full_prompt.count(" ") + reply.count(" ") + 2
+                if _token_count >= 4000:
+                    logging.warning("Excessive tokens: {}, {}/{}, boolq_id = {}".format(_token_count, t, L, boolq_id))
 
             elapsed = time.time() - t_start
 
             obj = {
-                "mode": "length",
-                "scaffold": args.scaffold,
-                "length": L,
                 "boolq_id": boolq_id,
                 "question": q_corr,
                 "gold_answer": erow.get("answer"),
                 "enriched": {"topic_primary": erow.get("topic_primary"),
                              "topic_related": erow.get("topic_related") or []},
-                "model": {"id": args.model, "device": args.device, "dtype": args.dtype},
-                "decoding": {"temperature": args.temperature,
-                             "max_new_tokens_tasks": args.max_new_tokens_tasks,
-                             "max_new_tokens_final": args.max_new_tokens_final,
-                             "stop_seq": args.stop_seq},
                 "timing_s": round(elapsed, 3),
                 "transcript": transcript,
             }
-            write_json(out_path, obj)
-            manifest["items"].append({"boolq_id": boolq_id, "length": L, "path": str(out_path.relative_to(out_root))})
-            print(f"[LEN] id={boolq_id} L={L} {args.scaffold} -> {fname} ({elapsed:.2f}s)")
+            tmp_out_items.append(obj)
+            # 更新manifest
+            manifest["items"][boolq_id] = manifest["items"].get(boolq_id, []) + [fout.name]
+            # cache 定期写出
+            if (ix + 1) % 600: #! debug
+                if fout.exists():  # 直接写出
+                    with open(fout, "a") as f:
+                        f.writelines(json.dumps(tmp_item) + "\n" for tmp_item in tmp_out_items)
 
-    write_json(out_root / "_manifest.json", manifest)
-    print(f"[DONE] Wrote outputs to {out_root.resolve()}")
-    print(f"[STATS] items={len(items)} lengths={lengths} scaffold={args.scaffold} model={args.model} device={args.device}")
-    if manifest["items"]:
-        done = sum(1 for r in manifest["items"] if not r.get("skipped"))
-        print(f"[FILES] {done} new, {len(manifest['items']) - done} skipped")
+                else:  # 写出headline
+                    common = [{
+                    "mode": "length",
+                    "scaffold": args.scaffold,
+                    "length": L,
+                    "model": {"id": args.model, "device": args.device, "dtype": args.dtype},
+                    "decoding": {"temperature": args.temperature,
+                                "max_new_tokens_tasks": args.max_new_tokens_tasks,
+                                "max_new_tokens_final": args.max_new_tokens_final,
+                                "stop_seq": args.stop_seq}
+                    }]
+                    with open(fout, "w") as f:
+                        f.write(json.dumps(common) +"\n")
+                write_json(mpth, manifest) 
+                tmp_out_items.clear()
 
+        if tmp_out_items:
+            if fout.exists():  # 直接写出
+                with open(fout, "a") as f:
+                    f.writelines(json.dumps(tmp_item) + "\n" for tmp_item in tmp_out_items)
+
+            else:  # 写出headline
+                common = [{
+                "mode": "length",
+                "scaffold": args.scaffold,
+                "length": L,
+                "model": {"id": args.model, "device": args.device, "dtype": args.dtype},
+                "decoding": {"temperature": args.temperature,
+                            "max_new_tokens_tasks": args.max_new_tokens_tasks,
+                            "max_new_tokens_final": args.max_new_tokens_final,
+                            "stop_seq": args.stop_seq}
+                }]
+                with open(fout, "w") as f:
+                    f.write(json.dumps(common) +"\n")
+            write_json(mpth, manifest)
+            tmp_out_items.clear()
+
+    write_json(mpth, manifest)
 if __name__ == "__main__":
     main()

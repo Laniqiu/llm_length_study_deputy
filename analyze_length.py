@@ -16,19 +16,16 @@ Also writes paired-by-id tables with extended columns for inspection.
 
 Usage
 -----
-python analyze_length.py --in-root runs \
-  --make-plots \
+python analyze_length.py --in_root runs \
+  --make_plots \
   --yn-map extended
 
 Notes
 -----
-- This script is a drop-in replacement; outputs are written to --out-dir
-  (default: <in-root>/_analysis) and include both strict and lenient views.
+- This script is a drop-in replacement; outputs are written to --out_dir
+  (default: <in_root>/_analysis) and include both strict and lenient views.
 - If you prefer your old-only layout, the "strict" CSVs/plots here are
   directly comparable to your previous ones.
-
-
-
   
 """
 
@@ -58,6 +55,15 @@ except Exception:
 def read_json(p: Path):
     with p.open("r", encoding="utf-8") as f:
         return json.load(f)
+
+def read_jsonl(path: Path) -> List[dict]:
+    rows = []
+    with path.open("r", encoding="utf-8") as f:
+        for line in f:
+            s = line.strip()
+            if s:
+                rows.append(json.loads(s))
+    return rows
 
 def find_manifests(root: Path) -> List[Path]:
     return list(root.rglob("_manifest.json"))
@@ -106,11 +112,11 @@ def extract_final_reply(d: dict) -> str:
     best_turn = -1
     final_reply = ""
     for row in tr:
-        if row.get("role") == "model":
-            t = int(row.get("turn", -1))
-            if t >= best_turn:
-                best_turn = t
-                final_reply = row.get("reply", "") or ""
+        # if row.get("role") == "model":
+        t = int(row.get("turn", -1))
+        if t >= best_turn:
+            best_turn = t
+            final_reply = row.get("model", "") or ""
     return final_reply
 
 def first_token_english_yes_no(text: str) -> Tuple[str, bool]:
@@ -235,6 +241,25 @@ def load_rows(in_root: Path, yn_map: str) -> List[Row]:
             except Exception:
                 continue
             rows.append(score_record(d, yn_map))
+    return rows
+
+def load_rows_new(in_root: Path, yn_map: str, scaffold: str) -> List[Row]:
+    rows: List[Row] = []
+
+    files = in_root.glob("*{}*.json".format(scaffold))
+    for f in files:
+        #todo debug
+        if "16" in f.name or "21" in f.name:
+            continue
+        d = read_jsonl(f)
+
+        _length = d[0][0]["length"]
+        _scaffold = d[0][0]["scaffold"]
+        for each in d[1:]:  # skip common 
+            each["length"] = _length
+            each["scaffold"] = _scaffold
+            rows.append(score_record(each, yn_map))
+
     return rows
 
 # -----------------------
@@ -485,22 +510,25 @@ def plot_lenient(len_df: pd.DataFrame, out_dir: Path):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--in-root", required=True, type=Path,
+    ap.add_argument("--in_root", required=True, type=Path,
                     help="Root directory containing run folders with _manifest.json files.")
-    ap.add_argument("--out-dir", type=Path, default=None,
-                    help="Where to write outputs (default: <in-root>/_analysis).")
-    ap.add_argument("--yn-map", choices=["plain","extended"], default="plain",
+    ap.add_argument("--out_dir", type=Path, default=None,
+                    help="Where to write outputs (default: <in_root>/_analysis).")
+    ap.add_argument("--yn_map", choices=["plain","extended"], default="plain",
                     help="Lenient parser: map only yes/no (plain) or include true/false, correct/incorrect (extended).")
-    ap.add_argument("--make-plots", action="store_true",
+    ap.add_argument("--make_plots", action="store_true",
                     help="Emit PNG plots (requires matplotlib).")
+    ap.add_argument("--scaffold", choices=["baseline","meta","semantic","underspecified"], required=True)
     args = ap.parse_args()
 
     out_dir = args.out_dir or (args.in_root / "_analysis")
     out_dir.mkdir(parents=True, exist_ok=True)
 
-    rows = load_rows(args.in_root, yn_map=args.yn_map)
+    # rows = load_rows(args.in_root, yn_map=args.yn_map)
+    #! 
+    rows = load_rows_new(args.in_root, yn_map=args.yn_map, scaffold=args.scaffold)
     if not rows:
-        print(f"[WARN] No rows loaded from {args.in_root}. Did you point --in-root at the runs parent?")
+        print(f"[WARN] No rows loaded from {args.in_root}. Did you point --in_root at the runs parent?")
         return
     df = pd.DataFrame([r.__dict__ for r in rows])
     det_path = out_dir / "detailed_rows.csv"
