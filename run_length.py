@@ -412,7 +412,7 @@ def main():
             # 更新manifest
             manifest["items"][boolq_id] = manifest["items"].get(boolq_id, []) + [fout.name]
             # cache 定期写出
-            if (ix + 1) % 600: #! debug
+            if (ix + 1) % 600: 
                 if fout.exists():  # 直接写出
                     with open(fout, "a") as f:
                         f.writelines(json.dumps(tmp_item) + "\n" for tmp_item in tmp_out_items)
