@@ -238,8 +238,9 @@ def score_record(d: dict, yn_map: str) -> Row:
 def load_rows_new(in_root: Path, yn_map: str, scaffold: str) -> List[Row]:
     rows: List[Row] = []
 
-    files = in_root.glob("*{}*.json".format(scaffold))
+    files = in_root.glob("L*{}.json".format(scaffold))
     for f in files:
+
         d = read_jsonl(f)
 
         _length = d[0][0]["length"]

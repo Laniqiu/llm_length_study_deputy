@@ -110,6 +110,10 @@ def expand_id_spec(spec: Optional[str]) -> set:
             out.add(part)
     return out
 
+def dump_cache(cache, fout, mode):
+    with open(fout, mode) as f:
+        f.writelines(json.dumps(each) + "\n" for each in cache)
+
 # -----------------------
 # Asset loader (one JSONL per length)
 # -----------------------
@@ -313,15 +317,13 @@ def main():
     assets_root = Path(args.assets_root)
 
     # manifest out path
-    mpth = out_root / "_manifest.json"
+    mpth = out_root / "_manifest_{}.json".format(args.scaffold)
     if mpth.exists():
         logging.info("Loading manifest from {}...".format(mpth.as_posix()))
         manifest = read_json(mpth)
     else:
         manifest = {
         "mode": "length",
-        # "scaffold": args.scaffold,
-        # "lengths": lengths,
         "model": args.model,
         "device": args.device,
         "dtype": args.dtype,
@@ -338,9 +340,21 @@ def main():
     for L in lengths:
         fout = out_root.joinpath("L{}_{}.json".format(L, args.scaffold))
         logging.info("Out path: {}".format(fout.as_posix()))
+    
+        _cache = [] if fout.exists() else \
+                        [{
+                        "mode": "length",
+                        "scaffold": args.scaffold,
+                        "length": L,
+                        "model": {"id": args.model, "device": args.device, "dtype": args.dtype},
+                        "decoding": {"temperature": args.temperature,
+                                    "max_new_tokens_tasks": args.max_new_tokens_tasks,
+                                    "max_new_tokens_final": args.max_new_tokens_final,
+                                    "stop_seq": args.stop_seq}
+                        }]
+        write_mode = "a" if fout.exists() else "w"
 
         turns = load_length_file(assets_root, args.scaffold, L)
-        tmp_out_items = []
         for ix, erow in tqdm(enumerate(items), total=len(items), desc="L{}".format(L)):
 
             boolq_id_raw = erow.get("id")
@@ -350,7 +364,6 @@ def main():
 
             # check if processed
             if fout.name in manifest["items"].get(boolq_id, []):
-                # pbar.update(1)
                 continue
 
             enriched_meta = {
@@ -393,10 +406,6 @@ def main():
 
                 rolling += f"### User\n{prompt_text}\n### Assistant\n{reply}\n"
 
-                _token_count = full_prompt.count(" ") + reply.count(" ") + 2
-                if _token_count >= 4000:
-                    logging.warning("Excessive tokens: {}, {}/{}, boolq_id = {}".format(_token_count, t, L, boolq_id))
-
             elapsed = time.time() - t_start
 
             obj = {
@@ -408,51 +417,19 @@ def main():
                 "timing_s": round(elapsed, 3),
                 "transcript": transcript,
             }
-            tmp_out_items.append(obj)
-            # 更新manifest
+            _cache.append(obj)
+            # update manifest
             manifest["items"][boolq_id] = manifest["items"].get(boolq_id, []) + [fout.name]
-            # cache 定期写出
+            # dump cache 
             if (ix + 1) % 600: 
-                if fout.exists():  # 直接写出
-                    with open(fout, "a") as f:
-                        f.writelines(json.dumps(tmp_item) + "\n" for tmp_item in tmp_out_items)
-
-                else:  # 写出headline
-                    common = [{
-                    "mode": "length",
-                    "scaffold": args.scaffold,
-                    "length": L,
-                    "model": {"id": args.model, "device": args.device, "dtype": args.dtype},
-                    "decoding": {"temperature": args.temperature,
-                                "max_new_tokens_tasks": args.max_new_tokens_tasks,
-                                "max_new_tokens_final": args.max_new_tokens_final,
-                                "stop_seq": args.stop_seq}
-                    }]
-                    with open(fout, "w") as f:
-                        f.write(json.dumps(common) +"\n")
+                dump_cache(_cache, fout, write_mode)
                 write_json(mpth, manifest) 
-                tmp_out_items.clear()
+                _cache.clear()
 
-        if tmp_out_items:
-            if fout.exists():  # 直接写出
-                with open(fout, "a") as f:
-                    f.writelines(json.dumps(tmp_item) + "\n" for tmp_item in tmp_out_items)
-
-            else:  # 写出headline
-                common = [{
-                "mode": "length",
-                "scaffold": args.scaffold,
-                "length": L,
-                "model": {"id": args.model, "device": args.device, "dtype": args.dtype},
-                "decoding": {"temperature": args.temperature,
-                            "max_new_tokens_tasks": args.max_new_tokens_tasks,
-                            "max_new_tokens_final": args.max_new_tokens_final,
-                            "stop_seq": args.stop_seq}
-                }]
-                with open(fout, "w") as f:
-                    f.write(json.dumps(common) +"\n")
-            write_json(mpth, manifest)
-            tmp_out_items.clear()
+        if _cache:
+            dump_cache(_cache, fout, write_mode)
+            write_json(mpth, manifest) 
+            _cache.clear()
 
     write_json(mpth, manifest)
 if __name__ == "__main__":
