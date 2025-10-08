@@ -42,6 +42,9 @@ from typing import Dict, Iterable, List, Optional, Tuple
 
 import numpy as np
 import pandas as pd
+from tqdm import tqdm
+
+import shutil
 
 try:
     import matplotlib.pyplot as plt
@@ -198,6 +201,9 @@ class Row:
     is_idk: bool
     answered_correct: Optional[bool]
 
+    # domain
+    domain: Optional[str]
+
 def score_record(d: dict, yn_map: str) -> Row:
     L = int(d.get("length", 0))
     sc = str(d.get("scaffold", "") or "")
@@ -225,32 +231,16 @@ def score_record(d: dict, yn_map: str) -> Row:
         pred_strict=pred_strict, correct_strict=correct_strict,
         pred_label=pred_label, pred_raw=pred_raw,
         is_answered=is_answered, is_idk=is_idk,
-        answered_correct=answered_correct,
+        answered_correct=answered_correct, domain=d.get("domain", "")
     )
 
-def load_rows(in_root: Path, yn_map: str) -> List[Row]:
-    rows: List[Row] = []
-    for mani in find_manifests(in_root):
-        m = read_json(mani)
-        items = m.get("items", [])
-        base = mani.parent
-        for it in items:
-            p = base / it["path"]
-            try:
-                d = read_json(p)
-            except Exception:
-                continue
-            rows.append(score_record(d, yn_map))
-    return rows
 
 def load_rows_new(in_root: Path, yn_map: str, scaffold: str) -> List[Row]:
     rows: List[Row] = []
 
-    files = in_root.glob("*{}*.json".format(scaffold))
+    files = in_root.glob("L*{}.json".format(scaffold))
     for f in files:
-        #todo debug
-        if "16" in f.name or "21" in f.name:
-            continue
+
         d = read_jsonl(f)
 
         _length = d[0][0]["length"]
@@ -281,7 +271,7 @@ def summarize_strict(df: pd.DataFrame) -> pd.DataFrame:
             "compliance_ci_high": c_hi,
             "acc_strict": acc_n / n if n else float("nan"),
             "acc_strict_ci_low": a_lo,
-            "acc_strict_ci_high": a_hi,
+            "acc_strict_ci_high": a_hi 
         })
     return pd.DataFrame(recs).sort_values(["scaffold","L"])
 
@@ -318,6 +308,13 @@ def write_paired_tables(df: pd.DataFrame, out_dir: Path):
         piv_idk = dsc.pivot_table(index="boolq_id", columns="L", values="is_idk", aggfunc="first")
         piv_anscorr = dsc.pivot_table(index="boolq_id", columns="L", values="answered_correct", aggfunc="first")
 
+        if "domain" in df.columns:
+            _piv_domain =  dsc.pivot_table(index="boolq_id", columns="L", values="domain", aggfunc="first")
+            piv_domain = _piv_domain.copy()
+            piv_domain.columns = ["domain"]
+        else:
+            piv_domain = pd.DataFrame()
+  
         def _rename(prefix, df_):
             df_ = df_.copy()
             df_.columns = [f"{prefix}_L{int(c)}" for c in df_.columns]
@@ -331,6 +328,7 @@ def write_paired_tables(df: pd.DataFrame, out_dir: Path):
             _rename("answered", piv_ans),
             _rename("idk", piv_idk),
             _rename("anscorr", piv_anscorr),
+            piv_domain,
         ], axis=1).reset_index()
         paired_path = out_dir / f"paired_by_id_{sc}_extended.csv"
         paired.to_csv(paired_path, index=False)
@@ -504,37 +502,8 @@ def plot_lenient(len_df: pd.DataFrame, out_dir: Path):
     plt.savefig(outp, dpi=150, bbox_inches="tight")
     plt.close()
 
-# -----------------------
-# Main
-# -----------------------
 
-def main():
-    ap = argparse.ArgumentParser()
-    ap.add_argument("--in_root", required=True, type=Path,
-                    help="Root directory containing run folders with _manifest.json files.")
-    ap.add_argument("--out_dir", type=Path, default=None,
-                    help="Where to write outputs (default: <in_root>/_analysis).")
-    ap.add_argument("--yn_map", choices=["plain","extended"], default="plain",
-                    help="Lenient parser: map only yes/no (plain) or include true/false, correct/incorrect (extended).")
-    ap.add_argument("--make_plots", action="store_true",
-                    help="Emit PNG plots (requires matplotlib).")
-    ap.add_argument("--scaffold", choices=["baseline","meta","semantic","underspecified"], required=True)
-    args = ap.parse_args()
-
-    out_dir = args.out_dir or (args.in_root / "_analysis")
-    out_dir.mkdir(parents=True, exist_ok=True)
-
-    # rows = load_rows(args.in_root, yn_map=args.yn_map)
-    #! 
-    rows = load_rows_new(args.in_root, yn_map=args.yn_map, scaffold=args.scaffold)
-    if not rows:
-        print(f"[WARN] No rows loaded from {args.in_root}. Did you point --in_root at the runs parent?")
-        return
-    df = pd.DataFrame([r.__dict__ for r in rows])
-    det_path = out_dir / "detailed_rows.csv"
-    df.to_csv(det_path, index=False)
-    print(f"[WRITE] {det_path}  (N={len(df)})")
-
+def main_func(df, out_dir, plotting):
     # Summaries
     df_strict = summarize_strict(df)
     df_strict.to_csv(out_dir / "summary_by_scaffold_L_strict.csv", index=False)
@@ -556,12 +525,101 @@ def main():
     df_ansadj.to_csv(out_dir / "significance_adjacent_answered_only.csv", index=False)
 
     # Plots
-    if args.make_plots:
+    # if args.make_plots:
+    if plotting:
         plot_strict(df_strict, df_adj, df_vsbase if not df_vsbase.empty else pd.DataFrame([]), out_dir)
         plot_compliance(df_strict, out_dir)
         plot_lenient(df_len, out_dir)
+    
+# -----------------------
+# Main
+# -----------------------
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--in_root", required=True, type=Path,
+                    help="Root directory containing run folders with _manifest.json files.")
+    ap.add_argument("--out_dir", type=Path, default=None,
+                    help="Where to write outputs (default: <in_root>/_analysis).")
+    ap.add_argument("--yn_map", choices=["plain","extended"], default="plain",
+                    help="Lenient parser: map only yes/no (plain) or include true/false, correct/incorrect (extended).")
+    ap.add_argument("--make_plots", action="store_true",
+                    help="Emit PNG plots (requires matplotlib).")
+    ap.add_argument("--scaffold", choices=["baseline","meta","semantic","underspecified"], required=True)
+    ap.add_argument("--cls", action="store_true")
+    args = ap.parse_args()
+
+    out_dir = args.out_dir or (args.in_root / "_analysis")
+    out_dir.mkdir(parents=True, exist_ok=True)
+
+    # rows = load_rows(args.in_root, yn_map=args.yn_map)
+    rows = load_rows_new(args.in_root, yn_map=args.yn_map, scaffold=args.scaffold)
+    if not rows:
+        print(f"[WARN] No rows loaded from {args.in_root}. Did you point --in_root at the runs parent?")
+        return
+    df = pd.DataFrame([r.__dict__ for r in rows])
+    det_path = out_dir / "detailed_rows.csv"
+
+    if "domain" in df.columns and not df.domain.all():
+        df = df.drop("domain", axis=1)
+
+    df.to_csv(det_path, index=False)
+    print(f"[WRITE] {det_path}  (N={len(df)})")
+
+    # all
+    print("General process...")
+    main_func(df, out_dir, args.make_plots)
+
+    # by domain
+    if args.cls and "domain" in df.columns:
+        # 删除domain文件，删除domain文件夹
+        print("Process by domain, delete extent domain files and folders...")
+        for f in out_dir.glob("*domain*"):
+            if f.is_dir():
+                shutil.rmtree(f.as_posix())
+            else:
+                f.unlink()
+        
+        def _domain_worker(df, func, domain, fout):
+            df = func(df)
+            if df.size:
+                df["domain"] = domain
+
+            if fout.exists():
+                _tmp = pd.read_csv(fout)
+                df = pd.concat([_tmp, df])
+            df = df.reset_index(drop=True)
+            
+            if df.size:
+                df.to_csv(fout, index=False)
+
+            return df
+
+        domains = df["domain"].unique()
+        print("{} domains found...".format(len(domains)))
+        for ix, d in tqdm(enumerate(domains), total=len(domains), desc="Domain: "):
+
+            this_df = df[df["domain"] == d]
+            
+            # summaries
+            df_strict = _domain_worker(this_df.copy(), summarize_strict, d, out_dir / "summary_by_scaffold_L_strict_domain.csv")
+            df_len = _domain_worker(this_df.copy(), summarize_lenient, d, out_dir / "summary_by_scaffold_L_lenient_domain.csv")
+
+            # significance
+            df_adj = _domain_worker(this_df.copy(), significance_adjacent_strict, d, out_dir / "significance_adjacent_strict_domain.csv")
+            df_vsbase = _domain_worker(this_df.copy(), significance_vs_baseline_strict, d, out_dir / "significance_vs_baseline_strict_domain.csv")
+            df_ansadj = _domain_worker(this_df.copy(), significance_adjacent_answered_only, d, out_dir / "significance_adjacent_answered_only_domain.csv")
+
+            # plots
+            if args.make_plots:
+                domain_out = out_dir.joinpath("domain_plots/{}".format(d))
+                domain_out.mkdir(exist_ok=True, parents=True)
+                plot_strict(df_strict, df_adj, df_vsbase if not df_vsbase.empty else pd.DataFrame([]), domain_out)
+                plot_compliance(df_strict, domain_out)
+                plot_lenient(df_len, domain_out)
 
     print("[DONE] Analysis complete.")
+
 
 if __name__ == "__main__":
     main()
