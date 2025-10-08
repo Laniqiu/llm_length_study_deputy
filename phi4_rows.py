@@ -7,9 +7,11 @@ from pathlib import Path
 import matplotlib
 matplotlib.use("Agg")
 
+from os import getenv
+
 # ---------- Paths ----------
-SCRIPT_DIR = Path(__file__).resolve().parent
-PROJECT_ROOT = SCRIPT_DIR  # script lives at repo root
+PROJECT_ROOT = Path(getenv("PROJECT_ROOT")) or Path(__file__).resolve().parent
+
 DATA_DIR = PROJECT_ROOT / "data"
 RUNS_DIR = PROJECT_ROOT / "runs"
 

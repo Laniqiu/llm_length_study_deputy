@@ -111,16 +111,22 @@ _YES_PATTERNS_EXT = [r"^yes\b", r"^\by\b", r"\btrue\b", r"\bcorrect\b"]
 _NO_PATTERNS_EXT  = [r"^no\b",  r"^\bn\b", r"\bfalse\b", r"\bincorrect\b"]
 
 def extract_final_reply(d: dict) -> str:
-    tr = d.get("transcript", [])
-    best_turn = -1
-    final_reply = ""
-    for row in tr:
-        # if row.get("role") == "model":
-        t = int(row.get("turn", -1))
-        if t >= best_turn:
-            best_turn = t
-            final_reply = row.get("model", "") or ""
-    return final_reply
+    return d["response"]
+    # tr = d.get("transcript")
+    # breakpoint()
+    # best_turn = -1
+    # final_reply = ""
+
+    # for row in tr:
+    #     # if row.get("role") == "model":
+    #     breakpoint()
+    #     t = int(row.get("turn", -1))
+    #     if t >= best_turn:
+    #         best_turn = t
+    #         final_reply = row.get("model", "") or ""
+    # return final_reply
+
+
 
 def first_token_english_yes_no(text: str) -> Tuple[str, bool]:
     """Strict: only accept first word yes/no as compliant."""
@@ -209,7 +215,8 @@ def score_record(d: dict, yn_map: str) -> Row:
     sc = str(d.get("scaffold", "") or "")
     bid = str(d.get("boolq_id", "") or "")
     gold = 1 if int(d.get("gold_answer", 0)) == 1 else 0
-    reply = extract_final_reply(d)
+
+    reply = d.get("response", "")
     first_tok, compliant = first_token_english_yes_no(reply)
     pred_strict = None
     correct_strict = None
@@ -240,11 +247,9 @@ def load_rows_new(in_root: Path, yn_map: str, scaffold: str) -> List[Row]:
 
     files = in_root.glob("L*{}.json".format(scaffold))
     for f in files:
-
         d = read_jsonl(f)
-
-        _length = d[0][0]["length"]
-        _scaffold = d[0][0]["scaffold"]
+        _length = d[0]["length"]
+        _scaffold = d[0]["scaffold"]
         for each in d[1:]:  # skip common 
             each["length"] = _length
             each["scaffold"] = _scaffold
@@ -552,7 +557,6 @@ def main():
     out_dir = args.out_dir or (args.in_root / "_analysis")
     out_dir.mkdir(parents=True, exist_ok=True)
 
-    # rows = load_rows(args.in_root, yn_map=args.yn_map)
     rows = load_rows_new(args.in_root, yn_map=args.yn_map, scaffold=args.scaffold)
     if not rows:
         print(f"[WARN] No rows loaded from {args.in_root}. Did you point --in_root at the runs parent?")
