@@ -34,9 +34,9 @@
 # --dtype float32 
 # Semantic
 python run_length.py \
-  --scaffold semantic \
-  --lengths 6,11,16,21 \
-  --in_enriched /disk/lani/karl/data/boolq_enriched.jsonl \
+  --scaffold misleading \
+  --lengths 6\
+  --in_enriched /disk/lani/karl/data/boolq_final.jsonl \
   --out_root /disk/lani/karl/runs/phi3 \
   --assets_root /disk/lani/karl/data/length \
   --model microsoft/Phi-3-mini-4k-instruct \
