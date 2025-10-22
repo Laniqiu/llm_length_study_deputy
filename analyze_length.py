@@ -207,8 +207,6 @@ class Row:
     is_idk: bool
     answered_correct: Optional[bool]
 
-    # domain
-    domain: Optional[str]
 
 def score_record(d: dict, yn_map: str) -> Row:
     L = int(d.get("length", 0))
@@ -238,16 +236,17 @@ def score_record(d: dict, yn_map: str) -> Row:
         pred_strict=pred_strict, correct_strict=correct_strict,
         pred_label=pred_label, pred_raw=pred_raw,
         is_answered=is_answered, is_idk=is_idk,
-        answered_correct=answered_correct, domain=d.get("domain", "")
+        answered_correct=answered_correct
     )
 
 
-def load_rows_new(in_root: Path, yn_map: str, scaffold: str) -> List[Row]:
+def load_rows_new(in_root: Path, yn_map: str, scaffold=None) -> List[Row]:
     rows: List[Row] = []
 
-    files = in_root.glob("L*{}.json".format(scaffold))
+    files = in_root.glob("L*{}.json".format(scaffold)) if scaffold else in_root.glob("L*.json")
     for f in files:
         d = read_jsonl(f)
+    
         _length = d[0]["length"]
         _scaffold = d[0]["scaffold"]
         for each in d[1:]:  # skip common 
@@ -312,14 +311,7 @@ def write_paired_tables(df: pd.DataFrame, out_dir: Path):
         piv_ans = dsc.pivot_table(index="boolq_id", columns="L", values="is_answered", aggfunc="first")
         piv_idk = dsc.pivot_table(index="boolq_id", columns="L", values="is_idk", aggfunc="first")
         piv_anscorr = dsc.pivot_table(index="boolq_id", columns="L", values="answered_correct", aggfunc="first")
-
-        if "domain" in df.columns:
-            _piv_domain =  dsc.pivot_table(index="boolq_id", columns="L", values="domain", aggfunc="first")
-            piv_domain = _piv_domain.copy()
-            piv_domain.columns = ["domain"]
-        else:
-            piv_domain = pd.DataFrame()
-  
+   
         def _rename(prefix, df_):
             df_ = df_.copy()
             df_.columns = [f"{prefix}_L{int(c)}" for c in df_.columns]
@@ -332,8 +324,7 @@ def write_paired_tables(df: pd.DataFrame, out_dir: Path):
             _rename("label", piv_label),
             _rename("answered", piv_ans),
             _rename("idk", piv_idk),
-            _rename("anscorr", piv_anscorr),
-            piv_domain,
+            _rename("anscorr", piv_anscorr)
         ], axis=1).reset_index()
         paired_path = out_dir / f"paired_by_id_{sc}_extended.csv"
         paired.to_csv(paired_path, index=False)
@@ -550,8 +541,7 @@ def main():
                     help="Lenient parser: map only yes/no (plain) or include true/false, correct/incorrect (extended).")
     ap.add_argument("--make_plots", action="store_true",
                     help="Emit PNG plots (requires matplotlib).")
-    ap.add_argument("--scaffold", choices=["baseline","meta","semantic","underspecified"], required=True)
-    ap.add_argument("--cls", action="store_true")
+    ap.add_argument("--scaffold", default=None)
     args = ap.parse_args()
 
     out_dir = args.out_dir or (args.in_root / "_analysis")
@@ -564,8 +554,6 @@ def main():
     df = pd.DataFrame([r.__dict__ for r in rows])
     det_path = out_dir / "detailed_rows.csv"
 
-    if "domain" in df.columns and not df.domain.all():
-        df = df.drop("domain", axis=1)
 
     df.to_csv(det_path, index=False)
     print(f"[WRITE] {det_path}  (N={len(df)})")
@@ -573,54 +561,6 @@ def main():
     # all
     print("General process...")
     main_func(df, out_dir, args.make_plots)
-
-    # by domain
-    if args.cls and "domain" in df.columns:
-        # 删除domain文件，删除domain文件夹
-        print("Process by domain, delete extent domain files and folders...")
-        for f in out_dir.glob("*domain*"):
-            if f.is_dir():
-                shutil.rmtree(f.as_posix())
-            else:
-                f.unlink()
-        
-        def _domain_worker(df, func, domain, fout):
-            df = func(df)
-            if df.size:
-                df["domain"] = domain
-
-            if fout.exists():
-                _tmp = pd.read_csv(fout)
-                df = pd.concat([_tmp, df])
-            df = df.reset_index(drop=True)
-            
-            if df.size:
-                df.to_csv(fout, index=False)
-
-            return df
-
-        domains = df["domain"].unique()
-        print("{} domains found...".format(len(domains)))
-        for ix, d in tqdm(enumerate(domains), total=len(domains), desc="Domain: "):
-
-            this_df = df[df["domain"] == d]
-            
-            # summaries
-            df_strict = _domain_worker(this_df.copy(), summarize_strict, d, out_dir / "summary_by_scaffold_L_strict_domain.csv")
-            df_len = _domain_worker(this_df.copy(), summarize_lenient, d, out_dir / "summary_by_scaffold_L_lenient_domain.csv")
-
-            # significance
-            df_adj = _domain_worker(this_df.copy(), significance_adjacent_strict, d, out_dir / "significance_adjacent_strict_domain.csv")
-            df_vsbase = _domain_worker(this_df.copy(), significance_vs_baseline_strict, d, out_dir / "significance_vs_baseline_strict_domain.csv")
-            df_ansadj = _domain_worker(this_df.copy(), significance_adjacent_answered_only, d, out_dir / "significance_adjacent_answered_only_domain.csv")
-
-            # plots
-            if args.make_plots:
-                domain_out = out_dir.joinpath("domain_plots/{}".format(d))
-                domain_out.mkdir(exist_ok=True, parents=True)
-                plot_strict(df_strict, df_adj, df_vsbase if not df_vsbase.empty else pd.DataFrame([]), domain_out)
-                plot_compliance(df_strict, domain_out)
-                plot_lenient(df_len, domain_out)
 
     print("[DONE] Analysis complete.")
 

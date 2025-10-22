@@ -24,6 +24,12 @@ def read_jsonl(path: Path):
     return rows
 
 
+def dump_cache(cache, fout):
+    fout.parent.mkdir(parents=True, exist_ok=True)
+    mode = "a" if fout.exists() else "w"
+    with open(fout, mode) as f:
+        f.writelines(json.dumps(each) + "\n" for each in cache)
+
 
 if __name__ == "__main__":
     #! add domain to output file
@@ -49,12 +55,70 @@ if __name__ == "__main__":
     #         each["domain"] = domain
     #         with open(fout, "a") as f:
     #             f.write(json.dumps(each) + "\n")
-    #! check sim between qs
-    # 1. levensein
-    from rapidfuzz.distance import Levenshtein
-    from itertools import combinations
-    from tqdm import tqdm
-    from collections import Counter
+
+    #！extract on final
+    _dir = Path("/disk/lani/karl/runs/phi3/bk_2856")
+    fpth = Path("/disk/lani/karl/data/boolq_final.jsonl")
+
+    out_dir = Path("/disk/lani/karl/runs/phi3/")
+
+    ids = pd.read_json(fpth, lines=True)["id"].tolist()
+
+    for fd in _dir.glob("*"):
+        if not fd.is_dir():
+            continue
+        
+        if fd.name not in ["baseline", "meta", "semantic"]:
+            continue
+        
+        this_out = out_dir.joinpath(fd.name)
+        this_out.mkdir(exist_ok=True)
+        
+        for f in fd.glob("*"):
+            if "_manifest" not in f.name:
+                continue
+            
+            fout =  this_out.joinpath(f.name)
+            mani = read_json(f)
+
+            items = mani.pop("items")
+            new = []
+            for i in items:
+                if i not in ids:
+                    continue
+                new.append(i)
+                
+            mani["items"] = new
+            write_json(fout, mani)
+     
+ 
+            
+            # fout = this_out.joinpath(f.name)
+            # print(fout.as_posix())
+
+            # df = read_jsonl(f)
+
+            # _cache = [df[0]]
+            # for item in df[1:]:
+            #     _id = item["boolq_id"]
+
+            #     if _id not in ids:
+            #         continue
+                
+            #     _cache.append(item)
+
+            # print(len(_cache))
+            # dump_cache(_cache, fout)
+
+            
+            
+
+    # #! check sim between qs
+    # # 1. levensein
+    # from rapidfuzz.distance import Levenshtein
+    # from itertools import combinations
+    # from tqdm import tqdm
+    # from collections import Counter
 
     # from nltk.translate.bleu_score import sentence_bleu
 
@@ -70,44 +134,44 @@ if __name__ == "__main__":
     # filtered = [w for w in words if w.lower() not in stop_words]
     # print(filtered)
 
-    fpth = Path("/disk/lani/karl/data/boolq_enriched.jsonl")
-    fout = Path("/disk/lani/karl/data/boolq_levenshetin_sim.jsonl")
+    # fpth = Path("/disk/lani/karl/data/boolq_enriched.jsonl")
+    # fout = Path("/disk/lani/karl/data/boolq_levenshetin_sim.jsonl")
 
-    # 
-    threshold = 0.5
+    # # 
+    # threshold = 0.5
 
-    df = pd.read_json(fpth, lines=True)
-    print(df.shape)
-    # df2 = pd.read_csv(fin)
-    drop = {}
-    i1s, i2s, ss, s1s, s2s = [], [], [], [], []
-    # print(df.shape, df2.shape)
-    for (domain, this_df) in df.groupby("domain"):
-        for ix, row in this_df.iterrows():
-            i1 = row["id"]
-            s1 = row.get("corrected") or row.get("question")
-            for iy, row in this_df.iterrows():
-                if iy <= ix:
-                    continue
+    # df = pd.read_json(fpth, lines=True)
+    # print(df.shape)
+    # # df2 = pd.read_csv(fin)
+    # drop = {}
+    # i1s, i2s, ss, s1s, s2s = [], [], [], [], []
+    # # print(df.shape, df2.shape)
+    # for (domain, this_df) in df.groupby("domain"):
+    #     for ix, row in this_df.iterrows():
+    #         i1 = row["id"]
+    #         s1 = row.get("corrected") or row.get("question")
+    #         for iy, row in this_df.iterrows():
+    #             if iy <= ix:
+    #                 continue
             
-                i2 = row["id"]
-                s2 = row.get("corrected") or row.get("question")
-                sim = Levenshtein.normalized_similarity(s1.strip().lower(), s2.strip().lower())
+    #             i2 = row["id"]
+    #             s2 = row.get("corrected") or row.get("question")
+    #             sim = Levenshtein.normalized_similarity(s1.strip().lower(), s2.strip().lower())
 
-                i1s.append(i1)
-                i2s.append(i2)
-                s1s.append(s1)
-                s2s.append(s2)
-                ss.append(sim)
-    ndf = pd.DataFrame()
-    ndf["id 1"] = i1s
-    ndf["id 2"] = i2s
-    ndf["sim"] = ss
-    ndf["s1"] = s1s
-    ndf["s2"] = s2s
+    #             i1s.append(i1)
+    #             i2s.append(i2)
+    #             s1s.append(s1)
+    #             s2s.append(s2)
+    #             ss.append(sim)
+    # ndf = pd.DataFrame()
+    # ndf["id 1"] = i1s
+    # ndf["id 2"] = i2s
+    # ndf["sim"] = ss
+    # ndf["s1"] = s1s
+    # ndf["s2"] = s2s
 
-    breakpoint()
-    ndf.to_csv(fout, lines=True, orient="records")
+    # breakpoint()
+    # ndf.to_csv(fout, lines=True, orient="records")
 
 
 

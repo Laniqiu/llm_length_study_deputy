@@ -3,6 +3,8 @@ import json
 import pandas as pd
 from pathlib import Path
 
+import argparse
+
 # Headless backend so PNG saving works without a GUI
 import matplotlib
 matplotlib.use("Agg")
@@ -10,16 +12,12 @@ matplotlib.use("Agg")
 from os import getenv
 
 # ---------- Paths ----------
-PROJECT_ROOT = Path(getenv("PROJECT_ROOT")) or Path(__file__).resolve().parent
+# BASELINE_CSV = RUNS_DIR / "baseline" / "detailed_rows.csv"
+# META_CSV     = RUNS_DIR / "meta"     / "detailed_rows.csv"
+# SEM_CSV      = RUNS_DIR / "semantic" / "detailed_rows.csv"
 
-DATA_DIR = PROJECT_ROOT / "data"
-RUNS_DIR = PROJECT_ROOT / "runs"
-
-FINAL_JSONL = DATA_DIR / "boolq_final.jsonl"
-BASELINE_CSV = RUNS_DIR / "phi4_baseline" / "detailed_rows.csv"
-META_CSV     = RUNS_DIR / "phi4_meta"     / "detailed_rows.csv"
-SEM_CSV      = RUNS_DIR / "phi4_semantic" / "detailed_rows.csv"
-OUT_CSV      = RUNS_DIR / "phi4_rows.csv"
+SCAFFOLDS = ["baseline", "meta", "semantic", "misleading", "underspecified"]
+LINESTY = {"meta": "-", "semantic": "--", "misleading": "-.", "underspecified": ":"}
 
 # ---------- Helpers ----------
 def load_final_ids(path: Path) -> set:
@@ -172,21 +170,29 @@ def plot_combined_lengths(pct_baseline: pd.DataFrame, pct_len: pd.DataFrame, out
             ax.scatter([1], [float(row["percent"].iloc[0])],
                        color=color_map[acc], s=50, zorder=3)
 
-    # Plot meta (solid) and semantic (dashed), same colors per acc_type
+    # Plot others
     for acc in ACC_LEVELS:
-        # meta series
-        m = df_plot[(df_plot["condition"] == "meta") & (df_plot["acc_type"] == acc)].copy()
-        if not m.empty:
-            m = m.sort_values("L")
-            ax.plot(m["L"].astype(int), m["percent"].astype(float),
-                    marker="o", linestyle="-", color=color_map[acc], linewidth=2)
+        for this_scaffold in SCAFFOLDS[1:]:
+            this_df = df_plot[(df_plot["condition"] == this_scaffold) & (df_plot["acc_type"] == acc)].copy()
+            if not this_df.empty:
+                this_df = this_df.sort_values("L")
 
-        # semantic series
-        s = df_plot[(df_plot["condition"] == "semantic") & (df_plot["acc_type"] == acc)].copy()
-        if not s.empty:
-            s = s.sort_values("L")
-            ax.plot(s["L"].astype(int), s["percent"].astype(float),
-                    marker="o", linestyle="--", color=color_map[acc], linewidth=2)
+                ax.plot(this_df["L"].astype(int), this_df["percent"].astype(float),
+                    marker="o", linestyle=LINESTY[this_scaffold], color=color_map[acc], linewidth=2)
+                
+        # # meta series
+        # m = df_plot[(df_plot["condition"] == "meta") & (df_plot["acc_type"] == acc)].copy()
+        # if not m.empty:
+        #     m = m.sort_values("L")
+        #     ax.plot(m["L"].astype(int), m["percent"].astype(float),
+        #             marker="o", linestyle="-", color=color_map[acc], linewidth=2)
+
+        # # semantic series
+        # s = df_plot[(df_plot["condition"] == "semantic") & (df_plot["acc_type"] == acc)].copy()
+        # if not s.empty:
+        #     s = s.sort_values("L")
+        #     ax.plot(s["L"].astype(int), s["percent"].astype(float),
+        #             marker="o", linestyle="--", color=color_map[acc], linewidth=2)
 
     # Axes & formatting
     ax.set_xlabel("Length (L)")
@@ -199,11 +205,8 @@ def plot_combined_lengths(pct_baseline: pd.DataFrame, pct_len: pd.DataFrame, out
 
     # Legends
     color_handles = [Line2D([0], [0], color=color_map[a], lw=3, label=a) for a in ACC_LEVELS]
-    style_handles = [
-        Line2D([0], [0], color="black", lw=3, linestyle="-",  label="meta"),
-        Line2D([0], [0], color="black", lw=3, linestyle="--", label="semantic"),
-        Line2D([0], [0], color="black", lw=0, marker="o",    label="baseline"),
-    ]
+    style_handles = [Line2D([0], [0], color="black", lw=3, linestyle=LINESTY[s],  label=s) for s in SCAFFOLDS[1:]]
+
     leg1 = ax.legend(handles=color_handles, title="acc_type", loc="upper left")
     ax.add_artist(leg1)
     ax.legend(handles=style_handles, title="condition", loc="upper right")
@@ -216,14 +219,42 @@ def plot_combined_lengths(pct_baseline: pd.DataFrame, pct_len: pd.DataFrame, out
 
 # ---------- Main ----------
 def main():
-    # Merge phase
-    keep_ids = load_final_ids(FINAL_JSONL)
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--in_final", required=True, type=str,
+                    help="Path to data/boolq_final.jsonl")
+    ap.add_argument("--in_dir", required=True, type=str,
+                    help="directory for csv file")
+    ap.add_argument("--out_dir", default=None,
+                    help="directory to save file")
 
-    parts = [
-        load_detail_csv(BASELINE_CSV, "baseline", keep_ids),
-        load_detail_csv(META_CSV,     "meta",     keep_ids),
-        load_detail_csv(SEM_CSV,      "semantic", keep_ids),
-    ]
+    args = ap.parse_args()
+
+    # paths
+    final_jsonl = Path(args.in_final)
+    in_dir = Path(args.in_dir)
+    RUNS_DIR = Path(args.out_dir) if args.out_dir else in_dir.joinpath("aggregated")
+    
+    out_path = RUNS_DIR.joinpath("rows.csv")
+    out_path.parent.mkdir(exist_ok=True)
+
+    file_paths, file_scaffolds = [], []
+    for scd in SCAFFOLDS:
+        pth = in_dir.joinpath("{}/detailed_rows.csv".format(scd))
+        if not pth.exists():
+            continue
+
+        file_paths.append(pth)
+        file_scaffolds.append(scd) 
+
+    if not file_paths:
+        print("!! No csv files found")
+        exit()
+    
+    # Merge phase
+    keep_ids = load_final_ids(final_jsonl)
+
+    parts = [load_detail_csv(fpth, fsca, keep_ids) for (fpth, fsca) in zip(file_paths, file_scaffolds)]
+
     merged = pd.concat(parts, ignore_index=True)
 
     # Normalize columns we inspect
@@ -239,9 +270,8 @@ def main():
     if "L" not in merged.columns:
         merged["L"] = pd.NA
 
-    OUT_CSV.parent.mkdir(parents=True, exist_ok=True)
-    merged.to_csv(OUT_CSV, index=False)
-    print(f"Wrote {len(merged)} rows to {OUT_CSV}")
+    merged.to_csv(out_path, index=False)
+    print(f"Wrote {len(merged)} rows to {out_path}")
 
     # Analysis phase
     # Make L numeric where possible
@@ -262,13 +292,14 @@ def main():
     )
     counts_baseline["condition"] = "baseline"
     pct_baseline = percent_table(counts_baseline, ["condition"])
-    (RUNS_DIR / "phi4_acc_baseline.csv").parent.mkdir(parents=True, exist_ok=True)
-    pct_baseline.to_csv(RUNS_DIR / "phi4_acc_baseline.csv", index=False)
+    (RUNS_DIR / "acc_baseline.csv").parent.mkdir(parents=True, exist_ok=True)
+    pct_baseline.to_csv(RUNS_DIR / "acc_baseline.csv", index=False)
     print(f"[CSV] Wrote {RUNS_DIR / 'phi4_acc_baseline.csv'}")
 
-    # (B) Meta & semantic by length
-    len_df = merged[merged["condition"].isin(["meta", "semantic"])].copy()
+    # (B) other conditions by length
+    len_df = merged[~merged["condition"].isin(["baseline"])].copy()
     len_df = len_df[~len_df["L"].isna()]
+
     try:
         len_df["L"] = len_df["L"].astype(int)
     except Exception:
@@ -278,12 +309,14 @@ def main():
         len_df.groupby(["condition", "L", "acc_type"], dropna=False)
               .size().reset_index(name="n")
     )
+
     pct_len = percent_table(counts_len, ["condition", "L"])
-    pct_len.to_csv(RUNS_DIR / "phi4_acc_by_length.csv", index=False)
+
+    pct_len.to_csv(RUNS_DIR / "acc_by_length.csv", index=False)
     print(f"[CSV] Wrote {RUNS_DIR / 'phi4_acc_by_length.csv'}")
 
     # Combined plot
-    plot_combined_lengths(pct_baseline, pct_len, RUNS_DIR / "phi4_acc_combined.png")
+    plot_combined_lengths(pct_baseline, pct_len, RUNS_DIR / "acc_combined.png")
 
     # Quick peek
     print("\n[Baseline %]")

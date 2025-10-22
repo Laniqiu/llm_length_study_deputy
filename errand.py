@@ -148,27 +148,49 @@ def read_jsonl(path: Path):
 # manifest也改成ndjson文件。。， 好像不用，
 # import json
 
-for f in Path("/disk/lani/karl/runs/phi3_cp2/").glob("L*.json"):
-    # fin = Path("/disk/lani/karl/runs/phi3/L21_meta.json")
-    fin = f
-    fout = fin
-    # fout = Path("/disk/lani/karl/runs/phi3/").joinpath("{}.ndjson".format(f.stem))
-    # fout = Path("/disk/lani/karl/runs/phi3/L21_meta.ndjson")
 
-    data = read_json(fin)
+#! 看运行时间
+_dir = Path("/disk/lani/karl/runs/phi4/")
+_all = 0 
+for fd in _dir.glob("*"):
 
-    items = data.pop("items")
+    if fd.name not in ["baseline", "semantic", "meta", "misleading", "underspecified"]:
+        continue
+    print(">>: ", fd.name)
+    time = 0
+    for f in fd.glob("L*"):
+        d = read_jsonl(f)
 
-    # write setting 
-    with open(fout, "w") as f:
-        f.write(json.dumps([data]) + "\n")
+        for each in d[1:]:  # skip common 
+            try:
+                time += each["elapsed_s"] 
+            except:
+                time += each["timing_s"]
+    _all += time
+    print(time)
+print(_all)
 
-    # add items 
-    # with open(fout, "a") as f:
-    #     for item in items:
-    #         f.write(json.dumps(item) + "\n")
-    with open(fout, "a") as f:
-        f.writelines(json.dumps(item) + "\n" for item in items)
-    # 加载ndjson
-    df = read_jsonl(fout)
+# for f in Path("/disk/lani/karl/runs/phi3_cp2/").glob("L*.json"):
+#     # fin = Path("/disk/lani/karl/runs/phi3/L21_meta.json")
+#     fin = f
+#     fout = fin
+#     # fout = Path("/disk/lani/karl/runs/phi3/").joinpath("{}.ndjson".format(f.stem))
+#     # fout = Path("/disk/lani/karl/runs/phi3/L21_meta.ndjson")
+
+#     data = read_json(fin)
+
+#     items = data.pop("items")
+
+#     # write setting 
+#     with open(fout, "w") as f:
+#         f.write(json.dumps([data]) + "\n")
+
+#     # add items 
+#     # with open(fout, "a") as f:
+#     #     for item in items:
+#     #         f.write(json.dumps(item) + "\n")
+#     with open(fout, "a") as f:
+#         f.writelines(json.dumps(item) + "\n" for item in items)
+#     # 加载ndjson
+#     df = read_jsonl(fout)
 
