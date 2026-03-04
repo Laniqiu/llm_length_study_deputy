@@ -1,0 +1,33 @@
+BASELINE (L=1) RESPONSE PERCENTAGES
+================================================================================
+
+phi4:
+  Incorrect: 41.7%
+  Correct: 57.1%
+  IDK: 1.2%
+  NC: 0.0%
+
+deepseek7b:
+  Incorrect: 20.4%
+  Correct: 31.0%
+  IDK: 36.6%
+  NC: 11.9%
+
+qwen2.5:
+  Incorrect: 38.6%
+  Correct: 51.1%
+  IDK: 9.4%
+  NC: 0.9%
+
+llama3.1:
+  Incorrect: 38.9%
+  Correct: 48.4%
+  IDK: 4.2%
+  NC: 8.4%
+
+mistral7b:
+  Incorrect: 31.6%
+  Correct: 52.1%
+  IDK: 16.2%
+  NC: 0.1%
+

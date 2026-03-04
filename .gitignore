@@ -1,5 +1,5 @@
 /.vscode
-/Articles-LLM-Length
+/Writing
 /data/clean_boolq.py
 /data/dev.jsonl
 /data/report.txt
@@ -10,4 +10,3 @@
 /data/boolq/final_true.jsonl
 /data/boolq/final_idk.jsonl
 /data/boolq/merged.csv
-run_length_old.py

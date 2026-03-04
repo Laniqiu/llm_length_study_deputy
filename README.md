@@ -1,55 +1,77 @@
-# LLM Length vs Veracity: Evaluating Factual Reliability Across Extended Interactions
+# Is Length Really A Liability? An Evaluation of Multi-turn LLM Conversations using BoolQ
+Karl Neergaard, Le Qiu, Emmanuele Chersoni
+https://arxiv.org/abs/2601.16508
 
 ## Overview
 
-Large language models are increasingly used in extended, multi-turn conversations, yet their factual reliability across long interactions remains poorly understood. This project systematically evaluates how conversation length and different prompt scaffolds affect model veracity on the BoolQ question-answering benchmark.
-
-The evaluation tests whether models maintain factual accuracy as conversations extend from single-turn (baseline) to 21-turn interactions, across five scaffold conditions: baseline (control), meta-cognitive prompts, semantically relevant context, semantically underspecified context, and misleading/coercive prompts. This design isolates the effects of context length, semantic relevance, and adversarial misdirection on model truthfulness.
-
-Understanding these failure modes has direct implications for AI safety: models that lose factual reliability in extended conversations may inadvertently reinforce false beliefs, particularly concerning for vulnerable users or high-stakes applications where conversational AI is treated as authoritative.
-
+Single-prompt evaluations dominate current LLM benchmarking, yet they fail to capture the 
+conversational dynamics where real-world harm occurs. In this study, we examined whether 
+conversation length affects response veracity by evaluating LLM performance on the BoolQ 
+dataset under varying length and scaffolding conditions. Our results across three distinct 
+LLMs revealed model-specific vulnerabilities that are invisible under single-turn testing. 
+The length-dependent and scaffold-specific effects we observed demonstrate a fundamental 
+limitation of static evaluations, as deployment-relevant vulnerabilities could only be 
+spotted in a multi-turn conversational setting.
 ---
 
 ## Repository Structure
 
 ```
+├── analyze_length.py                  # Per-scaffold analysis script
 ├── data/
-│   ├── dev.jsonl                      # Original BoolQ dev set
+│   ├── dev.jsonl                     # Original BoolQ dev set
 │   ├── boolq_final.jsonl             # Enriched dataset (999 items)
 │   └── length/
 │       ├── baseline/
-│       │   └── L1.jsonl
+│       │   ├── L1_bi.jsonl           # Response structure: bi = YES/NO
+│       │   └── L1_tri.jsonl          # Response structure: tri = YES/NO/IDK
 │       ├── meta/
-│       │   ├── L6_meta.jsonl
-│       │   ├── L11_meta.jsonl
-│       │   ├── L16_meta.jsonl
-│       │   └── L21_meta.jsonl
+│       │   ├── L6_meta_bi.jsonl
+│       │   ├── L6_meta_tri.jsonl
+│       │   ├── L11_meta_bi.jsonl
+│       │   ├── L11_meta_tri.jsonl
+│       │   ├── L16_meta_bi.jsonl
+│       │   ├── L16_meta_tri.jsonl
+│       │   ├── L21_meta_bi.jsonl
+│       │   └── L21_meta_tri.jsonl
 │       ├── misleading/
-│       │   ├── L6_misleading_false.jsonl
-│       │   ├── L6_misleading_true.jsonl
-│       │   ├── L11_misleading_false.jsonl
-│       │   ├── L11_misleading_true.jsonl
-│       │   ├── L16_misleading_false.jsonl
-│       │   ├── L16_misleading_true.jsonl
-│       │   ├── L21_misleading_false.jsonl
-│       │   └── L21_misleading_true.jsonl
+│       │   ├── L6_misleading_false_bi.jsonl
+│       │   ├── L6_misleading_false_tri.jsonl
+│       │   ├── L6_misleading_true_bi.jsonl
+│       │   ├── L6_misleading_true_tri.jsonl
+│       │   ├── L11_misleading_false_bi.jsonl
+│       │   ├── L11_misleading_false_tri.jsonl
+│       │   ├── L11_misleading_true_bi.jsonl
+│       │   ├── L11_misleading_true_tri.jsonl
+│       │   ├── L16_misleading_false_bi.jsonl
+│       │   ├── L16_misleading_false_tri.jsonl
+│       │   ├── L16_misleading_true_bi.jsonl
+│       │   ├── L16_misleading_true_tri.jsonl
+│       │   ├── L21_misleading_false_bi.jsonl
+│       │   ├── L21_misleading_false_tri.jsonl
+│       │   ├── L21_misleading_true_bi.jsonl
+│       │   └── L21_misleading_true_tri.jsonl
 │       ├── semantic/
-│       │   ├── L6_semantic.jsonl
-│       │   ├── L11_semantic.jsonl
-│       │   ├── L16_semantic.jsonl
-│       │   └── L21_semantic.jsonl
+│       │   ├── L6_semantic_bi.jsonl
+│       │   ├── L6_semantic_tri.jsonl
+│       │   ├── L11_semantic_bi.jsonl
+│       │   ├── L11_semantic_tri.jsonl
+│       │   ├── L16_semantic_bi.jsonl
+│       │   ├── L16_semantic_tri.jsonl
+│       │   ├── L21_semantic_bi.jsonl
+│       │   └── L21_semantic_tri.jsonl
 │       └── underspecified/
-│           ├── L6_underspecified.jsonl
-│           ├── L11_underspecified.jsonl
-│           ├── L16_underspecified.jsonl
-│           └── L21_underspecified.jsonl
-├── runs/                              # Model outputs (gitignored)
-├── .gitignore
-├── analyze_length.py                  # Per-scaffold csv files of results
+│           ├── L6_underspecified_bi.jsonl
+│           ├── L6_underspecified_tri.jsonl
+│           ├── L11_underspecified_bi.jsonl
+│           ├── L11_underspecified_tri.jsonl
+│           ├── L16_underspecified_bi.jsonl
+│           ├── L16_underspecified_tri.jsonl
+│           ├── L21_underspecified_bi.jsonl
+│           └── L21_underspecified_tri.jsonl
 ├── README.md
-├── regression_length.py               # Regression analysis across scaffolds
 ├── requirements.txt
-├── rows.py                            # Compiler across scaffolds
+├── runs/                              # Model outputs
 └── run_length.py                      # Main evaluation script
 ```
 
@@ -59,7 +81,7 @@ Understanding these failure modes has direct implications for AI safety: models 
 
 **Input:** `data/boolq_final.jsonl`
 
-Enriched version of the BoolQ dev set, reduced to 999 items. Each line contains:
+Enriched version of the BoolQ dev set, reduced to 999 items. Enrichment fields were generated by GPT-4 and human-validated by first author. Each line contains:
 
 ```json
 {
@@ -72,13 +94,12 @@ Enriched version of the BoolQ dev set, reduced to 999 items. Each line contains:
   "domain": "generic domain classification"
 }
 ```
-
-- `topic_primary`: General semantic topic generated by GPT-4 and human-validated
+- `topic_primary`: General semantic topic
 - `topic_related`: Four semantic neighbors of the primary topic or question terms
 - `corrected`: Syntactically and orthographically corrected question text
-- `domain`: Generic domain classifications generated by GPT-4 and narrowed down to 16 by first author
+- `domain`: Generic domain classifications narrowed down to 16 by first author
 
-Following Kalai et al. (2025), acceptable model responses are: **True**, **False**, or **I don't know**.
+There are two response types (_bi and _tri in /data/length/...). The _tri format allows for "YES", "NO", or "I don't know" (YES/NO/IDK) following Kalai et al. (2025). The _bi format allows for only YES/NO.
 
 ---
 
@@ -188,8 +209,6 @@ python analyze_length.py \
   --manifest runs/phi4_meta/_manifest.jsonl \
   --output results/phi4_meta_analysis.csv
 ```
-Use `regression_length.py` to generate plots and regression tables per scaffold
-
 ---
 
 ## Safety Implications

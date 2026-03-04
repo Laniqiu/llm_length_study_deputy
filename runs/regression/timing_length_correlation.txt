@@ -1,0 +1,46 @@
+TIMING vs LENGTH CORRELATION ANALYSIS
+================================================================================
+
+Pearson correlation between conversation length (L) and response time (timing_s)
+High correlation may indicate multicollinearity in regression models.
+
+phi4:
+  Overall: 0.803
+  By scaffold:
+    meta: 0.825
+    semantic: 0.928
+    underspecified: 0.841
+    misleading: 0.910
+
+deepseek7b:
+  Overall: 0.740
+  By scaffold:
+    meta: 0.731
+    semantic: 0.764
+    underspecified: 0.764
+    misleading: 0.724
+
+qwen2.5:
+  Overall: 0.838
+  By scaffold:
+    meta: 0.848
+    semantic: 0.856
+    underspecified: 0.832
+    misleading: 0.848
+
+llama3.1:
+  Overall: 0.751
+  By scaffold:
+    meta: 0.974
+    semantic: 0.432
+    underspecified: 0.988
+    misleading: 0.983
+
+mistral7b:
+  Overall: 0.337
+  By scaffold:
+    meta: 0.497
+    semantic: 0.298
+    underspecified: 0.270
+    misleading: 0.314
+

@@ -8,27 +8,53 @@ This preserves TRUE multi-turn behavior:
 T1 → A1 → T2 → A2 → … → TL → AL, with each assistant reply appended to the context.
 
 What’s included:
-- Input is ONLY --in-final (boolq_final.jsonl).
-- Scaffolds now include: baseline, memory, meta, semantic, underspecified, misleading.
+- Input is boolq_final.jsonl.
+- Scaffolds: baseline, meta, semantic, underspecified, misleading.
+- Response types: tri (YES/NO/IDK) or bi (YES/NO only)
 - Strict template filenames:
-    data/length/{scaffold}/L{L}_{scaffold}.jsonl
+    llm_length_study/data/length/{scaffold}/L{L}_{scaffold}_{response_type}.jsonl
   And for 'misleading' we branch by gold:
-    answer==true  -> data/length/misleading/L{L}_misleading_true.jsonl
-    answer==false -> data/length/misleading/L{L}_misleading_false.jsonl
+    answer==true  -> llm_length_study/data/length/misleading/L{L}_misleading_true_{response_type}.jsonl
+    answer==false -> llm_length_study/data/length/misleading/L{L}_misleading_false_{response_type}.jsonl
+  And for 'baseline':
+    llm_length_study/data/length/baseline/L1_baseline_{response_type}.jsonl
 - Deterministic anchor generator for {anchor_a..d} (underspecified, misleading).
 - Progress prints so you can see where it’s working/lagging.
-- Model alias: --model phi4-mini -> microsoft/Phi-4-mini-instruct.
+- Model aliases: phi4-mini, qwen2.5, deepseek7b (or pass full HF model id).
 - Optional --dry-run writes prompts/transcripts without importing torch/transformers.
 
-Example:
-python run_length.py \
-  --scaffold memory \
+Examples:
+# Tri-nary responses (YES/NO/IDK) - default
+python llm_length_study/run_length.py \
+  --scaffold meta \
   --lengths 6,11,16,21 \
-  --in-final data/boolq_final.jsonl \
-  --out-root runs/phi4_memory \
-  --model phi4-mini \
-  --device mps \
+  --in-final llm_length_study/data/boolq_final.jsonl \
+  --out-root runs/qwen2.5_meta_tri \
+  --model qwen2.5 \
+  --device cuda \
+  --response-type tri \
   --skip-existing
+
+# Binary responses (YES/NO only)
+python llm_length_study/run_length.py \
+  --scaffold meta \
+  --lengths 6,11,16,21 \
+  --in-final llm_length_study/data/boolq_final.jsonl \
+  --out-root runs/qwen2.5_meta_bi \
+  --model qwen2.5 \
+  --device cuda \
+  --response-type bi \
+  --skip-existing
+
+Test specific questions:
+python llm_length_study/run_length.py \
+  --scaffold misleading \
+  --lengths 6,11,16,21 \
+  --in-final llm_length_study/data/boolq_final.jsonl \
+  --out-root runs/qwen2.5_misleading_test \
+  --model qwen2.5 \
+  --device cuda \
+  --id-include dev_0023,dev_0039,dev_0055
 """
 
 from __future__ import annotations
@@ -48,12 +74,13 @@ PROJECT_ROOT = Path(__file__).resolve().parent
 DATA_DIR     = PROJECT_ROOT / "data"
 LENGTH_DIR   = DATA_DIR / "length"
 
-SCAFFOLDS = ("baseline", "memory", "meta", "semantic", "underspecified", "misleading")
+SCAFFOLDS = ("baseline", "meta", "semantic", "underspecified", "misleading")
 
 # Convenience aliases; pass full HF model id to --model to bypass
 MODEL_ALIASES = {
-    "phi3-mini": "microsoft/Phi-3-mini-4k-instruct",
     "phi4-mini": "microsoft/Phi-4-mini-instruct",
+    "qwen2.5": "Qwen/Qwen2.5-7B-Instruct",
+    "deepseek7b": "deepseek-ai/deepseek-llm-7b-chat",
 }
 
 # --------------------------------------------------------------------------------------
@@ -99,20 +126,22 @@ def strict_format(template: str, mapping: Dict[str, Any], origin: str) -> str:
     except Exception as e:
         raise RuntimeError(f"Failed formatting {origin}: {e}")
 
-def resolve_template_path(scaffold: str, L: int, gold_bool: bool) -> Path:
+def resolve_template_path(scaffold: str, L: int, gold_bool: bool, response_type: str = "tri") -> Path:
     """
-    Return the exact template file path for (scaffold, L, gold).
+    Return the exact template file path for (scaffold, L, gold, response_type).
+    response_type: 'tri' (yes/no/idk) or 'bi' (yes/no only)
     Strict names only; no fallbacks.
     """
     base = LENGTH_DIR / scaffold
     if scaffold == "misleading":
-        fname = f"L{L}_misleading_true.jsonl" if gold_bool else f"L{L}_misleading_false.jsonl"
+        base_name = "misleading_true" if gold_bool else "misleading_false"
+        fname = f"L{L}_{base_name}_{response_type}.jsonl"
         path = base / fname
     elif scaffold == "baseline":
-        path = base / "L1_baseline.jsonl"
+        path = base / f"L1_baseline_{response_type}.jsonl"
     else:
-        # memory | meta | semantic | underspecified
-        path = base / f"L{L}_{scaffold}.jsonl"
+        # meta | semantic | underspecified
+        path = base / f"L{L}_{scaffold}_{response_type}.jsonl"
 
     if not path.exists():
         raise FileNotFoundError(f"[TPL] Missing template: {path}")
@@ -180,7 +209,7 @@ def build_placeholder_map(item: dict, scaffold: str) -> Dict[str, Any]:
         "GOLD": "YES" if bool(item.get("answer")) else "NO",
     }
 
-    if scaffold in ("semantic", "memory"):
+    if scaffold == "semantic":
         # pad related terms to 4
         rel = [str(x) for x in topic_related]
         rel += ["", "", "", ""]
@@ -265,13 +294,13 @@ def load_final_items(path: Path, id_include: Optional[List[str]], num: Optional[
 def main():
     ap = argparse.ArgumentParser(description="Rolling-context runner for BoolQ-length evals")
     ap.add_argument("--scaffold", required=True, choices=SCAFFOLDS,
-                    help="baseline|memory|meta|semantic|underspecified|misleading")
+                    help="baseline|meta|semantic|underspecified|misleading")
     ap.add_argument("--lengths", default="",
                     help="Comma-separated. baseline forced to 1; others in {6,11,16,21}")
     ap.add_argument("--in-final", required=True,
                     help="Path to data/boolq_final.jsonl")
     ap.add_argument("--out-root", required=True,
-                    help="Output root, e.g., runs/phi4_memory")
+                    help="Output root, e.g., runs/qwen2.5_meta")
     ap.add_argument("--num", type=int, default=None,
                     help="Use only N items (after id filter)")
     ap.add_argument("--id-include", default="",
@@ -280,6 +309,8 @@ def main():
                     help="Skip if final response file already exists")
     ap.add_argument("--dry-run", action="store_true",
                     help="Write prompts/transcripts without generation")
+    ap.add_argument("--response-type", default="tri", choices=["tri", "bi"],
+                    help="Response format: tri (YES/NO/IDK) or bi (YES/NO only)")
 
     # Inference knobs
     ap.add_argument("--model", default="phi4-mini", help="HF id or alias (e.g., phi4-mini)")
@@ -307,7 +338,7 @@ def main():
     id_include = [x for x in args.id_include.split(",") if x] if args.id_include else None
     items = load_final_items(in_final, id_include, args.num)
 
-    print(f"[SETUP] scaffold={scaffold} lengths={lengths} items={len(items)} out_root={out_root}")
+    print(f"[SETUP] scaffold={scaffold} lengths={lengths} response_type={args.response_type} items={len(items)} out_root={out_root}")
 
     # HF init (only if not dry-run)
     tok = mdl = None
@@ -343,17 +374,17 @@ def main():
 
         for L in lengths:
             # Resolve template file(s)
-            tmpl_path = resolve_template_path(scaffold, L, gold_bool)
+            tmpl_path = resolve_template_path(scaffold, L, gold_bool, args.response_type)
             print(f"[TPL] L={L} -> {tmpl_path.name}")
             tmpl_rows = load_jsonl(tmpl_path)
 
             # Build placeholder map for this item
             subst = build_placeholder_map(item, scaffold)
 
-            # Output layout
+            # Output layout - include response_type in filenames to distinguish runs
             run_dir = out_root / f"L{L}" / scaffold
             run_dir.mkdir(parents=True, exist_ok=True)
-            base = f"{boolq_id}_L{L}_{scaffold}"
+            base = f"{boolq_id}_L{L}_{scaffold}_{args.response_type}"
             out_prompt = run_dir / f"{base}.prompt.txt"
             out_resp   = run_dir / f"{base}.response.txt"
             out_json   = run_dir / f"{base}.json"
@@ -420,6 +451,7 @@ def main():
                 "boolq_id": boolq_id,
                 "L": L,
                 "scaffold": scaffold,
+                "response_type": args.response_type,
                 "template_file": str(tmpl_path),
                 "mislead_branch": ("true" if (scaffold == "misleading" and gold_bool) else ("false" if scaffold == "misleading" else "")),
                 "gold": "YES" if gold_bool else "NO",

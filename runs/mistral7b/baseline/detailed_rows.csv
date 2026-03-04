@@ -1,0 +1,1004 @@
+scaffold,L,boolq_id,gold,reply,first_token,pred_label,acc_type,timing_s
+baseline,1,dev_0023,yes,"No, a cape and a cloak are not the same. While they",no,no,Incorrect,0.961
+baseline,1,dev_0039,no,YES,yes,yes,Incorrect,0.1255
+baseline,1,dev_0055,no,"YES, Wisconsin has been in the Little League World Series. The first time",yes,yes,Incorrect,0.6322000000000001
+baseline,1,dev_0059,no,YES,yes,yes,Incorrect,0.12090000000000001
+baseline,1,dev_0068,no,"NO, in most countries, minors (individuals under the age of",no,no,Correct,0.649
+baseline,1,dev_0087,yes,"NO, frogs do not jump out of boiling water. This is a",no,no,Incorrect,0.6454
+baseline,1,dev_0107,no,"YES, gambling winnings in Australia are considered taxable income. However,",yes,yes,Incorrect,0.6403
+baseline,1,dev_0120,yes,"No, a vehicle title and registration are not the same. A vehicle title is",no,no,Incorrect,0.6402
+baseline,1,dev_0138,no,YES,yes,yes,Incorrect,0.1202
+baseline,1,dev_0151,no,I don't know. While the numerical system (base 10),i,idk,IDK,0.6317
+baseline,1,dev_0163,yes,YES,yes,yes,Correct,0.123
+baseline,1,dev_0165,no,YES,yes,yes,Incorrect,0.121
+baseline,1,dev_0207,no,YES,yes,yes,Incorrect,0.12090000000000001
+baseline,1,dev_0210,no,YES,yes,yes,Incorrect,0.1296
+baseline,1,dev_0221,no,YES,yes,yes,Incorrect,0.12
+baseline,1,dev_0229,yes,"YES, that's correct. All UK National Insurance numbers do have a",yes,yes,Correct,0.6357
+baseline,1,dev_0237,no,"Yes, there is a difference.
+
+A 2-stroke engine complet",yes,yes,Incorrect,0.6336
+baseline,1,dev_0243,no,YES,yes,yes,Incorrect,0.1235
+baseline,1,dev_0248,yes,I don't know. While it's common knowledge that cheetah,i,idk,IDK,0.6598999999999999
+baseline,1,dev_0249,yes,"NO, queen ants do not give birth to queen ants. Instead,",no,no,Incorrect,0.6319
+baseline,1,dev_0251,yes,"NO, one sister chromatid does not have half the DNA of a chrom",no,no,Incorrect,1.9861
+baseline,1,dev_0257,yes,"YES, it is possible for a glass window to break on its own,",yes,yes,Correct,0.6352000000000001
+baseline,1,dev_0270,no,"NO, the minimum legal drinking age in all U.S. states is",no,no,Correct,0.634
+baseline,1,dev_0287,yes,"YES, in American football, a player can call a fair catch on a",yes,yes,Correct,0.6327999999999999
+baseline,1,dev_0295,no,YES,yes,yes,Incorrect,0.12290000000000001
+baseline,1,dev_0298,yes,"No, sheet metal gauge and wire gauge are not the same. They are two",no,no,Incorrect,0.6321
+baseline,1,dev_0312,no,"Yes, in English, adjectives typically come before the noun they modify",yes,yes,Incorrect,0.6327999999999999
+baseline,1,dev_0316,yes,YES,yes,yes,Correct,0.12029999999999999
+baseline,1,dev_0318,yes,"NO, it is not a straight. A straight in poker requires five cards in",no,no,Incorrect,0.6518999999999999
+baseline,1,dev_0321,yes,"YES, a filibuster can potentially delay or block a Supreme Court nom",yes,yes,Correct,0.635
+baseline,1,dev_0333,yes,"No, .22 Magnum and .22 WMR (Winchester",no,no,Incorrect,0.6359
+baseline,1,dev_0336,no,"Yes, there is a difference between Muay Thai and Thai boxing",yes,yes,Incorrect,0.6331
+baseline,1,dev_0343,yes,"NO, the President is not the only member of the executive branch. The executive",no,no,Incorrect,0.6324
+baseline,1,dev_0352,no,"NO, you cannot score directly from a throw-in in soccer. The throw",no,no,Correct,0.6337
+baseline,1,dev_0355,no,"NO, Father's Day is not celebrated on the same day every year.",no,no,Correct,0.6324
+baseline,1,dev_0364,no,YES,yes,yes,Incorrect,0.12279999999999999
+baseline,1,dev_0366,no,"YES, the pelvic diaphragm (or pelv",yes,yes,Incorrect,0.6469
+baseline,1,dev_0406,no,YES,yes,yes,Incorrect,0.1199
+baseline,1,dev_0428,no,"YES, peroxide and hydrogen peroxide are the same thing",yes,yes,Incorrect,0.6535
+baseline,1,dev_0429,yes,"NO, they are not the same. Flax oil is the oil extracted from",no,no,Incorrect,0.6431
+baseline,1,dev_0430,yes,"No, the Banaue Rice Terraces are not one of the 7",no,no,Incorrect,0.6392
+baseline,1,dev_0436,no,"Yes, there is such a thing as a broken heart, although it's",yes,yes,Incorrect,0.6409
+baseline,1,dev_0441,no,"NO, there is no lobster in shrimp with lobster sauce.",no,no,Correct,0.6379
+baseline,1,dev_0442,yes,I don't know. While it's possible for particles to come into,i,idk,IDK,0.6364
+baseline,1,dev_0479,no,YES,yes,yes,Incorrect,0.1202
+baseline,1,dev_0481,no,"NO, there has never been a 6th borough in New York.",no,no,Correct,0.6356
+baseline,1,dev_0482,no,"NO, a bumblebee does not die after stinging someone. Unlike honey",no,no,Correct,0.6336
+baseline,1,dev_0487,no,"No, you cannot grow a banana tree from a banana. Bananas",no,no,Correct,0.6527999999999999
+baseline,1,dev_0504,yes,"No, friction tape and electrical tape are not the same. Friction tape",no,no,Incorrect,0.6329
+baseline,1,dev_0509,no,YES,yes,yes,Incorrect,0.12040000000000001
+baseline,1,dev_0532,no,I don't know. While there have been significant advancements in neuroscience,i,idk,IDK,0.632
+baseline,1,dev_0534,no,"YES, the National Guard is primarily a domestic military reserve force that can be",yes,yes,Incorrect,0.6339
+baseline,1,dev_0536,yes,"NO, Thanos did not appear in the first Guardians of the Galaxy movie",no,no,Incorrect,0.6367
+baseline,1,dev_0537,no,"YES, in many jurisdictions, law enforcement officers can issue a caution",yes,yes,Incorrect,0.6333
+baseline,1,dev_0546,yes,"NO, the College of William & Mary is not an Ivy League school.",no,no,Incorrect,0.654
+baseline,1,dev_0560,no,"YES, the University of Tampa has a football team. They compete in",yes,yes,Incorrect,0.6356
+baseline,1,dev_0568,no,No. The movie Heat is not based on a book. It is an original,no,no,Correct,0.6486000000000001
+baseline,1,dev_0569,no,"YES, the NBA salary cap is a hard cap. This means that no",yes,yes,Incorrect,0.6447999999999999
+baseline,1,dev_0588,yes,"NO, Boost Mobile and Virgin Mobile are not the same. Boost Mobile",no,no,Incorrect,0.6347
+baseline,1,dev_0594,no,"YES, bee stingers do fall out on their own after a",yes,yes,Incorrect,0.6334
+baseline,1,dev_0596,no,"Yes, C# and Visual C# are essentially the same. Visual C#",yes,yes,Incorrect,0.6346
+baseline,1,dev_0598,yes,"NO, the Vice President is not the head of the Senate. The Vice President",no,no,Incorrect,0.6336
+baseline,1,dev_0612,yes,"NO, popcorn is made from a specific type of corn called Zea",no,no,Incorrect,0.6319
+baseline,1,dev_0617,yes,"YES, France and England have competed against each other in the World Cup.",yes,yes,Correct,0.6343
+baseline,1,dev_0662,yes,"NO, LensCrafters and Pearle Vision are not the same",no,no,Incorrect,0.6557000000000001
+baseline,1,dev_0678,no,"NO, it is not safe to wash your kid's mouth out with soap",no,no,Correct,0.6352000000000001
+baseline,1,dev_0696,no,YES,yes,yes,Incorrect,0.1205
+baseline,1,dev_0711,yes,"No, while both are music retailers, they are separate companies. Musicians",no,no,Incorrect,0.6357999999999999
+baseline,1,dev_0718,yes,YES,yes,yes,Correct,0.12179999999999999
+baseline,1,dev_0724,no,"Yes, there is a sequel to Along Came a Spider. It",yes,yes,Incorrect,0.637
+baseline,1,dev_0731,no,YES,yes,yes,Incorrect,0.12040000000000001
+baseline,1,dev_0737,no,"NO, a Cornish game hen is not a baby chicken. It is a",no,no,Correct,0.6344
+baseline,1,dev_0754,yes,"YES, World at War is a part of the Call of Duty series",yes,yes,Correct,0.6497
+baseline,1,dev_0759,no,"NO, North and South Korea speak different dialects of the Korean language. While",no,no,Correct,0.6349
+baseline,1,dev_0764,yes,I don't know. Sampling error refers to the difference between a sample,i,idk,IDK,0.6384
+baseline,1,dev_0782,yes,"NO, AC Milan and Inter Milan do not share a stadium. AC Milan plays",no,no,Incorrect,0.6575
+baseline,1,dev_0817,no,YES,yes,yes,Incorrect,0.12359999999999999
+baseline,1,dev_0829,no,YES,yes,yes,Incorrect,0.1242
+baseline,1,dev_0832,no,"NO, you cannot get to South America by car as there is no road connection",no,no,Correct,0.6375
+baseline,1,dev_0837,yes,I don't know. While universal healthcare and socialized medicine share the goal,i,idk,IDK,0.6379
+baseline,1,dev_0853,no,"NO, a Girl Scout cannot be an Eagle Scout. The E",no,no,Correct,1.9803
+baseline,1,dev_0854,no,"NO, elephants are herbivores and not at the top of",no,no,Correct,0.6345
+baseline,1,dev_0862,no,"NO, in chess, we say ""move"" instead of ""check in",no,no,Correct,0.6351
+baseline,1,dev_0871,yes,"NO, Mandarin Chinese is the most commonly spoken language in the world, with",no,no,Incorrect,0.6335
+baseline,1,dev_0916,yes,"NO, they are not the same thing. The Ryman Auditorium,",no,no,Incorrect,0.6493
+baseline,1,dev_0922,yes,"NO, a Passport Card cannot be used for international air travel. It is",no,no,Incorrect,0.6355
+baseline,1,dev_0933,no,YES,yes,yes,Incorrect,0.12279999999999999
+baseline,1,dev_0934,yes,"NO, Pokémon: Let's Go Pikachu! and",no,no,Incorrect,0.6364
+baseline,1,dev_0940,yes,"No, a Passport Card is not valid for travel by air within the United",no,no,Incorrect,0.6372000000000001
+baseline,1,dev_0944,no,YES,yes,yes,Incorrect,0.121
+baseline,1,dev_0952,yes,"NO, Merrill Lynch and Bank of America are not the same.",no,no,Incorrect,0.6337
+baseline,1,dev_0958,yes,YES,yes,yes,Correct,0.1202
+baseline,1,dev_0981,no,"Yes, pyruvic acid and pyruvate are essentially the same",yes,yes,Incorrect,0.6477
+baseline,1,dev_0991,yes,"No, you do not need a license to watch TV in England. However,",no,no,Incorrect,0.6332000000000001
+baseline,1,dev_0994,yes,I don't know. While theoretically it's possible to remove a,i,idk,IDK,0.6425
+baseline,1,dev_0996,no,YES,yes,yes,Incorrect,0.1243
+baseline,1,dev_1006,no,"YES, in most countries, you have to be literate enough to understand",yes,yes,Incorrect,0.6542
+baseline,1,dev_1011,no,"YES, the World Cup trophy is named ""The FIFA World Cup Tro",yes,yes,Incorrect,0.6329
+baseline,1,dev_1022,yes,I don't know. While enterprise value (EV) is a measure of,i,idk,IDK,0.6321
+baseline,1,dev_1049,no,I don't know. While both red pandas and pandas share some,i,idk,IDK,0.6359
+baseline,1,dev_1062,yes,"No, a wheel and axle is not a lever. A lever is a",no,no,Incorrect,0.6349
+baseline,1,dev_1075,yes,"NO, NHL ice rinks are not all the same size. The official",no,no,Incorrect,0.6332000000000001
+baseline,1,dev_1102,no,"Yes, there is a difference between sweating and perspiring. Swe",yes,yes,Incorrect,0.6365
+baseline,1,dev_1110,yes,"NO, there are typically two rounds in the NBA draft, but it's",no,no,Incorrect,0.6341
+baseline,1,dev_1112,no,"YES, nuclear power and nuclear energy are essentially the same thing. Nuc",yes,yes,Incorrect,0.6533
+baseline,1,dev_1113,yes,"No, a ball python and a royal python are not the same. Ball py",no,no,Incorrect,0.6325
+baseline,1,dev_1121,no,No. World War I was the first global conflict of the 20th,no,no,Correct,0.635
+baseline,1,dev_1133,no,"YES, The Crew 2 does have a storyline. The game",yes,yes,Incorrect,0.6323
+baseline,1,dev_1138,yes,"No, anaerobic respiration does not have an electron transport chain",no,no,Incorrect,0.6416000000000001
+baseline,1,dev_1146,yes,"Yes, a Penalty Charge Notice (PCN) and a F",yes,yes,Correct,0.6367999999999999
+baseline,1,dev_1155,yes,"I don't know. While they share many similarities in design, platform",i,idk,IDK,0.634
+baseline,1,dev_1175,no,YES,yes,yes,Incorrect,0.1201
+baseline,1,dev_1178,no,"NO, no Major League Baseball team has ever gone undefeated in a",no,no,Correct,0.6453
+baseline,1,dev_1183,yes,"NO, pork loin ribs are not the same as baby back rib",no,no,Incorrect,0.6564
+baseline,1,dev_1196,no,YES,yes,yes,Incorrect,0.121
+baseline,1,dev_1204,yes,YES,yes,yes,Correct,0.12029999999999999
+baseline,1,dev_1205,no,YES,yes,yes,Incorrect,0.12029999999999999
+baseline,1,dev_1209,yes,"NO, it is not possible to turn lead into gold through any known chemical or",no,no,Incorrect,0.6329
+baseline,1,dev_1227,no,No. A prime factor of a number is a prime number that divides the,no,no,Correct,0.6334
+baseline,1,dev_1229,no,"NO, the color orange is named after the fruit. The orange fruit was named",no,no,Correct,0.6326
+baseline,1,dev_1230,yes,"No, a double eagle and an albatross are not the same.",no,no,Incorrect,0.6359
+baseline,1,dev_1235,no,YES,yes,yes,Incorrect,0.1202
+baseline,1,dev_1239,yes,"NO, a CPAP (Continuous Positive Airway Pressure) machine",no,no,Incorrect,0.6351
+baseline,1,dev_1241,no,YES,yes,yes,Incorrect,0.1232
+baseline,1,dev_1250,yes,YES,yes,yes,Correct,0.1226
+baseline,1,dev_1256,yes,YES,yes,yes,Correct,0.1226
+baseline,1,dev_1261,no,YES,yes,yes,Incorrect,0.1202
+baseline,1,dev_1267,no,YES,yes,yes,Incorrect,0.12079999999999999
+baseline,1,dev_1271,no,YES,yes,yes,Incorrect,0.1202
+baseline,1,dev_1283,yes,"No, lock nuts and stop nuts are not the same. While both are used",no,no,Incorrect,0.6523
+baseline,1,dev_1285,no,"NO, as of the 2021 Indianapolis 500",no,no,Correct,0.6405
+baseline,1,dev_1286,no,"Yes, there is a difference. While they are often used interchangeably,",yes,yes,Incorrect,0.6396000000000001
+baseline,1,dev_1294,yes,"Yes, a terminating decimal can be written as a recurring decimal, but",yes,yes,Correct,0.6377
+baseline,1,dev_1296,yes,"NO, PlayStation 2 games do not play on PlayStation 4.",no,no,Incorrect,0.6489
+baseline,1,dev_1303,no,"NO, in soccer, a player is in an offside position if any part",no,no,Correct,0.6383
+baseline,1,dev_1307,yes,"NO, in football (soccer), a goal cannot be scored directly from a",no,no,Incorrect,0.6397
+baseline,1,dev_1311,yes,"No, they are not the same thing. The crankshaft pulley",no,no,Incorrect,0.637
+baseline,1,dev_1316,yes,"No, the Gateway Arch in St. Louis is not a national park.",no,no,Incorrect,0.6508999999999999
+baseline,1,dev_1317,no,"YES, Planetary nebulae are formed when a red giant star",yes,yes,Incorrect,0.637
+baseline,1,dev_1333,yes,"No, a Dame is a female equivalent of a Knight, but they are",no,no,Incorrect,0.6322000000000001
+baseline,1,dev_1336,yes,YES,yes,yes,Correct,0.1206
+baseline,1,dev_1345,no,"Yes, there is a difference. A confidentiality agreement (also known as a",yes,yes,Incorrect,0.6366
+baseline,1,dev_1359,no,"NO, in basketball, a player cannot give themselves an assist. An assist is",no,no,Correct,0.6319
+baseline,1,dev_1370,yes,"NO, A-2-3-4-5 is not a straight because",no,no,Incorrect,1.9735999999999998
+baseline,1,dev_1371,no,YES,yes,yes,Incorrect,0.12279999999999999
+baseline,1,dev_1372,yes,"NO, a kilowatt-hour (kWh) is a unit of",no,no,Incorrect,0.6351
+baseline,1,dev_1382,no,"NO, a catcher can only block home plate with the ball in their possession",no,no,Correct,0.6339
+baseline,1,dev_1406,no,YES,yes,yes,Incorrect,0.1205
+baseline,1,dev_1408,yes,"NO, according to Major League Baseball rules, a fan cannot run on a",no,no,Incorrect,0.6541
+baseline,1,dev_1413,yes,"NO, Brazil has never won the World Cup in Europe. All of their World",no,no,Incorrect,0.6347
+baseline,1,dev_1419,yes,"NO, there is no Las Vegas in New Mexico. The city of Las Vegas",no,no,Incorrect,0.6314
+baseline,1,dev_1420,yes,"NO, 4x4 refers to a vehicle having four wheels driven by four",no,no,Incorrect,0.6451
+baseline,1,dev_1423,no,YES,yes,yes,Incorrect,0.12279999999999999
+baseline,1,dev_1424,no,YES,yes,yes,Incorrect,0.12090000000000001
+baseline,1,dev_1436,no,"NO, equity in your home is not a liquid asset. While you can sell",no,no,Correct,0.6306
+baseline,1,dev_1438,yes,"NO, the UK is not in a single time zone. It is divided into",no,no,Incorrect,0.6437
+baseline,1,dev_1452,no,I don't know. Some neurotransmitters can act as both excit,i,idk,IDK,0.6352000000000001
+baseline,1,dev_1455,yes,"Yes, the abdomen includes the stomach. The abdomen is the",yes,yes,Correct,0.6333
+baseline,1,dev_1464,no,"NO, a sweet potato is not part of the potato family. Pot",no,no,Correct,0.6512
+baseline,1,dev_1467,yes,YES,yes,yes,Correct,0.1207
+baseline,1,dev_1473,yes,"YES, a sailboat can travel faster than the wind, but only if",yes,yes,Correct,0.6329
+baseline,1,dev_1489,yes,YES,yes,yes,Correct,0.1248
+baseline,1,dev_1498,yes,YES,yes,yes,Correct,0.1202
+baseline,1,dev_1508,no,YES,yes,yes,Incorrect,0.1201
+baseline,1,dev_1515,no,"YES, there is a law that requires U.S. citizens and residents",yes,yes,Incorrect,0.6332000000000001
+baseline,1,dev_1517,yes,"NO, you should not use hydraulic fluid as brake fluid.",no,no,Incorrect,0.6367999999999999
+baseline,1,dev_1528,yes,"NO, a J.D. (Juris Doctor) is a professional",no,no,Incorrect,0.6363
+baseline,1,dev_1533,no,YES,yes,yes,Incorrect,0.1237
+baseline,1,dev_1534,no,I don't know. The legality of a baseball player catching a ball,i,idk,IDK,0.6333
+baseline,1,dev_1546,yes,I don't know. While a passport card is a valid travel document,i,idk,IDK,0.6334
+baseline,1,dev_1552,yes,I don't know. The poly(A) tail is added in a,i,idk,IDK,0.6553
+baseline,1,dev_1557,no,"NO, New York State does not have the death penalty. It was abolished",no,no,Correct,0.6333
+baseline,1,dev_1563,no,"YES, the Big Dipper is actually part of Ursa Major (the",yes,yes,Incorrect,0.6427
+baseline,1,dev_1627,no,"NO, the esophagus is located behind the heart in the mediast",no,no,Correct,0.6349
+baseline,1,dev_1632,yes,"No, the World Health Organization (WHO) is an agency of the United",no,no,Incorrect,0.6323
+baseline,1,dev_1650,yes,"NO, it is not legal to take a stop sign. A stop sign is",no,no,Incorrect,0.6415
+baseline,1,dev_1655,no,YES,yes,yes,Incorrect,0.1231
+baseline,1,dev_1658,yes,"YES, the Nazca Lines can be seen from the ground, but",yes,yes,Correct,0.6344
+baseline,1,dev_1659,yes,"YES, an undergraduate degree and a bachelor's degree are the",yes,yes,Correct,0.6327999999999999
+baseline,1,dev_1673,yes,"No, grizzly bears and polar bears are different species and cannot interbre",no,no,Incorrect,0.6512
+baseline,1,dev_1680,no,I don't know. While it's generally considered unhygien,i,idk,IDK,0.6314
+baseline,1,dev_1687,no,YES,yes,yes,Incorrect,0.123
+baseline,1,dev_1698,no,"YES, Fullmetal Alchemist: Brotherhood is a continuation",yes,yes,Incorrect,0.6337
+baseline,1,dev_1707,yes,I don't know. A PLC (Public Limited Company) is a,i,idk,IDK,0.6316
+baseline,1,dev_1727,yes,"NO, a digital audio cable and an optical audio cable are not the same.",no,no,Incorrect,0.6349
+baseline,1,dev_1736,no,YES,yes,yes,Incorrect,0.1257
+baseline,1,dev_1737,yes,"NO, a free throw is a shot taken from the free throw line without any",no,no,Incorrect,0.6309
+baseline,1,dev_1740,yes,"Yes, there is spongy bone (or cancellous bone) in the",yes,yes,Correct,0.6327999999999999
+baseline,1,dev_1743,no,I don't know. While the film is based on the novel of the,i,idk,IDK,0.6321
+baseline,1,dev_1749,yes,"YES, they are the same. Delhi University is officially known as the University",yes,yes,Correct,0.6479
+baseline,1,dev_1750,no,"YES, but with limitations. Fighting words are not absolutely protected under the",yes,yes,Incorrect,0.6364
+baseline,1,dev_1757,yes,"No, they are not the same thing. While both provide financial information about a",no,no,Incorrect,0.6429
+baseline,1,dev_1763,yes,"NO, the House of Representatives is a part of Congress, but Congress also",no,no,Incorrect,0.6347999999999999
+baseline,1,dev_1775,no,YES,yes,yes,Incorrect,0.1225
+baseline,1,dev_1789,no,"NO, the spleen is part of the lymphatic system, not",no,no,Correct,0.6415
+baseline,1,dev_1806,no,"NO, the U.S. does not currently issue $1,00",no,no,Correct,0.6344
+baseline,1,dev_1814,no,YES,yes,yes,Incorrect,0.1235
+baseline,1,dev_1823,yes,"NO, the MLB All-Star Game does not determine World Series home-",no,no,Incorrect,0.6333
+baseline,1,dev_1832,no,YES,yes,yes,Incorrect,0.123
+baseline,1,dev_1849,yes,"No, in a RACI chart, one person should not be both Res",no,no,Incorrect,0.6524
+baseline,1,dev_1851,no,YES,yes,yes,Incorrect,0.12290000000000001
+baseline,1,dev_1857,no,YES,yes,yes,Incorrect,0.1556
+baseline,1,dev_1895,yes,"NO, the empty set is not an element of itself. By definition, the",no,no,Incorrect,0.6457999999999999
+baseline,1,dev_1906,no,"No, college football players do not have to enter the NFL Draft to play",no,no,Correct,0.6437
+baseline,1,dev_1916,yes,"NO, Pokémon: Let’s Go, Pikachu!",no,no,Incorrect,0.6487999999999999
+baseline,1,dev_1919,yes,"YES, in a nuclear reaction, one element can be transmuted into",yes,yes,Correct,0.6472
+baseline,1,dev_1924,yes,"Yes, a car's serial number is typically the same as its Vehicle",yes,yes,Correct,0.6463
+baseline,1,dev_1938,no,"NO, by definition, the empty set is not an element of any set that",no,no,Correct,2.0
+baseline,1,dev_1948,yes,"No, a chicken and a rooster are not the same thing. A ro",no,no,Incorrect,0.6498999999999999
+baseline,1,dev_1950,no,"NO, the Gulf of Mexico is not considered an ocean. It is a large",no,no,Correct,0.6592
+baseline,1,dev_1960,no,"NO, they are not the same country. The Republic of the Congo (",no,no,Correct,0.6577000000000001
+baseline,1,dev_1977,no,"No, according to the U.S. Constitution, to be eligible for the",no,no,Correct,0.6523
+baseline,1,dev_1995,yes,"NO, winning the FA Cup does not automatically qualify a team for Europe. Only",no,no,Incorrect,0.6514
+baseline,1,dev_1997,yes,YES,yes,yes,Correct,0.1266
+baseline,1,dev_2009,no,"No, Color Wonder markers do not work on regular paper. They are designed",no,no,Correct,0.6341
+baseline,1,dev_2032,yes,"No, flies do not lay eggs in",no,no,Incorrect,0.636
+baseline,1,dev_2045,yes,"No, a Supreme Court justice cannot run for President. Article III, Section",no,no,Incorrect,0.6334
+baseline,1,dev_2053,no,"NO, you do not have to be serving to score in tennis. Points can",no,no,Correct,0.6333
+baseline,1,dev_2061,no,"YES, you can choose who is listed as your next of kin. It",yes,yes,Incorrect,0.6565
+baseline,1,dev_2065,yes,"YES, RealFeel is another term used by The Weather Channel to",yes,yes,Correct,0.6382000000000001
+baseline,1,dev_2068,yes,"NO, Allied Waste and Republic Services are not the same company. All",no,no,Incorrect,0.6377
+baseline,1,dev_2078,no,YES,yes,yes,Incorrect,0.1207
+baseline,1,dev_2079,yes,"YES, Eeyore from Winnie-the-Pooh is",yes,yes,Correct,0.6401
+baseline,1,dev_2088,no,YES,yes,yes,Incorrect,0.12279999999999999
+baseline,1,dev_2091,no,I don't know. The outcome of a game can depend on many factors,i,idk,IDK,0.6399
+baseline,1,dev_2094,no,YES,yes,yes,Incorrect,0.12409999999999999
+baseline,1,dev_2095,yes,"YES, Noel Gallagher is the lead singer of Oasis and",yes,yes,Correct,0.6402
+baseline,1,dev_2139,no,"YES, but with some limitations. A U.S. Passport Card",yes,yes,Incorrect,0.6354
+baseline,1,dev_2166,yes,I don't know. While prolonged exposure to extremely bright light can cause,i,idk,IDK,0.6547000000000001
+baseline,1,dev_2184,no,YES,yes,yes,Incorrect,0.1238
+baseline,1,dev_2187,yes,"NO, in basketball, a free throw is a shot taken from a specific line",no,no,Incorrect,0.6482
+baseline,1,dev_2192,no,"NO, a lieutenant colonel is not higher than a colonel. A lieutenant",no,no,Correct,0.6377
+baseline,1,dev_2196,no,"NO, Red-eared slider turtles do not lay eggs in",no,no,Correct,0.6464
+baseline,1,dev_2199,yes,YES,yes,yes,Correct,0.12340000000000001
+baseline,1,dev_2204,yes,"NO, it is not recommended or safe to pick someone up by their hair.",no,no,Incorrect,0.6355
+baseline,1,dev_2220,no,"YES, an infield fly is a call made by an umpire",yes,yes,Incorrect,0.6369
+baseline,1,dev_2224,no,"YES, there is such a thing as a blue ruby. It'",yes,yes,Incorrect,0.6333
+baseline,1,dev_2232,no,YES,yes,yes,Incorrect,0.1206
+baseline,1,dev_2234,no,YES,yes,yes,Incorrect,0.1231
+baseline,1,dev_2237,no,"NO, the Riviera Maya is located on the east coast of Mexico",no,no,Correct,0.6393
+baseline,1,dev_2247,yes,"NO, in New Jersey, it is illegal to enter a liquor store if",no,no,Incorrect,0.6481
+baseline,1,dev_2248,yes,"I don't know. While they are related, they are not exactly the",i,idk,IDK,0.6341
+baseline,1,dev_2266,no,YES,yes,yes,Incorrect,0.1231
+baseline,1,dev_2275,yes,"I don't know. While card counting is not illegal, casinos can",i,idk,IDK,0.6327
+baseline,1,dev_2295,yes,"No, a unanimous vote implies that every eligible voter has voted in",no,no,Incorrect,0.6384
+baseline,1,dev_2304,yes,"NO, the House of Representatives is a part of Congress, but Congress also",no,no,Incorrect,0.6329
+baseline,1,dev_2306,yes,"NO, in roulette, you cannot keep doubling your bet indefinitely",no,no,Incorrect,0.6357
+baseline,1,dev_2310,no,YES,yes,yes,Incorrect,0.1212
+baseline,1,dev_2315,yes,YES,yes,yes,Correct,0.12279999999999999
+baseline,1,dev_2323,no,"No, the film Tully is not based on a book. It is an",no,no,Correct,0.635
+baseline,1,dev_2328,no,YES,yes,yes,Incorrect,0.12079999999999999
+baseline,1,dev_2350,no,"YES, Little House on the Prairie is fiction. It is a",yes,yes,Incorrect,0.6557999999999999
+baseline,1,dev_2382,yes,"NO, the right atrium receives blood from the systemic veins, not",no,no,Incorrect,0.6337999999999999
+baseline,1,dev_2387,yes,"NO, Northern Ireland does not have a World Cup team. They compete in the",no,no,Incorrect,0.646
+baseline,1,dev_2388,no,"YES, in many legal systems, a person can be retried if new",yes,yes,Incorrect,0.6355
+baseline,1,dev_2396,yes,"No, semolina flour and Cream of Wheat are not the same",no,no,Incorrect,0.6366
+baseline,1,dev_2408,yes,"Yes, in common usage, employment termination and being fired are often used inter",yes,yes,Correct,0.6353
+baseline,1,dev_2413,no,YES,yes,yes,Incorrect,0.12279999999999999
+baseline,1,dev_2428,yes,I don't know. A PICC (Peripherally Inserted,i,idk,IDK,0.633
+baseline,1,dev_2433,no,I don't know. The policy on beards in the military can vary,i,idk,IDK,0.6351
+baseline,1,dev_2434,no,YES,yes,yes,Incorrect,0.12179999999999999
+baseline,1,dev_2447,no,"YES, a wild card team can have home field advantage in MLB play",yes,yes,Incorrect,0.6573
+baseline,1,dev_2473,yes,"NO, Pokémon Gold, Silver, and Crystal are different games within",no,no,Incorrect,0.6381
+baseline,1,dev_2479,no,"NO, Hong Kong is not inside the Great Firewall of China. Although China",no,no,Correct,0.6332000000000001
+baseline,1,dev_2504,no,YES,yes,yes,Incorrect,0.12179999999999999
+baseline,1,dev_2532,yes,"No, twins cannot be born inside each other. This is a common mis",no,no,Incorrect,0.6352000000000001
+baseline,1,dev_2537,no,"I don't know. While social studies often includes social science, they are",i,idk,IDK,0.7228
+baseline,1,dev_2538,no,I don't know. While the film War Room (2015,i,idk,IDK,0.8627
+baseline,1,dev_2547,yes,"No, .224 bullets cannot be used in a .22",no,no,Incorrect,0.8189
+baseline,1,dev_2548,no,"YES, the queen bee dies after she stings, unlike worker be",yes,yes,Incorrect,1.998
+baseline,1,dev_2555,no,"Yes, lymphoma is a type of cancer that originates in the",yes,yes,Incorrect,0.638
+baseline,1,dev_2566,no,YES,yes,yes,Incorrect,0.126
+baseline,1,dev_2572,no,"NO, the Channel Isles are not part of Great Britain. They are British",no,no,Correct,0.6382000000000001
+baseline,1,dev_2577,no,"YES, a soccer kick-off must go forward. The ball must be",yes,yes,Incorrect,0.6353
+baseline,1,dev_2605,yes,"No, they are not the same. The .45 Colt is an",no,no,Incorrect,0.6397999999999999
+baseline,1,dev_2614,yes,I don't know. Snow-on-the-Mountain (A,i,idk,IDK,0.637
+baseline,1,dev_2622,no,"Yes, they are essentially the same cartridge. The 7.6",yes,yes,Incorrect,0.6354
+baseline,1,dev_2634,yes,"Yes, there is a ball in hand in 8-ball, but it",yes,yes,Correct,0.635
+baseline,1,dev_2643,no,"Yes, elements of the periodic table are typically capitalized. For example, H",yes,yes,Incorrect,0.6547000000000001
+baseline,1,dev_2655,yes,"No, Visa Delta and Visa Debit are not the same. Vis",no,no,Incorrect,0.6371
+baseline,1,dev_2656,yes,"No, they are not the same. Right of Abode is a higher status",no,no,Incorrect,0.6366
+baseline,1,dev_2690,yes,"No, Parcelforce is a division of Royal Mail, but it",no,no,Incorrect,0.635
+baseline,1,dev_2719,no,"YES, in a conventional current, electrons flow in the opposite direction to",yes,yes,Incorrect,0.6343
+baseline,1,dev_2727,no,"I don't know. The term ""assault rifle"" is often mis",i,idk,IDK,0.6375
+baseline,1,dev_2750,yes,"YES, cows need to get pregnant to give milk. After giving birth",yes,yes,Correct,0.6441
+baseline,1,dev_2757,yes,"NO, there is no Dodo in Alice in Wonderland. The story features",no,no,Incorrect,0.6467
+baseline,1,dev_2770,yes,YES,yes,yes,Correct,0.12329999999999999
+baseline,1,dev_2791,yes,"No, the gut and the stomach are not the same. The stomach is a",no,no,Incorrect,0.6538999999999999
+baseline,1,dev_2813,yes,YES,yes,yes,Correct,0.125
+baseline,1,dev_2821,yes,I don't know. While nicotine can affect the nervous system and,i,idk,IDK,0.6494
+baseline,1,dev_2832,yes,YES,yes,yes,Correct,0.1211
+baseline,1,dev_2838,no,I don't know. The Prince of Tides is a novel written by,i,idk,IDK,0.6351
+baseline,1,dev_2853,no,"NO, the languages are not the same in North and South Korea. In North",no,no,Correct,0.6346
+baseline,1,dev_2870,no,YES,yes,yes,Incorrect,0.1205
+baseline,1,dev_2875,yes,"NO, Aldi and Trader Joe's are not affiliated. They",no,no,Incorrect,0.6395
+baseline,1,dev_2880,no,"YES, the County Court Business Centre is a real court. It is a",yes,yes,Incorrect,0.6337999999999999
+baseline,1,dev_2890,no,"NO, non-permanent members of the United Nations Security Council do not",no,no,Correct,0.636
+baseline,1,dev_2901,yes,YES,yes,yes,Correct,0.1231
+baseline,1,dev_2906,yes,I don't know. While both fidelity bonds and crime insurance can,i,idk,IDK,0.6572
+baseline,1,dev_2919,no,"YES, the",yes,yes,Incorrect,0.6362000000000001
+baseline,1,dev_2931,yes,"I don't know. This question pertains to local laws and regulations,",i,idk,IDK,0.6363
+baseline,1,dev_2933,no,YES,yes,yes,Incorrect,0.122
+baseline,1,dev_2956,yes,"NO, a .17 HMR is smaller than a .22 L",no,no,Incorrect,0.6366
+baseline,1,dev_2959,no,"NO, there is no bridge between Morocco and Spain. The Strait",no,no,Correct,0.636
+baseline,1,dev_2967,yes,"NO, the sun never shines from the north. It always rises in",no,no,Incorrect,0.6367
+baseline,1,dev_2973,no,"NO, there is no second movie to The Golden Compass. The planned sequ",no,no,Correct,0.6476000000000001
+baseline,1,dev_2991,yes,"Yes, in some casino games, skilled players can potentially acquire a statistical advantage over",yes,yes,Correct,0.6367
+baseline,1,dev_3000,yes,"NO, back ribs and baby back ribs are not the same. Back",no,no,Incorrect,0.6576000000000001
+baseline,1,dev_3015,yes,"No, keyless entry and remote start are not the same. Keyless entry",no,no,Incorrect,0.643
+baseline,1,dev_3027,no,"No, a Schengen visa does not allow travel to Ireland. Ireland is",no,no,Correct,0.637
+baseline,1,dev_3029,no,YES,yes,yes,Incorrect,0.12090000000000001
+baseline,1,dev_3035,no,YES,yes,yes,Incorrect,0.1238
+baseline,1,dev_3040,no,"YES, a no-insurance ticket is considered a moving violation. It",yes,yes,Incorrect,0.6445
+baseline,1,dev_3073,no,YES,yes,yes,Incorrect,0.12329999999999999
+baseline,1,dev_3079,yes,"NO, Salary is not included in the Cost of Goods Sold (CO",no,no,Incorrect,0.6366
+baseline,1,dev_3089,yes,"I don't know. Peaches belong to the Rosaceae family, while",i,idk,IDK,0.6344
+baseline,1,dev_3105,yes,"NO, a neutral wire should not be connected to ground. The neutral wire is",no,no,Incorrect,0.6347999999999999
+baseline,1,dev_3106,yes,"No, high-rise and high-waisted jeans are not the same.",no,no,Incorrect,0.6405
+baseline,1,dev_3107,yes,"YES, there have been recess appointments to the Supreme Court in U",yes,yes,Correct,0.6572
+baseline,1,dev_3122,no,YES,yes,yes,Incorrect,0.12359999999999999
+baseline,1,dev_3143,no,"NO, the Republic of Ireland is not part of the Schengen visa area",no,no,Correct,0.6397999999999999
+baseline,1,dev_3173,no,YES,yes,yes,Incorrect,0.12029999999999999
+baseline,1,dev_3183,no,YES,yes,yes,Incorrect,0.1245
+baseline,1,dev_3187,yes,YES,yes,yes,Correct,0.124
+baseline,1,dev_3204,no,YES,yes,yes,Incorrect,0.12490000000000001
+baseline,1,dev_3212,yes,"NO, a physical address is not the same as a MAC (Media Access Control",no,no,Incorrect,0.6417999999999999
+baseline,1,dev_3221,no,Yes,yes,yes,Incorrect,0.0865
+baseline,1,dev_3231,yes,"No, the standard error is not the same as the standard deviation. While",no,no,Incorrect,0.6379
+baseline,1,dev_3232,yes,"NO, corn starch and corn flour are not the same. Corn starch",no,no,Incorrect,0.6464
+baseline,1,dev_3238,yes,"YES, the non-striker can be run out by the bowler",yes,yes,Correct,0.6396000000000001
+baseline,1,dev_3239,yes,"Yes. The Conn Smythe Trophy, given to the most valuable",yes,yes,Correct,0.6443
+baseline,1,dev_3241,yes,YES,yes,yes,Correct,0.1315
+baseline,1,dev_3242,yes,I don't know. Ruby and sapphire are both forms of cor,i,idk,IDK,0.6531
+baseline,1,dev_0031,yes,"YES, Deadpool has a daughter in the comics named Wilson Rachel Sum",yes,yes,Correct,1.9787000000000001
+baseline,1,dev_0148,yes,"NO, Sméagol (Gollum) does not die in The",no,no,Incorrect,0.6371
+baseline,1,dev_0178,yes,YES,yes,yes,Correct,0.12290000000000001
+baseline,1,dev_0410,yes,YES,yes,yes,Correct,0.12290000000000001
+baseline,1,dev_0419,yes,YES,yes,yes,Correct,0.12340000000000001
+baseline,1,dev_0448,yes,YES,yes,yes,Correct,0.1227
+baseline,1,dev_0224,no,I don't know. The Outsiders is a novel written by S,i,idk,IDK,0.6369
+baseline,1,dev_0317,no,"I don't know. While it's rare, some people can develop",i,idk,IDK,0.6336
+baseline,1,dev_0368,no,"YES, The Color Purple is based on a novel of the same name",yes,yes,Incorrect,0.6385
+baseline,1,dev_0507,no,YES,yes,yes,Incorrect,0.1205
+baseline,1,dev_0603,no,"No, the Seven Ages of Man is not a sonnet. It is",no,no,Correct,0.6327
+baseline,1,dev_0938,no,"No, House of the Rising Sun is not about Vietnam. It is a",no,no,Correct,0.6502
+baseline,1,dev_0076,yes,"No, female ferrets do not die if they don't mate. However",no,no,Incorrect,0.6392
+baseline,1,dev_0459,yes,"Yes, it does matter which DNA strand is transcribed. Only one of",yes,yes,Correct,0.6342000000000001
+baseline,1,dev_0502,yes,I don't know. While kingsnakes are known for their ability to,i,idk,IDK,0.6361
+baseline,1,dev_0580,yes,"NO, female and male blue jays do not look the same. Males",no,no,Incorrect,0.6393
+baseline,1,dev_1089,yes,"Yes, it is possible to remove the venom glands from a snake,",yes,yes,Correct,0.6436000000000001
+baseline,1,dev_1153,yes,"Yes, melaleuca is another common name for the tea tree plant.",yes,yes,Correct,0.6357
+baseline,1,dev_1315,yes,I don't know. The strength of ion-dipole interactions and,i,idk,IDK,0.653
+baseline,1,dev_1482,yes,"I don't know. Muscle fibers are long, multinuc",i,idk,IDK,0.6521
+baseline,1,dev_1568,yes,I don't know. While both vultures and buzzards are sc,i,idk,IDK,0.634
+baseline,1,dev_1968,yes,"No, a turtle and a tortoise are not the same. T",no,no,Incorrect,0.6389
+baseline,1,dev_2223,yes,I don' don't know. Jellyfish do not have an un,i,other,NC,0.6364
+baseline,1,dev_2420,yes,"I don't know. There is no known bird species called a ""r",i,idk,IDK,0.6333
+baseline,1,dev_2882,yes,"NO, Redback spiders are not native to the UK. They are native",no,no,Incorrect,0.6326
+baseline,1,dev_2899,yes,"YES, Dalmatians do get more spots as they grow. The spots",yes,yes,Correct,0.6336
+baseline,1,dev_2910,yes,"No, taro root and elephant ears are not the same. Taro",no,no,Incorrect,0.6333
+baseline,1,dev_0713,no,"NO, a cow does not have to be pregnant to lactate. C",no,no,Correct,0.6572
+baseline,1,dev_0816,no,I don't know. The spinal cord and vertebral column,i,idk,IDK,0.6382000000000001
+baseline,1,dev_0911,no,"No, the ring finger does not connect to the heart. The ring finger,",no,no,Correct,0.634
+baseline,1,dev_0997,no,"No, they are not the same thing. While both are used for disin",no,no,Correct,0.6366
+baseline,1,dev_1258,no,"NO, the umbilical cord is not inside the amniotic sac",no,no,Correct,0.6518999999999999
+baseline,1,dev_1422,no,I don't know. Root hairs are outgrowths from the,i,idk,IDK,0.6367999999999999
+baseline,1,dev_2120,no,YES,yes,yes,Incorrect,0.1211
+baseline,1,dev_2353,no,"No, bees and hornets have different venom. Bee venom",no,no,Correct,0.6467999999999999
+baseline,1,dev_2441,no,YES,yes,yes,Incorrect,0.1238
+baseline,1,dev_2087,no,"YES, sperm whales are listed as endangered by the International",yes,yes,Incorrect,0.6429
+baseline,1,dev_2215,no,I don't know. While two chromosomes in a pair are similar,i,idk,IDK,0.6535
+baseline,1,dev_2503,no,"No, a catbird and a mockingbird are not the same. Although",no,no,Correct,0.6359
+baseline,1,dev_2652,no,"YES, most baby birds have an egg tooth. This temporary tooth-like",yes,yes,Incorrect,0.6387999999999999
+baseline,1,dev_2850,no,"No, not always. A bee sting typically involves the bee'",no,no,Correct,0.6404
+baseline,1,dev_3062,no,"No, black and yellow garden spiders are not poisonous to",no,no,Correct,0.6422
+baseline,1,dev_0400,yes,YES,yes,yes,Correct,0.12359999999999999
+baseline,1,dev_0432,yes,YES,yes,yes,Correct,0.12440000000000001
+baseline,1,dev_0446,yes,"No, you do not need a membership for Bi-Mart. However, they",no,no,Incorrect,0.6342000000000001
+baseline,1,dev_0455,yes,"I don't know. While Indian Motorcycle is an American brand, the",i,idk,IDK,0.6346
+baseline,1,dev_0472,yes,"NO, Toys R Us and Babies R Us were separate companies under the",no,no,Incorrect,0.6469
+baseline,1,dev_0524,yes,"Yes, there are In-N-Out Burger locations in Nevada. The",yes,yes,Correct,0.6503
+baseline,1,dev_0767,yes,"YES, the Canadian dollar has been worth more than the American dollar in the",yes,yes,Correct,0.6353
+baseline,1,dev_0875,yes,I don't know. Thousand-dollar bills were last printed,i,idk,IDK,0.6397
+baseline,1,dev_0950,yes,YES,yes,yes,Correct,0.1205
+baseline,1,dev_1023,yes,"YES, a mortgage loan originator and a loan officer are essentially the same",yes,yes,Correct,0.6498999999999999
+baseline,1,dev_1171,yes,"NO, Money from Guernsey (Guernsey pounds) is not legal",no,no,Incorrect,0.6351
+baseline,1,dev_1207,yes,"YES, Buy Buy Baby is a subsidiary of Bed Bath & Beyond",yes,yes,Correct,0.6442
+baseline,1,dev_1299,yes,YES,yes,yes,Correct,0.1259
+baseline,1,dev_0157,no,I don't know. Eyeglasses are typically manufactured by different,i,idk,IDK,0.6387999999999999
+baseline,1,dev_0371,no,"NO, National Car Rental and Enterprise Rent-A-Car are separate",no,no,Correct,0.6524
+baseline,1,dev_0621,no,"YES, it often costs money to get cash back, as many retailers",yes,yes,Incorrect,0.635
+baseline,1,dev_0699,no,I don't know. Aldi is one of the largest discount supermarket,i,idk,IDK,0.6372000000000001
+baseline,1,dev_0954,no,"I don't know. As of my last update, there is no official",i,idk,IDK,1.9767000000000001
+baseline,1,dev_1050,no,"NO, White Castle is not only on the East Coast. It has locations across",no,no,Correct,0.6345
+baseline,1,dev_1208,no,"NO, there are no Sam's Clubs in Canada. Sam's",no,no,Correct,0.6379
+baseline,1,dev_1257,no,I don't know. Home Bargains and Quality Save are both discount,i,idk,IDK,0.6369
+baseline,1,dev_1805,no,"NO, $10,000 bills are no longer in circulation in",no,no,Correct,0.6377999999999999
+baseline,1,dev_1876,no,"NO, as of 2013, all Montgomery Ward physical stores",no,no,Correct,0.6511
+baseline,1,dev_2290,no,"Yes, GDP per capita and per capita income are essentially the same",yes,yes,Incorrect,0.6427999999999999
+baseline,1,dev_2444,no,"No, land tax and property tax are not the same. Land tax is a",no,no,Correct,0.6375
+baseline,1,dev_0250,yes,"YES, they do celebrate Father's Day in the Netherlands. It is",yes,yes,Correct,0.6475
+baseline,1,dev_0337,yes,YES,yes,yes,Correct,0.124
+baseline,1,dev_0386,yes,YES,yes,yes,Correct,0.1211
+baseline,1,dev_0591,yes,"NO, Copa Airlines is part of the SkyTeam alliance, not Star Alliance.",no,no,Incorrect,0.6363
+baseline,1,dev_0746,yes,YES,yes,yes,Correct,0.12129999999999999
+baseline,1,dev_0845,yes,"No, modern car engines do not require breaking in. The misconception ar",no,no,Incorrect,0.6452
+baseline,1,dev_0855,yes,YES,yes,yes,Correct,0.12079999999999999
+baseline,1,dev_0915,yes,"NO, as of now, there is no water park at Ontario Place. However",no,no,Incorrect,0.6407
+baseline,1,dev_0945,yes,"No, thread seal tape and Teflon tape are not the same. While",no,no,Incorrect,0.6371
+baseline,1,dev_0021,no,"NO, a P.O. Box comes after the street address in a mail",no,no,Correct,0.6541
+baseline,1,dev_0490,no,"YES, American citizens need a visa to travel to Georgia. However, they",yes,yes,Incorrect,0.6386000000000001
+baseline,1,dev_0581,no,"NO, a peck is not the same as a bushel. A pe",no,no,Correct,0.6366
+baseline,1,dev_0631,no,"NO, most post offices are closed on Memorial Day. However, USPS will",no,no,Correct,0.6361
+baseline,1,dev_0691,no,"YES, you don't need a stamp if it says Freepost",yes,yes,Incorrect,0.6394
+baseline,1,dev_0783,no,"NO, the Honda CRF 250 is a 4-",no,no,Correct,0.6373
+baseline,1,dev_0787,no,"NO, a BMW 1 Series is not front-wheel drive. It",no,no,Correct,0.6369
+baseline,1,dev_0825,no,"NO, the Waterloo & City line does not run on Sundays.",no,no,Correct,0.6401
+baseline,1,dev_0885,no,"YES, UK citizens need a visa to travel to Albania. However,",yes,yes,Incorrect,0.6556000000000001
+baseline,1,dev_0089,yes,YES,yes,yes,Correct,0.12340000000000001
+baseline,1,dev_0095,yes,YES,yes,yes,Correct,0.12079999999999999
+baseline,1,dev_0211,yes,YES,yes,yes,Correct,0.12140000000000001
+baseline,1,dev_0238,yes,"NO, Beau Abbott does not die in A Quiet Place. However",no,no,Incorrect,0.6474
+baseline,1,dev_0252,yes,YES,yes,yes,Correct,0.1255
+baseline,1,dev_0256,yes,"NO, the",no,no,Incorrect,0.6377
+baseline,1,dev_0266,yes,YES,yes,yes,Correct,0.12090000000000001
+baseline,1,dev_0310,yes,"YES, contestants on Survivor are compensated for their time and",yes,yes,Correct,0.641
+baseline,1,dev_0359,yes,"I don't know. In the game show ""Who Wants to Be",i,idk,IDK,0.6436000000000001
+baseline,1,dev_0422,yes,"I don't know. This question requires specific context as the series ""One",i,idk,IDK,0.6419
+baseline,1,dev_0040,no,"NO, there is no official sequel to the movie The Golden Compass (",no,no,Correct,0.6383
+baseline,1,dev_0080,no,"I don't know. The question does not specify which ""Love Finds",i,idk,IDK,0.6607000000000001
+baseline,1,dev_0100,no,I don't know. The question does not specify which girl from which version,i,idk,IDK,0.6357999999999999
+baseline,1,dev_0240,no,"NO, The Walking Dead and Fear the Walking Dead are two separate",no,no,Correct,0.6377
+baseline,1,dev_0247,no,"I don't know. While the film ""Let There Be Light"" (",i,idk,IDK,0.6364
+baseline,1,dev_0260,no,"Yes, they used a real gorilla named Jiggs in Mighty",yes,yes,Incorrect,0.6389
+baseline,1,dev_0277,no,YES,yes,yes,Incorrect,0.1206
+baseline,1,dev_0290,no,"YES, Elena dies for good in The Vampire Diaries.",yes,yes,Incorrect,0.6373
+baseline,1,dev_0303,no,"NO, Arizona did not die in season 8 of Grey's Anat",no,no,Correct,0.6377999999999999
+baseline,1,dev_0231,yes,"YES, Penne alla Vodka typically contains dairy, specifically cream",yes,yes,Correct,0.6372000000000001
+baseline,1,dev_0401,yes,"NO, whole wheat rice is not the same as brown rice. Whole wheat",no,no,Incorrect,0.6594
+baseline,1,dev_0420,yes,Yes,yes,yes,Correct,0.09309999999999999
+baseline,1,dev_0571,yes,"NO, Chicken cordon bleu is not made with blue cheese. It",no,no,Incorrect,0.6487
+baseline,1,dev_0583,yes,"NO, pork back ribs are not the same as baby back ribs",no,no,Incorrect,0.6533
+baseline,1,dev_0765,yes,"Yes, salted duck eggs need to be cooked before consumption. The salt preserv",yes,yes,Correct,0.6445
+baseline,1,dev_0778,yes,"YES, a cookie sheet and a sheet pan are essentially the same thing.",yes,yes,Correct,0.65
+baseline,1,dev_0815,yes,I don't know. Sprite is primarily a lemon-lime flav,i,idk,IDK,0.6407999999999999
+baseline,1,dev_0073,no,I don't know. The taste of cotton candy is typically flavored art,i,idk,IDK,0.6361
+baseline,1,dev_0491,no,I don't know. While picante sauce and taco sauce may,i,idk,IDK,0.6366
+baseline,1,dev_0615,no,"No, rice noodles and glass noodles are not the same.",no,no,Correct,0.6591
+baseline,1,dev_0868,no,I don't know. While Fruit Roll-Ups are marketed,i,idk,IDK,0.6477999999999999
+baseline,1,dev_0880,no,"No, Thousand Island and French dressing are not the same. Thous",no,no,Correct,0.6367
+baseline,1,dev_0953,no,"NO, Monster Energy drinks do not contain alcohol. They are caffeine",no,no,Correct,0.6391
+baseline,1,dev_0985,no,"NO, Long Island Iced Teas do not have tea in them. They",no,no,Correct,1.9755
+baseline,1,dev_0136,yes,"YES, Battlefield 1 does have a single-player campaign. It",yes,yes,Correct,0.6371
+baseline,1,dev_0367,yes,YES,yes,yes,Correct,0.12340000000000001
+baseline,1,dev_0618,yes,"NO, Dying Light: The Following Enhanced Edition is an expansion pack",no,no,Incorrect,0.6431
+baseline,1,dev_0720,yes,"YES, State of Decay is co-op on Xbox One. You",yes,yes,Correct,0.6366
+baseline,1,dev_0770,yes,I don't know. The numbers on a standard roulette wheel (3,i,idk,IDK,0.6554
+baseline,1,dev_0835,yes,YES,yes,yes,Correct,0.13440000000000002
+baseline,1,dev_0896,yes,YES,yes,yes,Correct,0.1237
+baseline,1,dev_0434,no,I don't know. Not all Xbox games are compatible with the Xbox One,i,idk,IDK,0.6463
+baseline,1,dev_0489,no,I don't know. While some elements and characters may appear across different Far,i,idk,IDK,0.636
+baseline,1,dev_0852,no,"Yes, you can play Phase 10 with 7 players. The game",yes,yes,Incorrect,0.6463
+baseline,1,dev_0870,no,"YES, in the standard rules of Dungeons & Dragons 5",yes,yes,Incorrect,0.6385
+baseline,1,dev_1148,no,"YES, RollerCoaster Tycoon World is available for Mac.",yes,yes,Incorrect,0.6372000000000001
+baseline,1,dev_2595,no,"NO, A Way Out is a cooperative game that requires two players to play",no,no,Correct,0.6372000000000001
+baseline,1,dev_0281,yes,"NO, there are no tolls on I-70 in Kansas.",no,no,Incorrect,0.6071
+baseline,1,dev_0528,yes,YES,yes,yes,Correct,0.1356
+baseline,1,dev_0547,yes,"Yes, there is a toll for using the Battery Tunnel in New York",yes,yes,Correct,0.6481
+baseline,1,dev_0623,yes,"NO, the George Washington Bridge is not a one-way toll bridge. It",no,no,Incorrect,0.6362000000000001
+baseline,1,dev_0626,yes,"NO, Skyline Drive is not part of the Blue Ridge Parkway. Sky",no,no,Incorrect,0.6397999999999999
+baseline,1,dev_0686,yes,No. Edinburgh Castle is not built on top of a volcano. It,no,no,Incorrect,0.637
+baseline,1,dev_0822,yes,YES,yes,yes,Correct,0.12279999999999999
+baseline,1,dev_1210,yes,I don't know. Caesar's Creek is a body of water,i,idk,IDK,0.7139
+baseline,1,dev_0374,no,"NO, San Pedro, Laguna is not part of Metro Manila. It",no,no,Correct,0.8596
+baseline,1,dev_0900,no,"NO, Fort Walton Beach and Destin are two separate cities in Florida,",no,no,Correct,0.8107000000000001
+baseline,1,dev_0913,no,I don't know. Porpoise Spit is not a commonly known,i,idk,IDK,0.6688999999999999
+baseline,1,dev_1234,no,"No, there is no Gulf Stream in the Pacific. The Gulf Stream is a",no,no,Correct,0.631
+baseline,1,dev_1360,no,"NO, there is no lake in Lake Hiawatha, NJ",no,no,Correct,0.6449
+baseline,1,dev_1544,no,"YES, I-30 in Dallas has sections that are toll roads as",yes,yes,Incorrect,0.6327999999999999
+baseline,1,dev_1588,no,"No, Lake George is a natural lake. It was not created by",no,no,Correct,0.6333
+baseline,1,dev_0344,yes,I don't know. While the body can develop some tolerance to low levels,i,idk,IDK,0.6347999999999999
+baseline,1,dev_0379,yes,"Yes, New England Baptist Hospital is a teaching hospital. It is affiliated",yes,yes,Correct,0.6307999999999999
+baseline,1,dev_0474,yes,"Yes, Women's One A Day is FDA approved. It is a",yes,yes,Correct,0.6319
+baseline,1,dev_0614,yes,I don't know. While both cold water baths and ice baths,i,idk,IDK,0.6543
+baseline,1,dev_0655,yes,I don't know. While a hiatal hernia can potentially cause symptoms,i,idk,IDK,0.6334
+baseline,1,dev_1195,yes,"NO, a blue-ringed octopus bite is highly venomous",no,no,Incorrect,0.6347999999999999
+baseline,1,dev_1197,yes,"NO, an ectopic pregnancy cannot be carried to term. An ect",no,no,Incorrect,0.6312000000000001
+baseline,1,dev_1313,yes,"I don't know. While they are related, they are not the same",i,idk,IDK,0.6316
+baseline,1,dev_1564,yes,I don't know. While both PCP (Phencyclidine,i,idk,IDK,0.6357999999999999
+baseline,1,dev_0078,no,"Yes, there is a right and left brachiocephalic ar",yes,yes,Incorrect,0.6355
+baseline,1,dev_0166,no,I don't know. The question does not provide context about a specific diet,i,idk,IDK,0.6425
+baseline,1,dev_0851,no,"YES, attending a first aid course is part of the chain of survival.",yes,yes,Incorrect,0.6548999999999999
+baseline,1,dev_0861,no,"NO, a junctional rhythm does not have a P wave. In a",no,no,Correct,0.632
+baseline,1,dev_0872,no,"Yes, a first-degree burn is generally less severe than a third-degree",yes,yes,Incorrect,0.6487999999999999
+baseline,1,dev_1554,no,"YES, there is such a thing as chronic Lyme disease. However,",yes,yes,Incorrect,0.6325
+baseline,1,dev_1719,no,"Yes, extended release and sustained release are essentially the same. They both refer to",yes,yes,Incorrect,0.6324
+baseline,1,dev_1991,no,"No, it's not true. The ring finger, like all other fingers",no,no,Correct,0.634
+baseline,1,dev_2115,no,I don't know. The health implications of being a sumo wrestler,i,idk,IDK,0.6314
+baseline,1,dev_0105,yes,"YES, there was a draft during the Revolutionary War. It was known",yes,yes,Correct,0.6394
+baseline,1,dev_0125,yes,"NO, there were no known survivors of the Pompeii eruption.",no,no,Incorrect,0.6537000000000001
+baseline,1,dev_0191,yes,"No, there are no actual bodies in the Tomb of the Unknown Sold",no,no,Incorrect,0.6352000000000001
+baseline,1,dev_1292,yes,YES,yes,yes,Correct,0.1207
+baseline,1,dev_1338,yes,I don't know. There were reports of oil fires during the Gulf War,i,idk,IDK,0.6334
+baseline,1,dev_0388,no,I don't know. The question is a bit broad as the concept of,i,idk,IDK,0.6345
+baseline,1,dev_0703,no,I don't know. The Peacock Throne was a symbol,i,idk,IDK,0.6347999999999999
+baseline,1,dev_0833,no,YES,yes,yes,Incorrect,0.12279999999999999
+baseline,1,dev_0874,no,"NO, there is no confirmed evidence that anyone has ever escaped from Alcatraz",no,no,Correct,0.6323
+baseline,1,dev_1651,no,"YES, there are still tin mines in operation in Cornwall, although the",yes,yes,Incorrect,1.979
+baseline,1,dev_0072,yes,I don't know. The regulations regarding possession of ammunition can vary,i,idk,IDK,0.6544
+baseline,1,dev_0258,yes,"NO, in Wisconsin, the sale of alcohol is generally prohibited on Sundays",no,no,Incorrect,0.6547999999999999
+baseline,1,dev_0286,yes,"YES, an Administrative Law Judge (ALJ) is a real judge",yes,yes,Correct,0.6444
+baseline,1,dev_0348,yes,"NO, you cannot own a skunk as a pet in the UK. It",no,no,Incorrect,0.6334
+baseline,1,dev_0467,yes,"YES, a certification of birth and a birth certificate are essentially the same thing",yes,yes,Correct,0.6377999999999999
+baseline,1,dev_0515,yes,I don't know. The ability to put a restraining order on a,i,idk,IDK,0.6367999999999999
+baseline,1,dev_0562,yes,"NO, Texas concealed carry permits are not valid in New Mexico. Each",no,no,Incorrect,0.6332000000000001
+baseline,1,dev_0636,yes,I don't know. The laws regarding carrying a gun in California can be,i,idk,IDK,0.6332000000000001
+baseline,1,dev_0740,yes,"YES, there is a time limit for ratification of an amendment to",yes,yes,Correct,0.6444
+baseline,1,dev_0838,yes,"Yes, you can turn right on a red light after stopping at a red light",yes,yes,Correct,0.6565
+baseline,1,dev_0864,yes,"YES, Ohio is an open carry state. However, there are certain restrictions",yes,yes,Correct,0.6337
+baseline,1,dev_0873,yes,"Yes, you can drive a car with a learner's permit, but",yes,yes,Correct,0.64
+baseline,1,dev_0901,yes,"YES, it is generally illegal to drive over a median, as it is",yes,yes,Correct,0.6372000000000001
+baseline,1,dev_0909,yes,"I don't know. In a legal context, a signature is typically a",i,idk,IDK,0.6397
+baseline,1,dev_1134,yes,"YES, New York State is a common law state. This means that many",yes,yes,Correct,0.64
+baseline,1,dev_0198,no,"YES, while New Hampshire does not require a permit to carry a concealed",yes,yes,Incorrect,0.6495
+baseline,1,dev_0215,no,I don't know. The operating hours for liquor stores can vary by,i,idk,IDK,0.6439
+baseline,1,dev_0223,no,I don't know. The legality of recording covers of songs can depend,i,idk,IDK,0.6577999999999999
+baseline,1,dev_0234,no,I don't know. The legality of such a relationship varies greatly depending,i,idk,IDK,0.6469
+baseline,1,dev_0272,no,"NO, trucks are generally not allowed on the Taconic State Parkway.",no,no,Correct,0.6347999999999999
+baseline,1,dev_0453,no,"NO, in all states of the United States, it is illegal to marry your",no,no,Correct,0.637
+baseline,1,dev_0499,no,"YES, Puerto Rican residents can vote in the primary elections for the presidential",yes,yes,Incorrect,0.633
+baseline,1,dev_0552,no,I don't know. Prison policies can vary greatly depending on the country,i,idk,IDK,0.6323
+baseline,1,dev_0680,no,I don't know. The duration of trade secret protection can vary greatly depending,i,idk,IDK,0.6421
+baseline,1,dev_0738,no,"YES, Taiwan (officially known as Chinese Taipei) is",yes,yes,Incorrect,0.6317999999999999
+baseline,1,dev_0771,no,"I don't know. Payola, which is the practice of radio DJ",i,idk,IDK,0.6514
+baseline,1,dev_0888,no,"YES, two Supreme Court justices have been removed from office in U.",yes,yes,Incorrect,0.6363
+baseline,1,dev_1135,no,"No, a certified copy is not the same as an original in the UK.",no,no,Correct,0.6354
+baseline,1,dev_1188,no,"YES, a dishonorable discharge does not automatically prevent a person from",yes,yes,Incorrect,0.6371
+baseline,1,dev_0339,yes,I don't know. The specific requirements for entering Canada with a military ID,i,idk,IDK,0.6357999999999999
+baseline,1,dev_0357,yes,I don't know. The requirement to complete the American Community Survey depends on,i,idk,IDK,0.6456000000000001
+baseline,1,dev_0498,yes,YES,yes,yes,Correct,0.1222
+baseline,1,dev_0620,yes,"YES, the United Nations has intervened in several conflicts involving Pakistan, such",yes,yes,Correct,0.6526000000000001
+baseline,1,dev_0878,yes,"Yes, in a federal system of government, the national government and the federal government",yes,yes,Correct,0.6349
+baseline,1,dev_1864,yes,YES,yes,yes,Correct,0.1227
+baseline,1,dev_2080,yes,YES,yes,yes,Correct,0.1207
+baseline,1,dev_2395,yes,"NO, the Governor-General does not have to sign all bills passed by federal",no,no,Incorrect,0.6586000000000001
+baseline,1,dev_2639,yes,"I don't know. Canada is a member of the United Nations, but",i,idk,IDK,0.6354
+baseline,1,dev_3155,yes,I don't know. The awarding of overseas service bars depends on the,i,idk,IDK,0.6387
+baseline,1,dev_3209,yes,YES,yes,yes,Correct,0.1276
+baseline,1,dev_0209,no,"NO, Israel is not part of the European Economic Area (EEA). The",no,no,Correct,0.636
+baseline,1,dev_0273,no,"YES, if you are driving a vehicle with two or more axles,",yes,yes,Incorrect,0.6375
+baseline,1,dev_0404,no,"YES, Puerto Rico is a U.S. territory but not a state",yes,yes,Incorrect,0.6344
+baseline,1,dev_0567,no,"NO, Romania is not part of the Visa Waiver Program.",no,no,Correct,0.6367999999999999
+baseline,1,dev_0675,no,"YES, Saudi Arabia signed the Universal Declaration of",yes,yes,Incorrect,0.6432
+baseline,1,dev_1172,no,"NO, Turkey is not a part of the European Union. It is a candidate",no,no,Correct,0.6582
+baseline,1,dev_1275,no,I don't know. The rules for wearing state awards on active duty can,i,idk,IDK,0.6326
+baseline,1,dev_1971,no,"NO, Bosnia and Herzegovina is not part of the European Union",no,no,Correct,0.6373
+baseline,1,dev_2001,no,"No, the President of the United States does not have the power to pardon",no,no,Correct,0.6363
+baseline,1,dev_3004,no,"NO, the Right to Buy scheme for council houses in England was introduced in",no,no,Correct,0.6361
+baseline,1,dev_3256,no,I don't know. While some traffic lights may have cameras for traffic enforcement,i,idk,IDK,0.6538999999999999
+baseline,1,dev_1132,yes,"No, pink quartz and rose quartz are not the same. While both",no,no,Incorrect,0.6329
+baseline,1,dev_1233,yes,"I don't know. In an adiabatic process, there is",i,idk,IDK,1.9962
+baseline,1,dev_1511,yes,"No, the heat index and ""RealFeel"" are not the same.",no,no,Incorrect,0.6555
+baseline,1,dev_1633,yes,"No, nail acetone and paint acetone are not the same.",no,no,Incorrect,0.6359
+baseline,1,dev_2007,yes,YES,yes,yes,Correct,0.1254
+baseline,1,dev_2214,yes,"I don't know. The term ""dry water"" is often used",i,idk,IDK,0.6319
+baseline,1,dev_2239,yes,YES,yes,yes,Correct,0.1227
+baseline,1,dev_2299,yes,"I don't know. While it's rare, there are certain weather",i,idk,IDK,0.6363
+baseline,1,dev_2303,yes,YES,yes,yes,Correct,0.1199
+baseline,1,dev_2477,yes,NO,no,no,Incorrect,0.0841
+baseline,1,dev_2993,yes,I don't know. While eidetic memory and photographic memory are,i,idk,IDK,0.6347999999999999
+baseline,1,dev_3126,yes,I don't know. While it's theoretically possible for a rain,i,idk,IDK,0.6343
+baseline,1,dev_3188,yes,"I don't know. While both are scavenging birds, the",i,idk,IDK,0.6347999999999999
+baseline,1,dev_3193,yes,YES,yes,yes,Correct,0.1202
+baseline,1,dev_3234,yes,"No, a rhombus and a diamond are not the same. A rh",no,no,Incorrect,0.6514
+baseline,1,dev_3265,yes,"I don't know. The Titius-Bode rule, a mathematical",i,idk,IDK,0.6349
+baseline,1,dev_0001,no,I don't know. The energy balance of ethanol production depends on,i,idk,IDK,0.6351
+baseline,1,dev_0579,no,"NO, you cannot hear the ocean in a seashell. The sound of the",no,no,Correct,0.6327
+baseline,1,dev_1003,no,"YES, Least squares is a method used in linear regression to",yes,yes,Incorrect,0.6412
+baseline,1,dev_1483,no,"NO, a meter stick and a yardstick are not the same. A meter",no,no,Correct,0.6354
+baseline,1,dev_1551,no,"NO, Australia is not part of the Ring of Fire. The Ring of Fire",no,no,Correct,0.6326
+baseline,1,dev_1702,no,"No, a Pterodactyl is a common name often used to refer",no,no,Correct,0.6449
+baseline,1,dev_1925,no,"No, percent difference and percent change are not the same.
+
+Percent change",no,no,Correct,0.6479
+baseline,1,dev_2025,no,YES,yes,yes,Incorrect,0.12279999999999999
+baseline,1,dev_2312,no,"No, they are not the same thing. Turpentine is a solvent",no,no,Correct,0.6376000000000001
+baseline,1,dev_2471,no,YES,yes,yes,Incorrect,0.121
+baseline,1,dev_2521,no,"NO, the t-distribution does not have a standard deviation of",no,no,Correct,0.6339
+baseline,1,dev_2782,no,I don't know. While a hydrogen ion (H+) can,i,idk,IDK,0.6366
+baseline,1,dev_2812,no,I don't know. The salinity of the ocean water is relatively consistent,i,idk,IDK,0.6315
+baseline,1,dev_3014,no,"YES, the days do get longer and shorter at the Equator, just",yes,yes,Incorrect,0.6355
+baseline,1,dev_3034,no,"No, hydraulic lime and hydrated lime are not",no,no,Correct,0.6357999999999999
+baseline,1,dev_3159,no,I don't know. While chipmunks and ground squirrel,i,idk,IDK,0.6353
+baseline,1,dev_3190,no,"NO, Mahi-Mahi (Dorado) is not the",no,no,Correct,0.6547000000000001
+baseline,1,dev_0682,yes,"Yes, a sermon and a homily are essentially the same thing.",yes,yes,Correct,0.6369
+baseline,1,dev_0735,yes,"Yes, in many parts of the United States, secondary school and high school are",yes,yes,Correct,0.635
+baseline,1,dev_1505,yes,"YES, the University of St. Thomas is a nonprofit institution.",yes,yes,Correct,0.602
+baseline,1,dev_1668,yes,"Yes, Church of England (Anglican) worshippers often make the sign",yes,yes,Correct,0.6506000000000001
+baseline,1,dev_2373,yes,I don't know. 'Lord of All Hopefulness' is a,i,idk,IDK,0.6379
+baseline,1,dev_2793,yes,YES,yes,yes,Correct,0.1215
+baseline,1,dev_2929,yes,"I don't know. While there is some overlap, child psychology and development",i,idk,IDK,0.6517000000000001
+baseline,1,dev_0605,no,"No, you do not have to be a Mormon to go to Br",no,no,Correct,0.6367
+baseline,1,dev_0908,no,I don't know. The American College of Education is accredited by,i,idk,IDK,0.6607000000000001
+baseline,1,dev_1388,no,I don't know. While University College London (UCL) is a,i,idk,IDK,0.6367
+baseline,1,dev_1521,no,I don't know. While Sweden does offer various forms of financial support to,i,idk,IDK,0.6374
+baseline,1,dev_2334,no,"NO, the Book of Jasher is not part of the Bible. It",no,no,Correct,0.6354
+baseline,1,dev_2641,no,I don't know. The usage of hyphens in double-barrel,i,idk,IDK,0.6362000000000001
+baseline,1,dev_0347,yes,"YES, the Women's College World Series is a double-elim",yes,yes,Correct,0.6344
+baseline,1,dev_0411,yes,I don't know. The Washington Redskins have used both a,i,idk,IDK,0.6347
+baseline,1,dev_0439,yes,YES,yes,yes,Correct,0.12279999999999999
+baseline,1,dev_0452,yes,"NO, Belgium has not yet reached the World Cup final. They have, however",no,no,Incorrect,0.6337
+baseline,1,dev_0585,yes,"YES, in a rugby league scrum, each forward can push in the",yes,yes,Correct,0.6527000000000001
+baseline,1,dev_0656,yes,"NO, Kaká did not play in the 2002 World",no,no,Incorrect,0.6347
+baseline,1,dev_0661,yes,"NO, the KSI vs. Logan Paul fight was not pay-per-",no,no,Incorrect,0.6397999999999999
+baseline,1,dev_0701,yes,YES,yes,yes,Correct,0.12359999999999999
+baseline,1,dev_0704,yes,YES,yes,yes,Correct,0.12459999999999999
+baseline,1,dev_0752,yes,"No, there is no mercy rule in professional soccer. The game continues until the",no,no,Incorrect,0.6481
+baseline,1,dev_0848,yes,"No, generally speaking, professional sports teams cannot sign free agents outside of the designated",no,no,Incorrect,0.6315
+baseline,1,dev_0883,yes,"YES, in both tennis Grand Slams and ice hockey, teams have come",yes,yes,Correct,0.647
+baseline,1,dev_1143,yes,YES,yes,yes,Correct,0.12040000000000001
+baseline,1,dev_1305,yes,"No, a school cannot be Division I and II at the same time. The",no,no,Incorrect,0.633
+baseline,1,dev_1497,yes,YES,yes,yes,Correct,0.12290000000000001
+baseline,1,dev_1777,yes,I don't know. The rules for counting away goals in league playoffs,i,idk,IDK,0.643
+baseline,1,dev_2250,yes,YES,yes,yes,Correct,0.13040000000000002
+baseline,1,dev_2370,yes,I don't know. While Ireland has played against Australia (the Wallab,i,idk,IDK,1.9746
+baseline,1,dev_0083,no,YES,yes,yes,Incorrect,0.1226
+baseline,1,dev_0085,no,"No, Deion Sanders did not win a World Series. He is a",no,no,Correct,0.6335
+baseline,1,dev_0170,no,"NO, the Czech Republic has never won the FIFA World Cup. The Czech Republic",no,no,Correct,0.6353
+baseline,1,dev_0230,no,"NO, in Little League Baseball, a dropped third strike results in the batter",no,no,Correct,0.6409
+baseline,1,dev_0412,no,"No, the Miami Dolphins do not have a real dolphin in",no,no,Correct,0.6356
+baseline,1,dev_0421,no,I don't know. The Golden Boot is awarded to the player with the,i,idk,IDK,0.6344
+baseline,1,dev_0447,no,YES,yes,yes,Incorrect,0.12029999999999999
+baseline,1,dev_0544,no,YES,yes,yes,Incorrect,0.1212
+baseline,1,dev_0565,no,"I don't know. In baseball, a batting average is calculated by",i,idk,IDK,0.6327
+baseline,1,dev_0589,no,"NO, it is not considered goaltending if the ball hits the backboard",no,no,Correct,0.6547999999999999
+baseline,1,dev_0593,no,"NO, teams do not keep the FIFA World Cup trophy. The trophy",no,no,Correct,0.6357999999999999
+baseline,1,dev_0859,no,"NO, the U.S. Open is not played on the same course every",no,no,Correct,0.6572
+baseline,1,dev_0865,no,"NO, the San Jose Sharks have not won a Stanley Cup yet.",no,no,Correct,0.5978
+baseline,1,dev_1518,no,YES,yes,yes,Incorrect,0.12340000000000001
+baseline,1,dev_1768,no,"YES, England won the Women's World Cup in 202",yes,yes,Incorrect,0.6425
+baseline,1,dev_1779,no,"NO, India did not qualify for the 2018 FIFA World Cup",no,no,Correct,0.636
+baseline,1,dev_1905,no,"NO, a player cannot be offside directly from a goal kick. The off",no,no,Correct,0.6337
+baseline,1,dev_2156,no,YES,yes,yes,Incorrect,0.12340000000000001
+baseline,1,dev_2158,no,"NO, the Cincinnati Bengals have not won a Super Bowl as",no,no,Correct,0.6366
+baseline,1,dev_2798,no,"No, the Super Bowl loser does not get a ring. Only the winning",no,no,Correct,0.6492
+baseline,1,dev_3138,no,"NO, the Olympic gold medal is actually made of silver. The outer layer is",no,no,Correct,0.639
+baseline,1,dev_0307,yes,I don't know. The compatibility of 700c tires on,i,idk,IDK,0.6349
+baseline,1,dev_0506,yes,"YES, drywall mud and joint compound are essentially the same thing. They",yes,yes,Correct,0.634
+baseline,1,dev_0641,yes,I don't know. While some parts might be similar due to both being,i,idk,IDK,0.6364
+baseline,1,dev_0844,yes,I don't know. While both Bell and Telus are major telecommun,i,idk,IDK,0.6339
+baseline,1,dev_1032,yes,"YES, 1-844 is a toll-free prefix in",yes,yes,Correct,0.6401
+baseline,1,dev_1574,yes,"Yes, there is a chip in Apple Lightning cables. This chip is",yes,yes,Correct,0.6362000000000001
+baseline,1,dev_1889,yes,"I don't know. While they share some similarities in design, platform",i,idk,IDK,0.658
+baseline,1,dev_2093,yes,"Yes, you can still call the emergency services (like the police) in many",yes,yes,Correct,0.6467999999999999
+baseline,1,dev_2213,yes,"NO, U.S. toll-free numbers are not free in Canada.",no,no,Incorrect,0.6404
+baseline,1,dev_2735,yes,I don't know. Pipelining is a technique used in computer,i,idk,IDK,0.6355
+baseline,1,dev_2836,yes,I don't know. While the F-4 Phantom has been,i,idk,IDK,0.6487
+baseline,1,dev_0788,no,"NO, MiniDV tapes and 8mm tapes are not the",no,no,Correct,0.637
+baseline,1,dev_0798,no,"No, area code 669 is not a toll-free number.",no,no,Correct,0.635
+baseline,1,dev_1249,no,"YES, C++ strings do not inherently include a null terminator like",yes,yes,Incorrect,0.638
+baseline,1,dev_1458,no,"YES, most powered speakers come with their own built-in amplifiers,",yes,yes,Incorrect,0.651
+baseline,1,dev_1584,no,"YES, there is a GMC version of the Avalanche. It",yes,yes,Incorrect,0.6372000000000001
+baseline,1,dev_1589,no,"NO, a SIM-free phone does not lock to a network. It",no,no,Correct,0.6352000000000001
+baseline,1,dev_1657,no,"NO, the first iPhone, which was released in 2007,",no,no,Correct,0.6367999999999999
+baseline,1,dev_1691,no,"No, response time and input lag are not the same. Response time refers to",no,no,Correct,0.6333
+baseline,1,dev_1943,no,"YES, it does not cost money to create a PlayStation Network account,",yes,yes,Incorrect,0.6335
+baseline,1,dev_2682,no,I don't know. While both E-ZPass and EZ T,i,idk,IDK,0.6369
+baseline,1,dev_2712,no,"No, A23 and N batteries are not the same. A23",no,no,Correct,0.639
+baseline,1,dev_0427,no,"NO, The Barber of Seville and Sweeney Todd are two different",no,no,Correct,0.6586000000000001
+baseline,1,dev_0531,no,"NO, Smaug is not the only dragon in Middle-earth. There",no,no,Correct,0.6479
+baseline,1,dev_1915,no,"I don't know. The novel ""The Hunchback of Notre",i,idk,IDK,0.6349
+baseline,1,dev_1946,no,"NO, Snake Eyes and Storm Shadow are not the same person. They",no,no,Correct,0.6457
+baseline,1,dev_2024,no,YES,yes,yes,Incorrect,0.1237
+baseline,1,dev_2265,no,"NO, G major and E minor are not the same. They are different keys",no,no,Correct,0.6347999999999999
+baseline,1,dev_0004,yes,YES,yes,yes,Correct,0.1251
+baseline,1,dev_0241,yes,YES,yes,yes,Correct,0.12340000000000001
+baseline,1,dev_0326,yes,YES,yes,yes,Correct,0.1232
+baseline,1,dev_0525,yes,YES,yes,yes,Correct,0.1198
+baseline,1,dev_0577,yes,YES,yes,yes,Correct,0.12240000000000001
+baseline,1,dev_0799,yes,"Yes, contestants on Jeopardy! receive the money they win during",yes,yes,Correct,0.635
+baseline,1,dev_0142,no,"NO, denatured alcohol and acetone are not the same thing.",no,no,Correct,0.6362000000000001
+baseline,1,dev_0494,no,"No, fitness (as used in biology) and survival are not the same",no,no,Correct,0.6565
+baseline,1,dev_0527,no,"NO, HeLa cells do not have a normal number of chromosomes.",no,no,Correct,0.6359
+baseline,1,dev_0566,no,I don't know. While bacteria of the same species may share a common,i,idk,IDK,1.9835
+baseline,1,dev_0648,no,"NO, Evergreen trees do not lose their leaves in the winter. They retain",no,no,Correct,0.6346
+baseline,1,dev_0668,no,"NO, Red-eared sliders are freshwater turtles and cannot",no,no,Correct,0.633
+baseline,1,dev_0749,no,"NO, sensory neurons are part of the peripheral nervous system. They",no,no,Correct,0.634
+baseline,1,dev_0790,no,"NO, great white sharks do not live at the bottom of the sea.",no,no,Correct,0.6367999999999999
+baseline,1,dev_0867,no,I don't know. While it's true that the same genotype,i,idk,IDK,0.6344
+baseline,1,dev_0921,no,"No, whale sharks are filter feeders and do not consume",no,no,Correct,0.6557000000000001
+baseline,1,dev_1088,no,"No, you cannot breed a rabbit and a cat. Rabbits and cats",no,no,Correct,0.6419
+baseline,1,dev_1329,no,"No, there is no bone in your earlobe. The earlobe",no,no,Correct,0.6345
+baseline,1,dev_1402,no,"NO, tissue is composed of multiple types of cells that work together to perform specific",no,no,Correct,0.6447999999999999
+baseline,1,dev_1428,no,I don't know. Sweat glands are part of the inte,i,idk,IDK,0.6362000000000001
+baseline,1,dev_1439,no,"NO, a groundhog and a mole are not the same thing. A",no,no,Correct,0.634
+baseline,1,dev_0020,yes,YES,yes,yes,Correct,0.12090000000000001
+baseline,1,dev_0027,yes,YES,yes,yes,Correct,0.12279999999999999
+baseline,1,dev_0047,yes,YES,yes,yes,Correct,0.1235
+baseline,1,dev_0070,yes,YES,yes,yes,Correct,0.12340000000000001
+baseline,1,dev_0086,yes,"Yes, in many countries, a German Shepherd is also known as an",yes,yes,Correct,0.636
+baseline,1,dev_0121,yes,YES,yes,yes,Correct,0.1231
+baseline,1,dev_0131,yes,"YES, the latent heat of vaporization does change with temperature.",yes,yes,Correct,0.6453
+baseline,1,dev_0147,yes,YES,yes,yes,Correct,0.12830000000000003
+baseline,1,dev_0159,yes,YES,yes,yes,Correct,0.122
+baseline,1,dev_0190,yes,"YES, bees do die after they sting because their stinger,",yes,yes,Correct,0.6336
+baseline,1,dev_0195,yes,I don't know. While it's true that alligators have,i,idk,IDK,0.6406000000000001
+baseline,1,dev_0200,yes,YES,yes,yes,Correct,0.1207
+baseline,1,dev_0214,yes,"YES, animal cells have a cell membrane. It is also known as",yes,yes,Correct,0.6325
+baseline,1,dev_0242,yes,YES,yes,yes,Correct,0.12340000000000001
+baseline,1,dev_0522,yes,"YES, a hornet can sting you more than once. Unlike honey",yes,yes,Correct,0.6343
+baseline,1,dev_0033,no,"NO, they are not the same. Federal income tax is a tax on income",no,no,Correct,0.6337999999999999
+baseline,1,dev_0123,no,"NO, Public Limited Companies (PLCs) are not typically considered part of",no,no,Correct,0.6373
+baseline,1,dev_0501,no,"NO, Comcast and Time Warner are not the same company. Comcast is",no,no,Correct,0.6459
+baseline,1,dev_0526,no,"NO, Canadian dollars are not the same as American dollars. Canadian dollars are represented",no,no,Correct,0.6606000000000001
+baseline,1,dev_1076,no,I don't know. While commercial banks are the most commonly associated with bank,i,idk,IDK,0.6332000000000001
+baseline,1,dev_1213,no,"Yes, discretionary income and disposable income are essentially the same thing.",yes,yes,Incorrect,0.649
+baseline,1,dev_1654,no,I don't know. Discouraged workers are not actively seeking employment,i,idk,IDK,0.6359
+baseline,1,dev_1753,no,"NO, Universal Music Group and Universal Studios are separate entities. Universal Music Group is",no,no,Correct,0.633
+baseline,1,dev_1825,no,"NO, a bank sort code is unique to each bank branch in the United Kingdom",no,no,Correct,0.6346
+baseline,1,dev_2911,no,"NO, the United States does not have a fixed exchange rate. It operates under",no,no,Correct,0.6343
+baseline,1,dev_2740,no,"NO, the Better Business Bureau (BBB) is a non-government",no,no,Correct,0.6345
+baseline,1,dev_2517,no,"NO, the Bank of England is not a private company. It is the central",no,no,Correct,0.6546000000000001
+baseline,1,dev_1139,yes,YES,yes,yes,Correct,0.1211
+baseline,1,dev_0002,yes,"Yes, house tax and property tax are essentially the same thing. They are taxes",yes,yes,Correct,0.6356
+baseline,1,dev_0773,yes,"Yes, a company can be public but not listed. This is often the case",yes,yes,Correct,0.6327
+baseline,1,dev_1186,yes,YES,yes,yes,Correct,0.12
+baseline,1,dev_1302,yes,YES,yes,yes,Correct,0.1225
+baseline,1,dev_1349,yes,YES,yes,yes,Correct,0.1227
+baseline,1,dev_1771,yes,"Yes, a news release and a press release are essentially the same thing. They",yes,yes,Correct,0.6361
+baseline,1,dev_1804,yes,YES,yes,yes,Correct,0.1237
+baseline,1,dev_1873,yes,"YES, Stop & Shop and Giant are both owned by Ahold Del",yes,yes,Correct,0.6431
+baseline,1,dev_1963,yes,YES,yes,yes,Correct,0.1207
+baseline,1,dev_2582,yes,YES,yes,yes,Correct,0.1231
+baseline,1,dev_2598,yes,"YES, Hellmann's and Best Foods are both brands owned by",yes,yes,Correct,0.6365
+baseline,1,dev_3158,yes,"YES, there is a direct link between economic development and social development. Economic",yes,yes,Correct,0.6516000000000001
+baseline,1,dev_0551,no,"NO, an ounce (oz) and a fluid ounce (fl oz",no,no,Correct,0.6557999999999999
+baseline,1,dev_1158,no,"No, a crossover and an SUV are not the same.",no,no,Correct,0.651
+baseline,1,dev_1364,no,YES,yes,yes,Incorrect,0.1215
+baseline,1,dev_1807,no,"No, 8.5×11 (US Letter) is not the",no,no,Correct,0.6427999999999999
+baseline,1,dev_2542,no,"NO, Father's Day is not the first Sunday in September. In the",no,no,Correct,0.6349
+baseline,1,dev_2562,no,I don't know. While both ribeye and Delmonico ste,i,idk,IDK,0.8413999999999999
+baseline,1,dev_3005,no,"No, an English Bull Terrier is not a Pit Bull. They are",no,no,Correct,0.8589
+baseline,1,dev_3194,no,"NO, they are not the same. While both are made from corn, tort",no,no,Correct,0.7476
+baseline,1,dev_3195,no,"No, a boarding pass is not the same as a ticket. A ticket",no,no,Correct,0.6891
+baseline,1,dev_0013,yes,I don't know. While it might be possible to wash your hair with,i,idk,IDK,0.6337999999999999
+baseline,1,dev_0043,yes,YES,yes,yes,Correct,0.123
+baseline,1,dev_0052,yes,YES,yes,yes,Correct,0.1205
+baseline,1,dev_0091,yes,YES,yes,yes,Correct,0.12040000000000001
+baseline,1,dev_0116,yes,YES,yes,yes,Correct,0.12029999999999999
+baseline,1,dev_0288,yes,"YES, the UK does use a 24-hour clock, also",yes,yes,Correct,0.6349
+baseline,1,dev_0555,yes,YES,yes,yes,Correct,0.1215
+baseline,1,dev_0627,yes,I don't know. The title 'Sir' is a courtesy title used,i,idk,IDK,1.97
+baseline,1,dev_0831,yes,"Yes, a U.S. passport card is a valid form of identification",yes,yes,Correct,0.6381
+baseline,1,dev_0721,no,I don't know. Night of the Living Dead is a 19,i,idk,IDK,0.6464
+baseline,1,dev_0863,no,"NO, The Closer and Major Crimes are not the same. The Cl",no,no,Correct,0.6387999999999999
+baseline,1,dev_1357,no,"NO, The View and The Talk are two different shows. The View is an",no,no,Correct,0.6541
+baseline,1,dev_1951,no,I don't know. While the film is inspired by real events during World,i,idk,IDK,0.6502
+baseline,1,dev_2131,no,"NO, Nacho is a character from Better Call Saul, a prequel",no,no,Correct,0.6409
+baseline,1,dev_2174,no,"No, Fear the Walking Dead is a spin-off of The Walk",no,no,Correct,0.6369
+baseline,1,dev_2252,no,"No, you do not have to be from America to be on America's",no,no,Correct,0.6372000000000001
+baseline,1,dev_2309,no,I don't know. Maleficent is a character from Disney',i,idk,IDK,0.647
+baseline,1,dev_2364,no,I don't know. The Outsiders is a novel written by S,i,idk,IDK,0.6493
+baseline,1,dev_3075,no,I don't know. While Pulp Fiction is a work of fiction,i,idk,IDK,0.6491
+baseline,1,dev_3205,no,"NO. The movie ""Lady Bird"" is not about Lady Bird Johnson.",no,no,Correct,0.66
+baseline,1,dev_0015,yes,YES,yes,yes,Correct,0.12409999999999999
+baseline,1,dev_0153,yes,"YES, there is a movie adaptation of The Handmaid's T",yes,yes,Correct,0.6461
+baseline,1,dev_0161,yes,I don't know. While The Night of the Hunter (195,i,idk,IDK,0.6464
+baseline,1,dev_0306,yes,"YES, Grey's Anatomy is filmed at a real hospital",yes,yes,Correct,0.6547999999999999
+baseline,1,dev_0334,yes,YES,yes,yes,Correct,0.1255
+baseline,1,dev_0338,yes,YES,yes,yes,Correct,0.1243
+baseline,1,dev_0493,yes,I don't know. While the show Love Child is inspired by real events,i,idk,IDK,0.6445
+baseline,1,dev_0520,yes,YES,yes,yes,Correct,0.1274
+baseline,1,dev_0212,no,"NO, maple syrup does not come straight from the tree. It is",no,no,Correct,0.6543
+baseline,1,dev_0309,no,"NO, ground coriander and cumin are not the same thing. Ground",no,no,Correct,0.6508999999999999
+baseline,1,dev_0484,no,"I don't know. While the name ""salt water taffy",i,idk,IDK,0.658
+baseline,1,dev_0654,no,"NO, Beef short ribs are not the same as spare ribs.",no,no,Correct,0.6436000000000001
+baseline,1,dev_0973,no,"NO, salt water taffy is not made with ocean water. It is",no,no,Correct,0.6361
+baseline,1,dev_1335,no,"NO, a cocoa bean is not the same as a coffee bean.",no,no,Correct,0.635
+baseline,1,dev_1443,no,"No, a lungo and an Americano are not the same.",no,no,Correct,0.6329
+baseline,1,dev_0284,yes,"YES, enameled cast iron can leach small amounts of iron into",yes,yes,Correct,0.6367999999999999
+baseline,1,dev_0330,yes,YES,yes,yes,Correct,0.12140000000000001
+baseline,1,dev_0443,yes,YES,yes,yes,Correct,0.12359999999999999
+baseline,1,dev_0975,yes,"YES, wholemeal flour and whole wheat flour are essentially the same thing",yes,yes,Correct,0.6377999999999999
+baseline,1,dev_1741,yes,YES,yes,yes,Correct,0.1243
+baseline,1,dev_1770,yes,YES,yes,yes,Correct,0.121
+baseline,1,dev_1860,no,"NO, Pinot Noir and Pinot Gris are not the same gr",no,no,Correct,0.6417
+baseline,1,dev_1967,yes,"YES, a caffe latte is the same as a latte.",yes,yes,Correct,0.6567999999999999
+baseline,1,dev_0236,no,"NO, straights in poker do not have to be the same suit. A",no,no,Correct,0.6359
+baseline,1,dev_0741,no,I don't know. The outcome of a game of solitaire depends on,i,idk,IDK,0.6397
+baseline,1,dev_1440,no,"YES, the Xbox One can play Xbox 360 games through a",yes,yes,Incorrect,0.6367
+baseline,1,dev_2062,no,"NO, a queen cannot move like a knight. A queen moves any number",no,no,Correct,0.6336
+baseline,1,dev_2109,no,"NO, Call of Duty: World at War is based on World War II",no,no,Correct,0.6483
+baseline,1,dev_2137,no,"NO, it is not possible to win a game of chess with only a",no,no,Correct,0.6376000000000001
+baseline,1,dev_0478,yes,YES,yes,yes,Correct,0.12279999999999999
+baseline,1,dev_0545,yes,YES,yes,yes,Correct,0.1225
+baseline,1,dev_1125,yes,"YES, Need for Speed games often have a story mode. The narrative varies",yes,yes,Correct,0.6517000000000001
+baseline,1,dev_1137,yes,"YES, Pokémon Crystal is compatible with Pokémon Stadium",yes,yes,Correct,0.6537999999999999
+baseline,1,dev_1162,yes,"YES, DS Lite is compatible with all Nintendo DS games.",yes,yes,Correct,0.5598
+baseline,1,dev_1177,yes,"YES, Company of Heroes 2 does have a campaign. It'",yes,yes,Correct,0.6329
+baseline,1,dev_1444,yes,"NO, original Xbox games do not work on Xbox One without the use of an",no,no,Incorrect,0.6317
+baseline,1,dev_0313,no,"NO, St. Kitts and Nevis is an independent country in the",no,no,Correct,0.636
+baseline,1,dev_0823,no,I don't know. The Ogallala Aquifer is one of the,i,idk,IDK,0.6347
+baseline,1,dev_0839,no,"NO, West Virginia and Virginia are not the same state. West Virginia is a",no,no,Correct,0.6314
+baseline,1,dev_1222,no,"NO, the Isle of Man is not part of Great Britain. It is",no,no,Correct,0.638
+baseline,1,dev_1254,no,"NO, Sudan and South Sudan are two separate countries. Sudan is",no,no,Correct,0.6504
+baseline,1,dev_1269,no,"NO, the Mississippi River flows into the Gulf of Mexico.",no,no,Correct,0.48910000000000003
+baseline,1,dev_1334,no,"NO, Patagonia is not a country. It is a region located at",no,no,Correct,0.6384
+baseline,1,dev_0184,yes,I don't know. While it's theoretically possible to boat from,i,idk,IDK,0.6365
+baseline,1,dev_0322,yes,YES,yes,yes,Correct,0.1211
+baseline,1,dev_0557,yes,"I don't know. The Amazon River is a freshwater river, but",i,idk,IDK,0.6477
+baseline,1,dev_0573,yes,"YES, it is possible to travel from the Mediterranean Sea to the Black Sea",yes,yes,Correct,1.986
+baseline,1,dev_1179,yes,YES,yes,yes,Correct,0.121
+baseline,1,dev_0619,yes,"YES, Texas is bigger than Germany. Texas has an area of approximately",yes,yes,Correct,0.6417
+baseline,1,dev_0650,yes,YES,yes,yes,Correct,0.12459999999999999
+baseline,1,dev_0734,yes,I don't know. While it is theoretically possible to boat from Lake,i,idk,IDK,0.6359
+baseline,1,dev_0061,no,"NO, an EMT-Basic does not have the authority or training to start",no,no,Correct,0.6467
+baseline,1,dev_0124,no,"NO, health care is not free in the United States. While there are some",no,no,Correct,0.6324
+baseline,1,dev_0914,no,"I don't know. While they are related, they are not the same",i,idk,IDK,0.6341
+baseline,1,dev_0955,no,"NO, mycosis fungoides is not caused by a fungal",no,no,Correct,0.6385
+baseline,1,dev_1610,no,I don't know. While both soft-tissue damage and sprains,i,idk,IDK,0.6362000000000001
+baseline,1,dev_1790,no,I don't know. The shedding of the uterine l,i,idk,IDK,0.6347
+baseline,1,dev_2096,no,"NO, an X-ray and an MRI are not the same. An",no,no,Correct,0.6403
+baseline,1,dev_2277,no,"No, high dependency is not the same as intensive care. High dependency units",no,no,Correct,0.633
+baseline,1,dev_2499,no,"NO, a Doctor of Physical Therapy (DPT) is not an MD",no,no,Correct,0.6555
+baseline,1,dev_1959,yes,YES,yes,yes,Correct,0.1211
+baseline,1,dev_1992,yes,YES,yes,yes,Correct,0.12090000000000001
+baseline,1,dev_2047,yes,YES,yes,yes,Correct,0.12290000000000001
+baseline,1,dev_1656,yes,"I don't know. While the phrase ""broken heart"" is often",i,idk,IDK,0.6337999999999999
+baseline,1,dev_1663,yes,"Yes, turf toe can occur on any of the toes, not just the",yes,yes,Correct,0.636
+baseline,1,dev_1752,yes,"YES, Triamcinolone cream (a topical corticoster",yes,yes,Correct,0.6476000000000001
+baseline,1,dev_2049,yes,YES,yes,yes,Correct,0.12290000000000001
+baseline,1,dev_2050,yes,YES,yes,yes,Correct,0.1231
+baseline,1,dev_1442,yes,"YES, a lipid profile and a lipid panel are essentially the same",yes,yes,Correct,0.6367
+baseline,1,dev_0301,no,"NO, the Berlin Wall and the Berlin Blockade are not the same. The",no,no,Correct,0.6467999999999999
+baseline,1,dev_0480,no,NO. The Articles of Confederation were replaced by the U.S.,no,no,Correct,0.6437
+baseline,1,dev_1290,no,"NO, Nova Scotia was not one of the 13 Colonies",no,no,Correct,0.6565
+baseline,1,dev_1819,no,"NO, they are not the same country. The Czech Republic is a sovereign",no,no,Correct,0.6364
+baseline,1,dev_2206,no,"NO, the Emancipation Proclamation did not apply to all states",no,no,Correct,0.6355
+baseline,1,dev_0376,yes,"YES, William the Conqueror had a legitimate claim to the English throne",yes,yes,Correct,0.6377
+baseline,1,dev_0346,yes,"YES, there were helicopters in the Second World War, but they",yes,yes,Correct,0.6356
+baseline,1,dev_0363,yes,"YES, a 1971 silver dollar contains silver. However,",yes,yes,Correct,0.6362000000000001
+baseline,1,dev_0535,yes,"NO, Austin has been the capital of Texas since 1839,",no,no,Incorrect,0.6333
+baseline,1,dev_0629,yes,YES,yes,yes,Correct,0.1232
+baseline,1,dev_0179,no,"NO, U.S. courts of appeals do not have original jurisdiction",no,no,Correct,0.6347
+baseline,1,dev_0402,no,"NO, in the UK, it is not legal to have more than one spouse",no,no,Correct,0.653
+baseline,1,dev_0513,no,"I don't know. The question involves legal matters, and laws can vary",i,idk,IDK,0.6357999999999999
+baseline,1,dev_0606,no,"Yes, it is illegal to escape from prison in Germany. However, the act",yes,yes,Incorrect,0.6332000000000001
+baseline,1,dev_0630,no,"No, 'under honorable conditions' is not the same as an honorable",no,no,Correct,0.6466000000000001
+baseline,1,dev_0795,no,"NO, driving laws are not the same in all states. Each state has its",no,no,Correct,0.6325
+baseline,1,dev_1457,no,"NO, the Civil Rights Act is a federal law, not a part of the",no,no,Correct,0.6469
+baseline,1,dev_1776,no,"NO, an Employment Authorization Document (EAD) is not the same",no,no,Correct,0.6362000000000001
+baseline,1,dev_1862,no,I don't know. The FCC's equal-time rule primarily,i,idk,IDK,0.6365
+baseline,1,dev_1911,no,I don't know. U.S. Supreme Court justices do not,i,idk,IDK,0.6574
+baseline,1,dev_2755,no,"NO, you cannot be an attorney without taking the bar exam. The bar exam",no,no,Correct,0.6325
+baseline,1,dev_2756,no,YES,yes,yes,Incorrect,0.12079999999999999
+baseline,1,dev_2921,no,"No, property tax and council tax are not the same. Property tax is a",no,no,Correct,0.6332000000000001
+baseline,1,dev_2972,no,"No, commercial law and corporate law are not the same. While corporate law deals",no,no,Correct,0.6321
+baseline,1,dev_0009,yes,"YES, you can drive in Canada with a valid US license for up to",yes,yes,Correct,0.6357
+baseline,1,dev_0038,yes,I don't know. The legality of recording a cover of a song,i,idk,IDK,0.6321
+baseline,1,dev_0129,yes,"Yes, you can sell a gun privately in Florida, but there are certain",yes,yes,Correct,0.6419
+baseline,1,dev_0202,yes,"YES, breaking and entering into a car can be considered a felony in",yes,yes,Correct,0.6324
+baseline,1,dev_0308,yes,"YES, it is generally illegal for a minor to be in possession of alcohol",yes,yes,Correct,0.6578999999999999
+baseline,1,dev_0584,yes,YES,yes,yes,Correct,0.121
+baseline,1,dev_0644,yes,YES,yes,yes,Correct,0.1226
+baseline,1,dev_0653,yes,YES,yes,yes,Correct,0.12179999999999999
+baseline,1,dev_0671,yes,"YES, the state of Kansas has the death penalty. However, it'",yes,yes,Correct,0.6341
+baseline,1,dev_0757,yes,"YES, stealing a street sign is considered a crime in most jurisdict",yes,yes,Correct,0.6467
+baseline,1,dev_1059,yes,"YES, the Supreme Court can potentially stop an executive order. They can do",yes,yes,Correct,0.639
+baseline,1,dev_1067,yes,YES,yes,yes,Correct,0.12409999999999999
+baseline,1,dev_1097,yes,YES,yes,yes,Correct,0.1221
+baseline,1,dev_1131,yes,"YES, there is a ""Stand Your Ground"" law in Illinois, but",yes,yes,Correct,0.6467999999999999
+baseline,1,dev_1324,yes,"YES, a flask is considered an open container in most jurisdictions",yes,yes,Correct,0.6351
+baseline,1,dev_0305,no,I don't know. While language is one of the factors considered in the,i,idk,IDK,1.9877
+baseline,1,dev_0465,no,"NO, the National Guard is not part of the Coast Guard. The National Guard",no,no,Correct,0.6527000000000001
+baseline,1,dev_0508,no,"NO. The U.S. Constitution, specifically the 22nd Am",no,no,Correct,0.6384
+baseline,1,dev_0518,no,YES,yes,yes,Incorrect,0.12240000000000001
+baseline,1,dev_0572,no,I don't know. A legislator is a general term for someone who,i,idk,IDK,0.6353
+baseline,1,dev_0898,no,"NO, permanent residents in Canada do not have the right to vote in federal elections",no,no,Correct,0.633
+baseline,1,dev_1154,no,"NO, the number of Supreme Court justices has not always been 9.",no,no,Correct,0.6336
+baseline,1,dev_1221,no,"NO, a filibuster as it is traditionally known does not occur in",no,no,Correct,0.6324
+baseline,1,dev_1244,no,"NO, Canada and Australia are not part of the UK. They are separate countries",no,no,Correct,0.6326
+baseline,1,dev_1245,no,"NO, Turkey is not a member of the European Economic Area (EEA).",no,no,Correct,0.6334
+baseline,1,dev_1273,no,"NO, Guam is not part of the U.S. Virgin Islands.",no,no,Correct,0.6557999999999999
+baseline,1,dev_0647,yes,YES,yes,yes,Correct,0.1215
+baseline,1,dev_0254,yes,"NO, the Vice President is not the President of the Senate. The Vice President",no,no,Incorrect,0.6367999999999999
+baseline,1,dev_0486,yes,YES,yes,yes,Correct,0.13019999999999998
+baseline,1,dev_0736,yes,"No, the World Bank is not an affiliate of the United Nations. Although they",no,no,Incorrect,0.6369
+baseline,1,dev_0814,yes,"NO, the primary role of the U.S. Air Force is air and",no,no,Incorrect,0.6342000000000001
+baseline,1,dev_1477,yes,YES,yes,yes,Correct,0.12129999999999999
+baseline,1,dev_1721,yes,YES,yes,yes,Correct,0.1271
+baseline,1,dev_1786,yes,"YES, New York City still has rent control in place for apartments that were",yes,yes,Correct,0.8341000000000001
+baseline,1,dev_1970,yes,YES,yes,yes,Correct,0.1661
+baseline,1,dev_1985,yes,"YES, a constitutional right to privacy exists in the United States, although it",yes,yes,Correct,0.8621
+baseline,1,dev_2448,no,"NO, Puerto Rico is not a state, and its residents do not have the",no,no,Correct,0.7272000000000001
+baseline,1,dev_0066,yes,YES,yes,yes,Correct,0.1296
+baseline,1,dev_0088,yes,"YES, according to Einstein's famous equation E=mc^2,",yes,yes,Correct,0.6372000000000001
+baseline,1,dev_0196,yes,"YES, a T. rex skull has been found. The most complete",yes,yes,Correct,0.6361
+baseline,1,dev_0262,yes,YES,yes,yes,Correct,0.121
+baseline,1,dev_0271,yes,"YES, in statistical analysis, an outcome variable and a dependent variable are essentially",yes,yes,Correct,0.6342000000000001
+baseline,1,dev_0329,yes,YES,yes,yes,Correct,0.12090000000000001
+baseline,1,dev_0331,yes,"YES, a wheel and axle is a simple machine. It belongs to",yes,yes,Correct,0.6341
+baseline,1,dev_0387,yes,YES,yes,yes,Correct,0.122
+baseline,1,dev_0418,yes,"NO, it is not possible to have thunder and lightning while snowing. Th",no,no,Incorrect,0.6385
+baseline,1,dev_0616,yes,"YES, they are essentially the same substance. Bicarbonate of",yes,yes,Correct,0.6403
+baseline,1,dev_0638,yes,YES,yes,yes,Correct,0.123
+baseline,1,dev_0657,yes,I don't know. Yield stress and yield strength are related but not,i,idk,IDK,0.635
+baseline,1,dev_0692,yes,"Yes, we can use a hydrometer to measure the density of milk.",yes,yes,Correct,0.66
+baseline,1,dev_0744,yes,"Yes, a polynomial can have a square root of a variable, but it'",yes,yes,Correct,0.6524
+baseline,1,dev_0797,yes,YES,yes,yes,Correct,0.12129999999999999
+baseline,1,dev_0842,yes,"Yes, a diffraction effect can be seen in sound waves, although it is",yes,yes,Correct,0.6327999999999999
+baseline,1,dev_1379,yes,YES,yes,yes,Correct,0.1225
+baseline,1,dev_0126,no,"NO, according to our current understanding of physics and the theory of relativity by",no,no,Correct,0.6463
+baseline,1,dev_0342,no,I don't know. The speed of sound varies depending on the properties of,i,idk,IDK,0.635
+baseline,1,dev_0437,no,I don't know. The timing of the full moon and the summer sol,i,idk,IDK,0.6366
+baseline,1,dev_0553,no,YES,yes,yes,Incorrect,0.1242
+baseline,1,dev_0652,no,"NO, the square root of 3 is an irrational number. A rational",no,no,Correct,0.6387999999999999
+baseline,1,dev_0708,no,"NO, a negative number cannot be a perfect square because perfect squares are always",no,no,Correct,0.6511
+baseline,1,dev_1083,no,"NO, Carbon-14 dating cannot be used to detect the age of",no,no,Correct,0.6366
+baseline,1,dev_1142,no,I don't know. While quantum entanglement allows two particles to be,i,idk,IDK,0.641
+baseline,1,dev_1354,no,I don't know. The depth of the water table can vary greatly depending,i,idk,IDK,0.6347
+baseline,1,dev_1460,no,"I don't know. A single-subject research design, also known as",i,idk,IDK,0.6349
+baseline,1,dev_1468,no,"No, sodium lactate is not the same as lactic acid.",no,no,Correct,0.6373
+baseline,1,dev_1559,no,"No, log x and ln x are not the same. Logarithm",no,no,Correct,0.6353
+baseline,1,dev_1595,no,I don't know. While both reverse osmosis (RO) and,i,idk,IDK,0.6375
+baseline,1,dev_1643,no,"NO, static pressure is not the same as atmospheric pressure. Static",no,no,Correct,0.6547999999999999
+baseline,1,dev_1692,no,"No, atmospheric pressure is not always 1 atm. The atmospher",no,no,Correct,0.6481
+baseline,1,dev_1726,no,I don't know. The vagus nerve is actually part of the peripher,i,idk,IDK,0.6373
+baseline,1,dev_0008,yes,YES,yes,yes,Correct,0.12329999999999999
+baseline,1,dev_0323,yes,YES,yes,yes,Correct,0.123
+baseline,1,dev_0794,yes,YES,yes,yes,Correct,0.1251
+baseline,1,dev_0866,yes,YES,yes,yes,Correct,0.1318
+baseline,1,dev_0910,yes,"YES, the Dewey Decimal System is still in use, particularly",yes,yes,Correct,0.6394
+baseline,1,dev_0992,yes,YES,yes,yes,Correct,0.1211
+baseline,1,dev_1446,yes,"Yes, the Church of England and the Anglican Church are essentially the same",yes,yes,Correct,0.6352000000000001
+baseline,1,dev_0294,no,"NO, Australian Sign Language (Auslan) and American Sign Language (AS",no,no,Correct,0.637
+baseline,1,dev_0521,no,"NO, that is not true. The word 'kangaroo' is",no,no,Correct,0.6363
+baseline,1,dev_0943,no,I don't know. The Book of Deuteronomy is actually part of,i,idk,IDK,0.6443
+baseline,1,dev_1887,no,"NO, the Persian and Arabic alphabets are similar but not",no,no,Correct,1.9884000000000002
+baseline,1,dev_2892,no,"NO, they are not the same. While both are Gaelic languages and",no,no,Correct,0.6372000000000001
+baseline,1,dev_2691,no,"NO, King's College London is not part of Cambridge University. They are",no,no,Correct,0.6347
+baseline,1,dev_0065,yes,YES,yes,yes,Correct,0.12340000000000001
+baseline,1,dev_0245,yes,"YES, in American football, a team can pass the ball multiple times during",yes,yes,Correct,0.6379
+baseline,1,dev_0315,yes,YES,yes,yes,Correct,0.12079999999999999
+baseline,1,dev_0361,yes,YES,yes,yes,Correct,0.1238
+baseline,1,dev_0550,yes,YES,yes,yes,Correct,0.1206
+baseline,1,dev_0595,yes,"NO, the Ivy League does not have a basketball tournament. Instead, they",no,no,Incorrect,0.6402
+baseline,1,dev_0966,yes,"YES, the round of 16 in the World Cup is single elim",yes,yes,Correct,0.636
+baseline,1,dev_1078,yes,YES,yes,yes,Correct,0.12129999999999999
+baseline,1,dev_1224,yes,YES,yes,yes,Correct,0.12040000000000001
+baseline,1,dev_1251,yes,YES,yes,yes,Correct,0.12229999999999999
+baseline,1,dev_1260,yes,"NO, Nike Air Force 1s are not typically considered ideal for basketball",no,no,Incorrect,0.6718999999999999
+baseline,1,dev_1278,yes,YES,yes,yes,Correct,0.1253
+baseline,1,dev_1462,yes,YES,yes,yes,Correct,0.12079999999999999
+baseline,1,dev_1494,yes,YES,yes,yes,Correct,0.1206
+baseline,1,dev_1543,yes,"YES, it has happened twice in NHL history. The 20",yes,yes,Correct,0.636
+baseline,1,dev_2012,yes,YES,yes,yes,Correct,0.12290000000000001
+baseline,1,dev_2118,yes,"YES, it is possible to break someone's wrist by twisting it",yes,yes,Correct,0.6472
+baseline,1,dev_2272,yes,YES,yes,yes,Correct,0.1206
+baseline,1,dev_2338,yes,"YES, a player can play in both the Europa League and the Champions League",yes,yes,Correct,0.6407
+baseline,1,dev_2498,yes,"NO, there has never been two grand slams in one inning in baseball",no,no,Incorrect,0.6407
+baseline,1,dev_2509,yes,YES,yes,yes,Correct,0.1235
+baseline,1,dev_2917,yes,YES,yes,yes,Correct,0.1243
+baseline,1,dev_2966,yes,"YES, some players can go to the NBA out of high school, but",yes,yes,Correct,0.6347
+baseline,1,dev_2974,yes,I don't know. While some ultra-marathon runners have completed,i,idk,IDK,0.6343
+baseline,1,dev_3007,yes,YES,yes,yes,Correct,0.1217
+baseline,1,dev_3199,yes,YES,yes,yes,Correct,0.12129999999999999
+baseline,1,dev_0222,no,"NO, they are not the same size. An NBA basketball has a circumference",no,no,Correct,0.6518999999999999
+baseline,1,dev_0398,no,"NO, you cannot score directly from a throw-in in soccer. The throw",no,no,Correct,0.6374
+baseline,1,dev_0426,no,"NO, a soccer goalie cannot pick up a throw-in. Only the",no,no,Correct,0.637
+baseline,1,dev_0464,no,"YES, the golden goal rule was replaced by the shootout in the",yes,yes,Incorrect,0.6379
+baseline,1,dev_0563,no,YES,yes,yes,Incorrect,0.12179999999999999
+baseline,1,dev_0658,no,"NO, a walk in baseball is not a dead ball. A walk is an",no,no,Correct,0.6393
+baseline,1,dev_1366,no,"NO, they do not make a new Champions League trophy every year. The",no,no,Correct,0.6357
+baseline,1,dev_1471,no,"No, a player cannot be offside during a throw-in in football (",no,no,Correct,0.6377999999999999
+baseline,1,dev_1558,no,"NO, the FIFA World Cup is not held every year. It takes place every",no,no,Correct,0.6467999999999999
+baseline,1,dev_1580,no,"NO, the White Sox and Cubs do not share a stadium. The",no,no,Correct,0.6505
+baseline,1,dev_2401,no,"YES, a batsman can be run out on a no-ball",yes,yes,Incorrect,0.6513
+baseline,1,dev_2436,no,"NO, it is not possible to run a mile in 2 minutes. A",no,no,Correct,0.6387
+baseline,1,dev_3224,no,"NO, an MLB game cannot end in a tie. If the game is",no,no,Correct,0.6333
+baseline,1,dev_0022,yes,"YES, a spark plug is a crucial component in an internal combustion",yes,yes,Correct,0.6337
+baseline,1,dev_0132,yes,"YES, a Network Attached Storage (NAS) can be used as",yes,yes,Correct,0.6347
+baseline,1,dev_0268,yes,YES,yes,yes,Correct,0.15969999999999998
+baseline,1,dev_0646,yes,"YES, multithreading is still useful even on a single processor.",yes,yes,Correct,0.8576
+baseline,1,dev_0697,yes,"YES, there is a storage limit on Google Drive. The free account comes",yes,yes,Correct,0.7773
+baseline,1,dev_0935,yes,"YES, we can have multiple foreign keys in a table. However, each",yes,yes,Correct,0.6351
+baseline,1,dev_1159,yes,"Yes, a high-level language can use an assembler. This is",yes,yes,Correct,0.6346
+baseline,1,dev_1376,yes,YES,yes,yes,Correct,0.12079999999999999
+baseline,1,dev_1646,yes,"NO, cast-iron pans are generally not compatible with induction cookt",no,no,Incorrect,0.6359
+baseline,1,dev_1869,yes,"YES, a database table can have multiple foreign keys. Each foreign key refers",yes,yes,Correct,0.6351
+baseline,1,dev_2397,yes,YES,yes,yes,Correct,0.131
+baseline,1,dev_0512,no,"NO, Microsoft Visio and Visual Studio are not the same. Microsoft Visio",no,no,Correct,0.6322000000000001
+baseline,1,dev_1524,no,"NO, the transmission and the engine are not the same thing. The engine generates",no,no,Correct,0.6474
+baseline,1,dev_1675,no,"I don't know. While they are related, input lag refers to the",i,idk,IDK,0.6333
+baseline,1,dev_1723,no,"NO, a regular bulb is not designed to work with a 3-",no,no,Correct,0.6541
+baseline,1,dev_2027,no,"NO, HD DVD and Blu-ray are not the same. They are",no,no,Correct,0.6445
+baseline,1,dev_2104,no,"NO, a PlayStation 2 does not have built-in internet capabilities.",no,no,Correct,0.6377
+baseline,1,dev_2262,no,"NO, WordPad is not the same as Microsoft Word. WordPad is a",no,no,Correct,0.6324
+baseline,1,dev_2431,no,"NO, in a tree data structure, each node can have only one parent.",no,no,Correct,0.6341
+baseline,1,dev_2524,no,"NO, they are not the same. The iPhone SE was released in 2",no,no,Correct,0.6351
+baseline,1,dev_3057,no,"No, Windows Subsystem for Linux (WSL) is not a virtual machine",no,no,Correct,0.6336
+baseline,1,dev_3167,no,"NO, gear oil and motor oil are not the same. Gear oil is",no,no,Correct,0.6337999999999999
