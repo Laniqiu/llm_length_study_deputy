@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-analysis_length_unified.py
+analysis_length.py
 
-Unified analysis script that:
+Analysis script that:
 1. Reads conversation JSONs directly from runs/model/scaffold/ structure
 2. Parses responses and creates detailed_rows.csv (for inspection)
 3. Performs full analysis (regression, plots, flat baselines)
 
-Processes all 5 models: phi4, deepseek7b, qwen2.5, llama3.1, mistral7b
+Processes 5 models: phi4, deepseek7b, qwen2.5, llama3.1, mistral7b
 """
 
 from pathlib import Path
@@ -907,7 +907,7 @@ def calculate_baseline_stats(master_dfs: dict):
 # ---------- Main ----------
 def main():
     print("="*60)
-    print("UNIFIED ANALYSIS SCRIPT")
+    print("ANALYSIS SCRIPT")
     print("="*60)
     
     keep_ids, gold_map = load_final_ids_and_gold(FINAL_JSONL)
