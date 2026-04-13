@@ -54,7 +54,39 @@ python llm_length_study/run_length.py \
   --out-root runs/qwen2.5_misleading_test \
   --model qwen2.5 \
   --device cuda \
+  --response-type tri \
   --id-include dev_0023,dev_0039,dev_0055
+
+# Reasoning models (DeepSeek-R1-Distill)
+python llm_length_study/run_length.py \
+  --scaffold semantic \
+  --lengths 6,11,16,21 \
+  --in-final llm_length_study/data/boolq_final.jsonl \
+  --out-root runs/deepseek_r1_semantic \
+  --model unsloth/DeepSeek-R1-Distill-Llama-8B \
+  --device cuda \
+  --response-type tri \
+  --max-new-tokens-tasks 200 \
+  --max-new-tokens-final 800 \
+  --extract-reasoning \
+  --load-in-4bit \
+  --skip-existing
+
+# Reasoning models (Qwen3 with thinking mode)
+python llm_length_study/run_length.py \
+  --scaffold semantic \
+  --lengths 6,11,16,21 \
+  --in-final llm_length_study/data/boolq_final.jsonl \
+  --out-root runs/qwen3_thinking_semantic \
+  --model Qwen/Qwen3-8B \
+  --device cuda \
+  --response-type tri \
+  --max-new-tokens-tasks 200 \
+  --max-new-tokens-final 800 \
+  --enable-thinking \
+  --extract-reasoning \
+  --load-in-4bit \
+  --skip-existing
 """
 
 from __future__ import annotations
@@ -234,6 +266,65 @@ def _lazy_hf():
     return torch, AutoTokenizer, AutoModelForCausalLM
 
 # --------------------------------------------------------------------------------------
+# Reasoning model support
+# --------------------------------------------------------------------------------------
+def extract_answer_from_reasoning(reply: str, model_name: str = "") -> str:
+    """
+    Extract final answer from reasoning model output.
+    
+    Handles multiple reasoning tag formats:
+    - <think>...</think> (DeepSeek-R1, Qwen3)
+    - <reasoning>...</reasoning>
+    - [Thinking]...[/Thinking]
+    - Plain text reasoning (fallback: take last line)
+    
+    Returns the answer portion only (everything after closing tag or original if no tags)
+    """
+    # Common reasoning tag patterns (ordered by specificity)
+    tag_patterns = [
+        (r'</think>', r'<think>'),           # DeepSeek-R1, Qwen3
+        (r'</reasoning>', r'<reasoning>'),   # Alternative format
+        (r'\[/Thinking\]', r'\[Thinking\]'), # Bracket style
+        (r'</thought>', r'<thought>'),       # Another common format
+    ]
+    
+    # Try each tag pattern
+    for close_tag, open_tag in tag_patterns:
+        if close_tag in reply:
+            # Split on closing tag and take everything after
+            parts = reply.split(close_tag)
+            if len(parts) > 1:
+                answer = parts[-1].strip()
+                if answer:
+                    # Log what we extracted (useful for debugging)
+                    print(f"[EXTRACT] Found {close_tag}, extracted: {answer[:50]}...")
+                    return answer
+    
+    # No recognized tags found
+    # Fallback strategy: check if reply looks like it has reasoning
+    lines = reply.strip().split('\n')
+    
+    # If multi-line and last line is short (likely an answer), use that
+    if len(lines) > 3 and len(lines[-1]) < 50:
+        # Looks like reasoning followed by short answer
+        answer = lines[-1].strip()
+        print(f"[EXTRACT] No tags found, using last line: {answer[:50]}...")
+        return answer
+    
+    # If reply is very long (>500 chars), might be reasoning without tags
+    # Take last paragraph
+    if len(reply) > 500:
+        paragraphs = [p.strip() for p in reply.split('\n\n') if p.strip()]
+        if paragraphs:
+            answer = paragraphs[-1]
+            print(f"[EXTRACT] Long reply, using last paragraph: {answer[:50]}...")
+            return answer
+    
+    # No extraction pattern matched, return as-is
+    print(f"[EXTRACT] No reasoning pattern found, using full reply")
+    return reply
+
+# --------------------------------------------------------------------------------------
 # Single-turn generation (appended to rolling context)
 # --------------------------------------------------------------------------------------
 def generate_reply(
@@ -242,19 +333,27 @@ def generate_reply(
     temperature: float = 0.0,
     top_p: float = 1.0,
     stop_regex: Optional[re.Pattern] = None,
+    generation_config = None,  # For Qwen3 thinking mode
 ) -> str:
     inputs = tok(prompt_text, return_tensors="pt")
     if mdl.device.type != "cpu":
         inputs = {k: v.to(mdl.device) for k, v in inputs.items()}
-    out = mdl.generate(
-        **inputs,
-        max_new_tokens=max_new_tokens,
-        do_sample=(temperature > 0.0),
-        temperature=temperature,
-        top_p=top_p,
-        pad_token_id=tok.eos_token_id,
-        eos_token_id=tok.eos_token_id,
-    )
+    
+    # Build generation kwargs
+    gen_kwargs = {
+        "max_new_tokens": max_new_tokens,
+        "do_sample": (temperature > 0.0),
+        "temperature": temperature,
+        "top_p": top_p,
+        "pad_token_id": tok.eos_token_id,
+        "eos_token_id": tok.eos_token_id,
+    }
+    
+    # Add generation_config if provided (for Qwen3 thinking mode)
+    if generation_config is not None:
+        gen_kwargs["generation_config"] = generation_config
+    
+    out = mdl.generate(**inputs, **gen_kwargs)
     text = tok.decode(out[0], skip_special_tokens=True)
     # Extract only what model added
     if text.startswith(prompt_text):
@@ -316,11 +415,23 @@ def main():
     ap.add_argument("--model", default="phi4-mini", help="HF id or alias (e.g., phi4-mini)")
     ap.add_argument("--device", default="cpu", help="cpu|cuda|mps")
     ap.add_argument("--dtype", default="float16", help="compatibility flag; not strictly used here")
-    ap.add_argument("--max-new-tokens-tasks", type=int, default=48, help="Per-turn cap for turns 1..L-1")
-    ap.add_argument("--max-new-tokens-final", type=int, default=16, help="Cap for final turn")
+    ap.add_argument("--max-new-tokens-tasks", type=int, default=48, help="Per-turn cap for turns 1..L-1 (use 200 for reasoning models)")
+    ap.add_argument("--max-new-tokens-final", type=int, default=16, help="Cap for final turn (use 800 for reasoning models)")
     ap.add_argument("--temperature", type=float, default=0.0)
     ap.add_argument("--top-p", type=float, default=1.0)
     ap.add_argument("--log-interval", type=int, default=50, help="Print every N items")
+    
+    # Reasoning model support
+    ap.add_argument("--enable-thinking", action="store_true",
+                    help="Enable thinking mode for Qwen3 models")
+    ap.add_argument("--thinking-budget", type=int, default=None,
+                    help="Thinking budget for Qwen3 (defaults to max-new-tokens-final)")
+    ap.add_argument("--extract-reasoning", action="store_true",
+                    help="Extract answer from reasoning tags (auto-detects common formats)")
+    ap.add_argument("--reasoning-close-tag", type=str, default=None,
+                    help="Custom closing tag for reasoning (e.g., '</think>' or '</reasoning>')")
+    ap.add_argument("--load-in-4bit", action="store_true",
+                    help="Load model in 4-bit quantization (for larger models)")
 
     args = ap.parse_args()
 
@@ -341,19 +452,64 @@ def main():
     print(f"[SETUP] scaffold={scaffold} lengths={lengths} response_type={args.response_type} items={len(items)} out_root={out_root}")
 
     # HF init (only if not dry-run)
-    tok = mdl = None
+    tok = mdl = generation_config = None
     if not args.dry_run:
         torch, AutoTokenizer, AutoModelForCausalLM = _lazy_hf()
         model_id = MODEL_ALIASES.get(args.model, args.model)
         print(f"[HF] Loading model: {model_id} on device={args.device}")
+        
+        # Load tokenizer
         tok = AutoTokenizer.from_pretrained(model_id, trust_remote_code=True)
-        mdl = AutoModelForCausalLM.from_pretrained(model_id, trust_remote_code=True)
-        if args.device == "mps":
-            mdl = mdl.to("mps")
-        elif args.device == "cuda":
-            mdl = mdl.to("cuda")
+        
+        # Load model with optional 4-bit quantization
+        if args.load_in_4bit:
+            try:
+                from transformers import BitsAndBytesConfig
+                quantization_config = BitsAndBytesConfig(
+                    load_in_4bit=True,
+                    bnb_4bit_compute_dtype=torch.bfloat16,
+                    bnb_4bit_use_double_quant=True,
+                    bnb_4bit_quant_type="nf4"
+                )
+                print("[HF] Loading in 4-bit quantization...")
+                mdl = AutoModelForCausalLM.from_pretrained(
+                    model_id,
+                    quantization_config=quantization_config,
+                    device_map="auto",
+                    trust_remote_code=True
+                )
+            except ImportError:
+                print("[WARN] bitsandbytes not installed, loading without quantization")
+                mdl = AutoModelForCausalLM.from_pretrained(model_id, trust_remote_code=True)
+                if args.device == "cuda":
+                    mdl = mdl.to("cuda")
+                elif args.device == "mps":
+                    mdl = mdl.to("mps")
+                else:
+                    mdl = mdl.to("cpu")
         else:
-            mdl = mdl.to("cpu")
+            mdl = AutoModelForCausalLM.from_pretrained(model_id, trust_remote_code=True)
+            if args.device == "mps":
+                mdl = mdl.to("mps")
+            elif args.device == "cuda":
+                mdl = mdl.to("cuda")
+            else:
+                mdl = mdl.to("cpu")
+        
+        # Setup Qwen3 thinking mode if requested
+        if args.enable_thinking:
+            try:
+                from transformers import GenerationConfig
+                thinking_budget = args.thinking_budget if args.thinking_budget else args.max_new_tokens_final
+                generation_config = GenerationConfig(
+                    enable_thinking=True,
+                    thinking_budget=thinking_budget
+                )
+                print(f"[HF] Qwen3 thinking mode enabled (budget={thinking_budget})")
+            except Exception as e:
+                print(f"[WARN] Could not enable thinking mode: {e}")
+                generation_config = None
+        
         print("[HF] Ready.")
 
     # Stop regex: cut off if the model starts a new header we use
@@ -417,26 +573,35 @@ def main():
                 t0 = time.time()
 
                 if args.dry_run:
-                    reply = "(dry-run)"
+                    reply_full = "(dry-run)"
+                    reply_cleaned = "(dry-run)"
                     gen_ms = 0.0
                 else:
-                    reply = generate_reply(
+                    reply_full = generate_reply(
                         tok, mdl, full_prompt,
                         max_new_tokens=cap,
                         temperature=args.temperature,
                         top_p=args.top_p,
                         stop_regex=stop_re,
+                        generation_config=generation_config,
                     )
                     gen_ms = (time.time() - t0) * 1000.0
+                    
+                    # Extract answer from reasoning if requested
+                    if args.extract_reasoning:
+                        reply_cleaned = extract_answer_from_reasoning(reply_full, args.model)
+                    else:
+                        reply_cleaned = reply_full
 
-                # Append to rolling transcript
-                rolling += f"{user_block}### Assistant\n{reply}\n"
+                # Append CLEANED reply to rolling transcript (don't accumulate reasoning in context)
+                rolling += f"{user_block}### Assistant\n{reply_cleaned}\n"
 
-                # Save turn trace
+                # Save turn trace with both full and cleaned replies
                 turns_trace.append({
                     "turn": t_num,
                     "prompt": prompt_text,
-                    "reply": reply,
+                    "reply": reply_full,  # Full reply with reasoning
+                    "reply_cleaned": reply_cleaned,  # Answer only
                     "elapsed_ms": round(gen_ms, 1),
                 })
 
@@ -444,8 +609,9 @@ def main():
             prompt_only = "\n".join([f"[T{t['turn']}] {t['prompt']}" for t in turns_trace])
             save_text(out_prompt, prompt_only)
 
-            final_reply = turns_trace[-1]["reply"] if turns_trace else ""
-            save_text(out_resp, final_reply)
+            # Use cleaned reply for final response (answer only, no reasoning)
+            final_reply_cleaned = turns_trace[-1].get("reply_cleaned", turns_trace[-1]["reply"]) if turns_trace else ""
+            save_text(out_resp, final_reply_cleaned)
 
             meta = {
                 "boolq_id": boolq_id,
@@ -467,7 +633,7 @@ def main():
             }
 
             save_json(out_json, {"meta": meta, "turns": turns_trace, "transcript": rolling})
-            print(f"[DONE] {base} in {meta['elapsed_s']}s; final len={len(final_reply)}")
+            print(f"[DONE] {base} in {meta['elapsed_s']}s; final len={len(final_reply_cleaned)}")
             manifest_rows.append(meta)
 
     # Manifest
